@@ -1,6 +1,7 @@
-package com.example.recept_x_project.controller;
+package com.example.recipe_project.controller;
 
-import com.example.recept_x_project.service.TestDataLoader;
+
+import com.example.recipe_project.service.TestDataLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 

@@ -1,6 +1,7 @@
-package com.example.recept_x_project.repo;
+package com.example.recipe_project.repo;
 
-import com.example.recept_x_project.model.Recipe;
+
+import com.example.recipe_project.model.Recipe;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

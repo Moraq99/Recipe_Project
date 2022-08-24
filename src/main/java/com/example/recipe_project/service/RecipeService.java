@@ -1,7 +1,8 @@
-package com.example.recept_x_project.service;
+package com.example.recipe_project.service;
 
-import com.example.recept_x_project.model.Recipe;
-import com.example.recept_x_project.repo.RecipeRepo;
+
+import com.example.recipe_project.model.Recipe;
+import com.example.recipe_project.repo.RecipeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
