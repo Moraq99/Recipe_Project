@@ -1,6 +1,6 @@
 package com.example.recipe_project.model;
 
-public enum enumDifficulty {
+public enum EnumDifficulty {
     NAGYON_KONNYU,
     KONNYU,
     NORMALIS,

@@ -1,12 +1,9 @@
 package com.example.recipe_project.model;
 
 import javax.persistence.*;
-import java.util.Arrays;
 
 @Entity
 public class Recipe {
-
-
 
     @Id
     @GeneratedValue
@@ -14,7 +11,7 @@ public class Recipe {
     @Column
     private String name;
     @Enumerated(EnumType.STRING) // ! név szerint , nem a számsora szerint.
-    private enumDifficulty difficulty;
+    private EnumDifficulty difficulty;
     public int preparationTime;
     private boolean vegan;
     private boolean lactose_free;
@@ -28,7 +25,7 @@ public class Recipe {
         this.id = id;
     }
 
-    public Recipe(String name, enumDifficulty difficulty,
+    public Recipe(String name, EnumDifficulty difficulty,
                   int preparationTime, boolean vegan,
                   boolean lactose_free, boolean gluten_free,
                   String ingredients, String instruction) {
@@ -46,7 +43,6 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
-
     public long getId() {
         return id;
     }
@@ -63,11 +59,11 @@ public class Recipe {
         this.name = name;
     }
 
-    public enumDifficulty getDifficulty() {
+    public EnumDifficulty getDifficulty() {
         return difficulty;
     }
 
-    public void setDifficulty(enumDifficulty difficulty) {
+    public void setDifficulty(EnumDifficulty difficulty) {
         this.difficulty = difficulty;
     }
 
