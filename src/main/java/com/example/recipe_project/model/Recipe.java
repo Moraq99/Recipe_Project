@@ -1,5 +1,7 @@
 package com.example.recipe_project.model;
 
+import com.example.recipe_project.enums.EnumDifficulty;
+
 import javax.persistence.*;
 
 @Entity

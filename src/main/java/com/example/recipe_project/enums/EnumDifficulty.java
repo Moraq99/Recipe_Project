@@ -1,4 +1,4 @@
-package com.example.recipe_project.model;
+package com.example.recipe_project.enums;
 
 public enum EnumDifficulty {
     NAGYON_KONNYU,
