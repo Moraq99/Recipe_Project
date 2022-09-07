@@ -19,7 +19,7 @@ public class TestDataLoader {
         this.repo = recipeRepo;
     }
 
-    public void loadRecipes() {
+   /* public void loadRecipes() {
 
         Recipe r1 = new Recipe("Házi vaniliás túrókrém", EnumDifficulty.NAGYON_KONNYU, 40, false, false, true, "\n25 dkg túró \n2 db tojás (sárgája) \n2 dl tej \n5-8 dkg cukor \n1 ek vaníliás pudingpor \n1/2 rúd vanília magjai \n1 csipet só", "\nA tojások sárgáját a cukorral, pudingporral és egy kevés tejjel alaposan elkeverjük\n" +
                 "      (előzőleg a sárgájákat a cukorral kissé habosítjuk).\n" +
@@ -117,7 +117,7 @@ public class TestDataLoader {
 
         repo.saveAll(Arrays.asList(r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14));
 
-    };
+    };*/
 
     public boolean doesRecipeContain(String keyWord, Recipe recipe) {
 

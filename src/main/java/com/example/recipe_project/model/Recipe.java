@@ -3,6 +3,7 @@ package com.example.recipe_project.model;
 import com.example.recipe_project.enums.EnumDifficulty;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Recipe {
@@ -18,7 +19,8 @@ public class Recipe {
     private boolean vegan;
     private boolean lactose_free;
     private boolean gluten_free;
-    private String ingredients;
+    @OneToMany(mappedBy="recipe",cascade=CascadeType.ALL)
+    private List<Ingredient> ingredients;
     private String instruction;
 
     public Recipe () {};
@@ -30,7 +32,7 @@ public class Recipe {
     public Recipe(String name, EnumDifficulty difficulty,
                   int preparationTime, boolean vegan,
                   boolean lactose_free, boolean gluten_free,
-                  String ingredients, String instruction) {
+                  List<Ingredient> ingredients, String instruction) {
         this.name = name;
         this.difficulty = difficulty;
         this.preparationTime = preparationTime;
@@ -41,7 +43,7 @@ public class Recipe {
         this.instruction = instruction;
     }
 
-    public Recipe(String ingredients) {
+    public Recipe(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
@@ -101,11 +103,11 @@ public class Recipe {
         this.gluten_free = gluten_free;
     }
 
-    public String getIngredients() {
+    public List<Ingredient> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(String ingredients) {
+    public void setIngredients(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
 
