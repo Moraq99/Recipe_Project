@@ -128,6 +128,8 @@ public class TestDataLoader {
         );
         Recipe recipe = new Recipe("házi vanilliás túrókrém",EnumDifficulty.NORMAL,40,false,false,true,ingredients,"aaa");
         ingredients.forEach(ingredient -> ingredient.setRecipe(recipe)); // ez meg mi afasz ?
+
+        repo.save(recipe);
     };
 
 
