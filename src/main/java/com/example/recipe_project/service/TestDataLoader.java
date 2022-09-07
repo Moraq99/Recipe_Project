@@ -1,13 +1,18 @@
 package com.example.recipe_project.service;
 
 
+import com.example.recipe_project.enums.EnumUnit;
+import com.example.recipe_project.model.Ingredient;
 import com.example.recipe_project.model.Recipe;
 import com.example.recipe_project.enums.EnumDifficulty;
 import com.example.recipe_project.repo.RecipeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 
 @Service
@@ -19,9 +24,10 @@ public class TestDataLoader {
         this.repo = recipeRepo;
     }
 
-   /* public void loadRecipes() {
 
-        Recipe r1 = new Recipe("Házi vaniliás túrókrém", EnumDifficulty.NAGYON_KONNYU, 40, false, false, true, "\n25 dkg túró \n2 db tojás (sárgája) \n2 dl tej \n5-8 dkg cukor \n1 ek vaníliás pudingpor \n1/2 rúd vanília magjai \n1 csipet só", "\nA tojások sárgáját a cukorral, pudingporral és egy kevés tejjel alaposan elkeverjük\n" +
+    public void loadRecipes() {
+
+        /*Recipe r1 = new Recipe("Házi vaniliás túrókrém", EnumDifficulty.NAGYON_KONNYU, 40, false, false, true, "\n25 dkg túró \n2 db tojás (sárgája) \n2 dl tej \n5-8 dkg cukor \n1 ek vaníliás pudingpor \n1/2 rúd vanília magjai \n1 csipet só", "\nA tojások sárgáját a cukorral, pudingporral és egy kevés tejjel alaposan elkeverjük\n" +
                 "      (előzőleg a sárgájákat a cukorral kissé habosítjuk).\n" +
                 "      A maradék tejet a vanília magjaival felforraljuk, beleöntjük a masszát, majd addig keverjük,\n" +
                 "      amíg sűrű pudingot nem kapunk. Ezután hagyjuk kihűlni.\n" +
@@ -115,9 +121,16 @@ public class TestDataLoader {
 
 
 
-        repo.saveAll(Arrays.asList(r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14));
+        repo.saveAll(Arrays.asList(r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14));*/
+        List<Ingredient> ingredients= Arrays.asList(
+                new Ingredient("hagyma",40.0,EnumUnit.KG),
+                new Ingredient("alma",90.0,EnumUnit.L)
+        );
+        Recipe recipe = new Recipe("házi vanilliás túrókrém",EnumDifficulty.NORMAL,40,false,false,true,ingredients,"aaa");
+        ingredients.forEach(ingredient -> ingredient.setRecipe(recipe)); // ez meg mi afasz ?
+    };
 
-    };*/
+
 
     public boolean doesRecipeContain(String keyWord, Recipe recipe) {
 

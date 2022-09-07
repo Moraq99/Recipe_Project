@@ -25,6 +25,12 @@ public class Ingredient {
         this.recipe = recipe;
     }
 
+    public Ingredient(String name, double quantity, EnumUnit unit) {
+        this.name = name;
+        this.quantity = quantity;
+        this.unit = unit;
+    }
+
     public Long getId() {
         return id;
     }
