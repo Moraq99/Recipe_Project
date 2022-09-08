@@ -6,10 +6,11 @@ public enum EnumUnit {
     G,
     DKG,
     KG,
-    TS, //TABLESPOON
+    TBS, //TABLESPOON
     TSP, //TEASPOON
-    CUP,
+    CUP, // CUP
     PCS, // PIECES
-
+    PKG, // PACKAGE
+    PINCH // csipet
 
 }
