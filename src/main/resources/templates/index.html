@@ -93,12 +93,38 @@
     </header>
     <!-- Header Section End -->
 
+    <section class="product spad">
+        <div class="container" >
+            <div class="row">
+
+                <div class="col-lg-3 col-md-6 col-sm-6" data-th-each="recipe : ${recipes}">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-2.jpg">
+                            <div class="product__label">
+                                <span data-th-text="${recipe.difficulty}"></span>
+                            </div>
+                        </div>
+                        <div class="product__item__text">
+                            <h6 data-th-text="${recipe.name}"></h6>
+                            <div class="product__item__price" data-th-text="${recipe.id}"></div>
+                            <div class="cart_add">
+                                <a data-th-href="@{/recipe/{id}(id = ${recipe.id})}">Check Out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
 
     <!-- Footer Section Begin -->
     <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
        <div th:include="footer::footer"></div>
 </footer>
 <!-- Footer Section End -->
+
 
 <!-- Search Begin -->
 <div class="search-model">
