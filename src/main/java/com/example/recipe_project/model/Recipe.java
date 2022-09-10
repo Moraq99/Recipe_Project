@@ -21,6 +21,8 @@ public class Recipe {
     private boolean gluten_free;
     @OneToMany(mappedBy="recipe",cascade=CascadeType.ALL)
     private List<Ingredient> ingredients;
+
+    @Lob
     private String instruction;
 
     public Recipe () {};

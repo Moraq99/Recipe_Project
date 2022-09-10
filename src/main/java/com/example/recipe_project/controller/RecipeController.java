@@ -35,7 +35,7 @@ public class RecipeController {
 
     @GetMapping(value = {"/test"})
     public String loadRecipes() {
-        testDataLoader.loadRecipes();
+       testDataLoader.loadRecipes();
         return "redirect:/home";                //átirányitás a főoldalra
     }
 
