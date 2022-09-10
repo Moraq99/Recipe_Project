@@ -7,26 +7,28 @@ import com.example.recipe_project.service.TestDataLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Controller
 public class RecipeController {
 
-    private TestDataLoader testDataLoader;
+    private final TestDataLoader testDataLoader;
 
-    RecipeRepo recipeRepo;
+    private final RecipeRepo recipeRepo;
 
     public RecipeController(TestDataLoader testDataLoader, RecipeRepo recipeRepo) {
         this.testDataLoader = testDataLoader;
         this.recipeRepo = recipeRepo;
     }
 
-    @GetMapping(value = {"/mainPage", "/home"})
-    public String getRecipe(Model model) {
-
-        Recipe recipe = new Recipe();
-        model.addAttribute("recipe", recipe);
-
-        recipeRepo.save(recipe);
+    @GetMapping(value = {"/", "/home"})
+    public String getHomePage(Model model) {
+        List<Recipe> recipes = new ArrayList<>((Collection) recipeRepo.findAll());
+        model.addAttribute("recipes", recipes);
 
         return "index";
     }
@@ -35,6 +37,14 @@ public class RecipeController {
     public String loadRecipes() {
         testDataLoader.loadRecipes();
         return "redirect:/home";                //átirányitás a főoldalra
+    }
+
+    @GetMapping(value = "/recipe/{id}")
+    public String getRecipe(@PathVariable("id") long id, Model model) {
+        Recipe recipe = recipeRepo.findById(id).orElseThrow();
+        model.addAttribute("recipe", recipe);
+
+        return "recipeTemp";
     }
 
 
