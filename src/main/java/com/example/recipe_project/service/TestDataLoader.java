@@ -40,7 +40,7 @@ public class TestDataLoader {
 
         Recipe r1 = new Recipe(
                 "Házi vanilliás túrókrém",
-                EnumDifficulty.NORMAL,
+                EnumDifficulty.VERY_EASY,
                 40,
                 false,
                 false,
@@ -203,7 +203,7 @@ public class TestDataLoader {
         List<Ingredient> ingredientsr5 = new ArrayList<>();
 
         Recipe r5 = new Recipe(
-                "Bögrés kefíres-meggyes kevert süti",
+                "Egyszerű tűrós kókuszgolyó",
                 EnumDifficulty.VERY_DIFFICULT,
                 50,
                 false,
@@ -242,7 +242,7 @@ public class TestDataLoader {
         List<Ingredient> ingredientsr6 = new ArrayList<>();
 
         Recipe r6 = new Recipe(
-                "Kókusztekersz",
+                "Kókusztekercs",
                 EnumDifficulty.NORMAL,
                 30,
                 false,
@@ -587,7 +587,7 @@ public class TestDataLoader {
         List<Ingredient> ingredientsr14 = new ArrayList<>();
 
         Recipe r14 = new Recipe(
-                "Pudingos kekszek",
+                "Kis cica",
                 EnumDifficulty.IMPOSSIBLE,
                 999999999,
                 true,
