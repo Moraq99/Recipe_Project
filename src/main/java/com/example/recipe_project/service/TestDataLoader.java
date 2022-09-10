@@ -587,7 +587,7 @@ public class TestDataLoader {
         List<Ingredient> ingredientsr14 = new ArrayList<>();
 
         Recipe r14 = new Recipe(
-                "Pudingos kekszek",
+                "Kis cica",
                 EnumDifficulty.IMPOSSIBLE,
                 999999999,
                 true,
