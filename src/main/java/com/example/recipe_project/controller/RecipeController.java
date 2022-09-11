@@ -44,7 +44,7 @@ public class RecipeController {
         Recipe recipe = recipeRepo.findById(id).orElseThrow();
         model.addAttribute("recipe", recipe);
 
-        return "recipeTemp";
+        return "recipe";
     }
 
 
