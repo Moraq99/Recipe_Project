@@ -2,32 +2,21 @@
 <html lang="zxx">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Cake Template">
-    <meta name="keywords" content="Cake, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cake | Template</title>
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
-
+    <div th:replace="fragments/head::head"></div>
+    <title>Recipe project</title>
     <!-- Css Styles -->
-    <div th:include="body::style"></div>
+    <div th:include="fragments/body::style"></div>
 </head>
 
 <body>
 
     <!-- Offcanvas Menu Begin -->
-    <div th:include="body::offMenu"></div>
+    <div th:include="fragments/body::offMenu"></div>
     <!-- Offcanvas Menu End -->
 
     <!-- Header Section Begin -->
     <header class="header">
-        <div th:include="header::header"></div>
+        <div th:include="fragments/header::header"></div>
     </header>
     <!-- Header Section End -->
 
@@ -35,17 +24,17 @@
 
     <!-- Footer Section Begin -->
     <footer class="footer set-bg" data-setbg="/img/footer-bg.jpg">
-        <div th:include="footer::footer"></div>
+        <div th:include="fragments/footer::footer"></div>
         <!--<div th:include="footer::footerCopy"></div>-->
     </footer>
 <!-- Footer Section End -->
 
 <!-- Search Begin -->
-    <div th:include="body::searchModel"></div>
+    <div th:include="fragments/body::searchModel"></div>
 <!-- Search End -->
 
 <!-- Js Plugins -->
-    <div th:include="body::scripts"></div>
+    <div th:include="fragments/body::scripts"></div>
 </body>
 
 </html>
