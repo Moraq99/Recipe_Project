@@ -47,6 +47,12 @@ public class RecipeController {
         return "recipe";
     }
 
+    @GetMapping(value = "/search")
+    public String getSearchPage() {
+
+        return "search";
+    }
+
 
 
     /*private final com.example.recept_x_project.service.recipeService recipeService;

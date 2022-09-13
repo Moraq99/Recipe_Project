@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<form action="#">
+  <div class="row">
+    <div class="col-lg-6">
+      <input type="text" placeholder="search in recipe names...">
+    </div>
+    <div class="col-lg-6">
+      <input type="number" placeholder="10">
+    </div>
+    <div class="col-lg-6">
+      <input type="text" placeholder="search in ingredients...">
+    </div>
+    <div class="col-lg-6">
+      <input type="checkbox" id="vegan" value="vegan">
+      <label for="vegan">Vegan recipes</label>
+    </div>
+    <div class="col-lg-6">
+      <input type="checkbox" id="lactose" value="vegan">
+      <label for="lactose">Lactose free recipes</label>
+    </div>
+    <div class="col-lg-6">
+      <input type="checkbox" id="gluten" value="vegan">
+      <label for="gluten">Gluten free recipes</label>
+    </div>
+    <select name="difficulty">
+      <option data-th-each="difficulty : ${T(com.example.recipe_project.enums.EnumDifficulty).values()}"
+              data-th-value="${difficulty}"
+              data-th-text="${difficulty.displayValue}">
+      </option>
+    </select>
+  </div>
+</form>
+
+
+</body>
+</html>
