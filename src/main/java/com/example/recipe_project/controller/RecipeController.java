@@ -28,6 +28,9 @@ public class RecipeController {
     @GetMapping(value = {"/", "/home"})
     public String getHomePage(Model model) {
         List<Recipe> recipes = new ArrayList<>((Collection) recipeRepo.findAll());
+        boolean home = true;
+
+        model.addAttribute("home", home);
         model.addAttribute("recipes", recipes);
 
         return "index";
@@ -48,7 +51,9 @@ public class RecipeController {
     }
 
     @GetMapping(value = "/search")
-    public String getSearchPage() {
+    public String getSearchPage(Model model) {
+        boolean search = true;
+        model.addAttribute("search", search);
 
         return "search";
     }

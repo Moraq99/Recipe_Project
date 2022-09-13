@@ -27,8 +27,8 @@
         <nav class="header__menu mobile-menu">
           <ul>
             <!--class="active"-->
-            <li><a data-th-href="@{/home}">Home</a></li>
-            <li><a data-th-href="@{/search}">Search</a></li>
+            <li data-th-classappend="${home} ? active : none"><a data-th-href="@{/home}">Home</a></li>
+            <li data-th-classappend="${search} ? active : none"><a data-th-href="@{/search}">Search</a></li>
           </ul>
         </nav>
       </div>
