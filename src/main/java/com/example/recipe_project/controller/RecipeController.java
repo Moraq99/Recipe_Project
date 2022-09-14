@@ -3,6 +3,7 @@ package com.example.recipe_project.controller;
 
 import com.example.recipe_project.model.Recipe;
 import com.example.recipe_project.repo.RecipeRepo;
+import com.example.recipe_project.service.RecipeService;
 import com.example.recipe_project.service.TestDataLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,16 +19,16 @@ public class RecipeController {
 
     private final TestDataLoader testDataLoader;
 
-    private final RecipeRepo recipeRepo;
+    private final RecipeService recipeService;
 
-    public RecipeController(TestDataLoader testDataLoader, RecipeRepo recipeRepo) {
+    public RecipeController(TestDataLoader testDataLoader, RecipeService recipeService) {
         this.testDataLoader = testDataLoader;
-        this.recipeRepo = recipeRepo;
+        this.recipeService = recipeService;
     }
 
     @GetMapping(value = {"/", "/home"})
     public String getHomePage(Model model) {
-        List<Recipe> recipes = new ArrayList<>((Collection) recipeRepo.findAll());
+        List<Recipe> recipes = new ArrayList<>((Collection) recipeService.getAll());
         boolean home = true;
 
         model.addAttribute("home", home);
@@ -44,7 +45,7 @@ public class RecipeController {
 
     @GetMapping(value = "/recipe/{id}")
     public String getRecipe(@PathVariable("id") long id, Model model) {
-        Recipe recipe = recipeRepo.findById(id).orElseThrow();
+        Recipe recipe = recipeService.findById(id);
         model.addAttribute("recipe", recipe);
 
         return "recipe";

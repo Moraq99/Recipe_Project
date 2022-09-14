@@ -6,6 +6,10 @@ import com.example.recipe_project.repo.RecipeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 
 @Service
 public class RecipeService {
@@ -17,10 +21,12 @@ public class RecipeService {
         this.repo = recipeRepo;
     }
 
-    public boolean doesRecipeContain(String keyWord, Recipe recipe) {
-
-        return recipe.getIngredients().contains(keyWord);
+    public List<Recipe> getAll() {
+        return new ArrayList<>((Collection) repo.findAll());
     }
 
+    public Recipe findById(long id) {
+        return repo.findById(id).orElseThrow();
+    }
 
     }
