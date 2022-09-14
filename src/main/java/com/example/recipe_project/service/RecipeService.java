@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class RecipeService {
 
-    private RecipeRepo repo;
+    private final RecipeRepo repo;
 
     @Autowired
     public RecipeService(RecipeRepo recipeRepo){
