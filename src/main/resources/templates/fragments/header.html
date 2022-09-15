@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<div data-th-fragment="header">
+<div data-th-fragment="header(page)">
   <div class="header__top">
     <div class="container">
       <div class="row">
@@ -27,8 +27,8 @@
         <nav class="header__menu mobile-menu">
           <ul>
             <!--class="active"-->
-            <li data-th-classappend="${home} ? active : none"><a data-th-href="@{/home}">Home</a></li>
-            <li data-th-classappend="${search} ? active : none"><a data-th-href="@{/search}">Search</a></li>
+            <li data-th-classappend="${page} == 'home' ? active : none"><a data-th-href="@{/home}">Home</a></li>
+            <li data-th-classappend="${page} == 'search' ? active : none"><a data-th-href="@{/search}">Search</a></li>
           </ul>
         </nav>
       </div>
