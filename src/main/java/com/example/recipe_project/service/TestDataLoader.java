@@ -9,15 +9,12 @@ import com.example.recipe_project.repo.RecipeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 
 @Service
 public class TestDataLoader {
-    private RecipeRepo repo;
+    private final RecipeRepo repo;
 
     @Autowired
     public TestDataLoader(RecipeRepo recipeRepo){
@@ -610,23 +607,44 @@ public class TestDataLoader {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-        //ingredients.forEach(ingredient -> ingredient.setRecipe(r1)); // ez meg mi afasz ?
+        //ingredients.forEach(ingredient -> ingredient.setRecipe(r1)); // ez meg mi a fasz ?
     }
 
 
 
-    public boolean doesRecipeContain(String keyWord, Recipe recipe) {
 
-        return recipe.getIngredients().contains(keyWord);
+
+
+    /**
+     * Ria játszott egyet. :)
+     * @param keyword the keyword to search
+     * @return the MAGIC!
+     */
+    public List<Recipe> ria(String keyword) {
+        return ((List<Recipe>) repo.findAll())
+                .stream().filter(recipe ->
+                        recipe.getIngredients().stream().anyMatch(ingredient ->
+                                ingredient.getName().contains(keyword))
+                )
+                .toList();
     }
 
-   /* public String valami(List<Recipe> recipe) {
+   /* public List<Ingredient> findByIngredients(String  keyWord, Recipe recipe){
+        List<Ingredient> result = new ArrayList<>();
 
-        for () {
-            boolean a = Recipe.matches("tojás");
+        for(Ingredient search : ingredients.values()){
+            if(recipe.getIngredients().contains(keyWord)){
+                result.add(search);
+            }
         }
-        return ;
+        return result;
     }*/
+
+    /*public List<Recipe> getByIngredients() {
+
+        return repo.findByIngredients(new ArrayList<>());
+    }*/
+
 
 
 }
