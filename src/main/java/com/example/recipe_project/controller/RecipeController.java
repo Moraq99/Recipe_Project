@@ -2,6 +2,7 @@ package com.example.recipe_project.controller;
 
 
 import com.example.recipe_project.model.Recipe;
+import com.example.recipe_project.model.SearchFields;
 import com.example.recipe_project.repo.RecipeRepo;
 import com.example.recipe_project.service.RecipeService;
 import com.example.recipe_project.service.TestDataLoader;
@@ -9,10 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class RecipeController {
@@ -51,8 +54,17 @@ public class RecipeController {
 
     @GetMapping(value = "/search")
     public String getSearchPage(Model model) {
+        model.addAttribute("search", new SearchFields());
 
         return "search";
+    }
+
+    @PostMapping(value = "/search")
+    public String displaySeachResults(SearchFields searchFields, Model model) {
+        Set<Recipe> recipes = recipeService.getSearchResults(searchFields);
+        model.addAttribute("recipes", recipes);
+
+        return "searchresult";
     }
 
 

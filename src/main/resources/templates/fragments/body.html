@@ -171,15 +171,15 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="class__sidebar">
-                        <form action="#">
+                        <form data-th-action="@{/search}" data-th-object="${search}" method="post">
                             <div class="row">
                                 <div class="col-lg-8">
                                     <label for="recipeName">Recipe name</label>
-                                    <input type="text" id="recipeName">
+                                    <input type="text" id="recipeName" data-th-field="*{name}">
                                 </div>
                                 <div class="col-lg-8">
                                     <label for="ingredient">Ingredients</label>
-                                    <input type="text" id="ingredient">
+                                    <input type="text" id="ingredient" data-th-field="*{ingredient}">
                                 </div>
                                 <div class="col-lg-8">
                                     <label for="prepTime">Preparation time</label>
@@ -197,7 +197,7 @@
                                     <input type="checkbox" id="gluten" value="gluten" style="height: 15px; width: 15px">
                                     <label for="gluten">Gluten free recipes</label>
                                 </div>
-                                <select name="difficulty" class="col-lg-8" style="border: none">
+                                <select name="difficulty" class="col-lg-8" style="border: none" data-th-field="*{difficulty}">
                                     <option data-th-each="difficulty : ${T(com.example.recipe_project.enums.EnumDifficulty).values()}"
                                             data-th-value="${difficulty}"
                                             data-th-text="${difficulty.displayValue}">
