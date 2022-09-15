@@ -27,7 +27,10 @@ public class RecipeService {
 
     public List<Recipe> getAll() {
         return new ArrayList<>((Collection) repo.findAll());
-
+    }
+    public Recipe findById(long id) {
+        return repo.findById(id).orElseThrow();
+    }
     public boolean doesRecipeContain(String keyWord, Recipe recipe) {
 
         List<Ingredient> ingredients = recipe.getIngredients();
@@ -40,9 +43,7 @@ public class RecipeService {
         return false;
     }
 
-    public Recipe findById(long id) {
-        return repo.findById(id).orElseThrow();
-    }
+
     public List<Recipe> findByIngredient(String keyword){
 
         List<Recipe> hasKeyword = new ArrayList<>();
