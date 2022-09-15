@@ -80,7 +80,7 @@
 <div data-th-fragment="scripts">
     <script data-th-src="@{/js/jquery-3.3.1.min.js}"></script>
     <script data-th-src="@{/js/bootstrap.min.js}"></script>
-    <script data-th-src="@{/js/jquery.nice-select.min.js}"></script>
+    <!--<script data-th-src="@{/js/jquery.nice-select.min.js}"></script>-->
     <script data-th-src="@{/js/jquery.barfiller.js}"></script>
     <script data-th-src="@{/js/jquery.magnific-popup.min.js}"></script>
     <script data-th-src="@{/js/jquery.slicknav.js}"></script>
@@ -126,7 +126,7 @@
                     <div class="product__details__text">
                         <div class="product__label" data-th-text="${recipe.id}"></div>
                         <h4 data-th-text="${recipe.name}"></h4>
-                        <h5 data-th-text="${recipe.preparationTime}"></h5>
+                        <h5 data-th-text="${recipe.preparationTime} + ' minutes'"></h5>
                     </div>
                     <div>
                         <ul data-th-each="ingredient : ${recipe.ingredients}">
@@ -157,6 +157,64 @@
     </section>
     <br>
     <br>
+</div>
+
+<div data-th-fragment="searchForm">
+    <section class="contact spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="section-title">
+                        <span>Search</span>
+                        <h2>Let us help to find a recipe for you.</h2>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="class__sidebar">
+                        <form action="#">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <label for="recipeName">Recipe name</label>
+                                    <input type="text" id="recipeName">
+                                </div>
+                                <div class="col-lg-8">
+                                    <label for="ingredient">Ingredients</label>
+                                    <input type="text" id="ingredient">
+                                </div>
+                                <div class="col-lg-8">
+                                    <label for="prepTime">Preparation time</label>
+                                    <input type="number" id="prepTime" placeholder="10">
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="checkbox" id="vegan" value="vegan" style="height: 15px; width: 15px">
+                                    <label for="vegan">Vegan recipes</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="checkbox" id="lactose" value="lactose" style="height: 15px; width: 15px">
+                                    <label for="lactose">Lactose free recipes</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="checkbox" id="gluten" value="gluten" style="height: 15px; width: 15px">
+                                    <label for="gluten">Gluten free recipes</label>
+                                </div>
+                                <select name="difficulty" class="col-lg-8" style="border: none">
+                                    <option data-th-each="difficulty : ${T(com.example.recipe_project.enums.EnumDifficulty).values()}"
+                                            data-th-value="${difficulty}"
+                                            data-th-text="${difficulty.displayValue}">
+                                    </option>
+                                </select>
+                                <br><br>
+                                <div class="col-lg-12">
+                                    <br><br>
+                                    <button type="submit" class="site-btn">Search...</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 
 </body>

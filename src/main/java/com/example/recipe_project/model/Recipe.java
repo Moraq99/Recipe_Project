@@ -45,6 +45,14 @@ public class Recipe {
         this.instruction = instruction;
     }
 
+    public Recipe(long id, String name, EnumDifficulty difficulty,
+                  int preparationTime) {
+        this.id = id;
+        this.name = name;
+        this.difficulty = difficulty;
+        this.preparationTime = preparationTime;
+    }
+
     public Recipe(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }

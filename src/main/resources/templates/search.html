@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <div th:replace="fragments/head::head"></div>
+    <title>Recipe project</title>
+    <!-- Css Styles -->
+    <div th:include="fragments/body::style"></div>
+</head>
+
+<body>
+
+<!-- Offcanvas Menu Begin -->
+<div th:include="fragments/body::offMenu"></div>
+<!-- Offcanvas Menu End -->
+
+<!-- Header Section Begin -->
+<header class="header">
+    <div th:include="fragments/header::header('search')"></div>
+</header>
+<!-- Header Section End -->
+
+<div th:include="fragments/body::searchForm"></div>
+
+<!-- Footer Section Begin -->
+<footer class="footer set-bg" data-setbg="/img/footer-bg.jpg">
+    <div th:include="fragments/footer::footer"></div>
+    <!--<div th:include="footer::footerCopy"></div>-->
+</footer>
+<!-- Footer Section End -->
+
+<!-- Search Begin -->
+<div th:include="fragments/body::searchModel"></div>
+<!-- Search End -->
+
+<!-- Js Plugins -->
+<div th:include="fragments/body::scripts"></div>
+</body>
+
+</html>
