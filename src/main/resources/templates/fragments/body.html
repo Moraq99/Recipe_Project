@@ -174,13 +174,16 @@
                         <form action="#">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <input type="text" placeholder="search in recipe names...">
+                                    <label for="recipeName">Recipe name</label>
+                                    <input type="text" id="recipeName">
                                 </div>
                                 <div class="col-lg-8">
-                                    <input type="text" placeholder="search in ingredients...">
+                                    <label for="ingredient">Ingredients</label>
+                                    <input type="text" id="ingredient">
                                 </div>
                                 <div class="col-lg-8">
-                                    <input type="number" placeholder="10">
+                                    <label for="prepTime">Preparation time</label>
+                                    <input type="number" id="prepTime" placeholder="10">
                                 </div>
                                 <div class="col-lg-8">
                                     <input type="checkbox" id="vegan" value="vegan" style="height: 15px; width: 15px">
@@ -194,7 +197,7 @@
                                     <input type="checkbox" id="gluten" value="gluten" style="height: 15px; width: 15px">
                                     <label for="gluten">Gluten free recipes</label>
                                 </div>
-                                <select name="difficulty" class="col-lg-8">
+                                <select name="difficulty" class="col-lg-8" style="border: none">
                                     <option data-th-each="difficulty : ${T(com.example.recipe_project.enums.EnumDifficulty).values()}"
                                             data-th-value="${difficulty}"
                                             data-th-text="${difficulty.displayValue}">
