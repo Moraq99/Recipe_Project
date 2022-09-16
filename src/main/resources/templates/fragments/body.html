@@ -183,18 +183,18 @@
                                 </div>
                                 <div class="col-lg-8">
                                     <label for="prepTime">Preparation time</label>
-                                    <input type="number" id="prepTime" placeholder="10">
+                                    <input type="number" id="prepTime" placeholder="10" data-th-field="*{prepTime}">
                                 </div>
                                 <div class="col-lg-8">
-                                    <input type="checkbox" id="vegan" value="vegan" style="height: 15px; width: 15px">
+                                    <input type="checkbox" id="vegan" value="vegan" style="height: 15px; width: 15px" data-th-field="*{vegan}">
                                     <label for="vegan">Vegan recipes</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <input type="checkbox" id="lactose" value="lactose" style="height: 15px; width: 15px">
+                                    <input type="checkbox" id="lactose" value="lactose" style="height: 15px; width: 15px" data-th-field="*{lactose_free}">
                                     <label for="lactose">Lactose free recipes</label>
                                 </div>
                                 <div class="col-lg-8">
-                                    <input type="checkbox" id="gluten" value="gluten" style="height: 15px; width: 15px">
+                                    <input type="checkbox" id="gluten" value="gluten" style="height: 15px; width: 15px" data-th-field="*{gluten_free}">
                                     <label for="gluten">Gluten free recipes</label>
                                 </div>
                                 <select name="difficulty" class="col-lg-8" style="border: none" data-th-field="*{difficulty}">

@@ -1,12 +1,14 @@
 package com.example.recipe_project.enums;
 
 public enum EnumDifficulty {
-    VERY_EASY("very easy"),
-    EASY("easy"),
-    NORMAL("normal"),
-    DIFFICULT("difficult"),
-    VERY_DIFFICULT("very difficult"),
-    IMPOSSIBLE("impossible");
+
+    UNDEFINED("Difficulty"),
+    VERY_EASY("Very easy"),
+    EASY("Easy"),
+    NORMAL("Normal"),
+    DIFFICULT("Difficult"),
+    VERY_DIFFICULT("Very difficult"),
+    IMPOSSIBLE("Impossible");
 
     private final String displayValue;
 

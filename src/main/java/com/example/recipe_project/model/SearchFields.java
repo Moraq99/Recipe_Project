@@ -15,17 +15,20 @@ public class SearchFields {
     private EnumDifficulty difficulty;
     private String ingredient;
 
+    private int prepTime;
+
     public SearchFields(){
 
     }
 
-    public SearchFields(String name, boolean vegan, boolean lactose_free, boolean gluten_free, EnumDifficulty difficulty, String ingredient) {
+    public SearchFields(String name, boolean vegan, boolean lactose_free, boolean gluten_free, EnumDifficulty difficulty, String ingredient, int prepTime) {
         this.name = name;
         this.vegan = vegan;
         this.lactose_free = lactose_free;
         this.gluten_free = gluten_free;
         this.difficulty = difficulty;
         this.ingredient = ingredient;
+        this.prepTime = prepTime;
     }
 
     public String getName() {
@@ -74,5 +77,13 @@ public class SearchFields {
 
     public void setIngredient(String ingredient) {
         this.ingredient = ingredient;
+    }
+
+    public int getPrepTime() {
+        return prepTime;
+    }
+
+    public void setPrepTime(int prepTime) {
+        this.prepTime = prepTime;
     }
 }

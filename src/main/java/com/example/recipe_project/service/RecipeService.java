@@ -96,6 +96,14 @@ public class RecipeService {
                 .toList();
     }
 
+    public List<Recipe> findRecipesWherePrepTime(int prepTime) {
+        List<Recipe> dbRecipes = (List<Recipe>) repo.findAll();
+
+        return dbRecipes.stream()
+                .filter(recipe -> recipe.getPreparationTime() <= prepTime)
+                .toList();
+    }
+
     public Set<Recipe> getSearchResults(SearchFields searchFields) {
         List<Recipe> nameResult = new ArrayList<>();
         List<Recipe> veganResult = new ArrayList<>();
@@ -103,7 +111,12 @@ public class RecipeService {
         List<Recipe> glutenResult = new ArrayList<>();
         List<Recipe> difficultyResult = findRecipesWhereDifficulty(searchFields.getDifficulty());
         List<Recipe> ingredientResult = new ArrayList<>();
+        List<Recipe> prepTimeResult = new ArrayList<>();
         Set<Recipe> result = new HashSet<>();
+
+        if (!searchFields.getDifficulty().equals(EnumDifficulty.UNDEFINED)) {
+            result.addAll(difficultyResult);
+        }
 
         if (searchFields.getName().length() > 0) {
             nameResult = findRecipesWhereNameContains(searchFields.getName());
@@ -128,6 +141,11 @@ public class RecipeService {
         if (searchFields.getIngredient().length() > 0) {
             ingredientResult = findByIngredient(searchFields.getIngredient());
             result.addAll(ingredientResult);
+        }
+
+        if (searchFields.getPrepTime() > 0) {
+            prepTimeResult = findRecipesWherePrepTime(searchFields.getPrepTime());
+            result.addAll(prepTimeResult);
         }
 
         return result;
