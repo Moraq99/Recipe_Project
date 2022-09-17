@@ -44,22 +44,22 @@ public class RecipeService {
 
         List<Predicate> predicates = new ArrayList<>();
 
-        if(!searchFields.getName().isBlank()) {
+        if (!searchFields.getName().isBlank()) {
             Predicate namePredicate = criteriaBuilder.like(recipe.get("name"), "%" + searchFields.getName() + "%");
             predicates.add(namePredicate);
         }
 
-        if(searchFields.isVegan()) {
+        if (searchFields.isVegan()) {
             Predicate veganPredicate = criteriaBuilder.equal(recipe.get("vegan"), searchFields.isVegan());
             predicates.add(veganPredicate);
         }
 
-        if(searchFields.isLactose_free()) {
+        if (searchFields.isLactose_free()) {
             Predicate lactosePredicate = criteriaBuilder.equal(recipe.get("lactose_free"), searchFields.isLactose_free());
             predicates.add(lactosePredicate);
         }
 
-        if(searchFields.isGluten_free()) {
+        if (searchFields.isGluten_free()) {
             Predicate glutenPredicate = criteriaBuilder.equal(recipe.get("gluten_free"), searchFields.isGluten_free());
             predicates.add(glutenPredicate);
         }
@@ -67,6 +67,11 @@ public class RecipeService {
         if (!searchFields.getDifficulty().equals(EnumDifficulty.UNDEFINED)) {
             Predicate difficultyPredicate = criteriaBuilder.equal(recipe.get("difficulty"), searchFields.getDifficulty());
             predicates.add(difficultyPredicate);
+        }
+
+        if (searchFields.getPrepTime() > 0) {
+            Predicate prepTimePredicate = criteriaBuilder.lessThanOrEqualTo(recipe.get("preparationTime"), searchFields.getPrepTime());
+            predicates.add(prepTimePredicate);
         }
 
         criteriaQuery.where(predicates.toArray(new Predicate[0]));
