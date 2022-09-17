@@ -9,11 +9,21 @@ import com.example.recipe_project.repo.RecipeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import java.util.*;
 
 
 @Service
 public class RecipeService {
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     private final RecipeRepo repo;
 
@@ -24,6 +34,21 @@ public class RecipeService {
 
     public List<Recipe> getAll() {
         return new ArrayList<>((Collection) repo.findAll());
+    }
+
+    public List<Recipe> searchRecipes(SearchFields searchFields) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);
+
+        Root<Recipe> recipe = criteriaQuery.from(Recipe.class);
+
+        if(!searchFields.getName().isBlank()) {
+            Predicate namePredicate = criteriaBuilder.like(recipe.get("name"), "%" + searchFields.getName() + "%");
+            criteriaQuery.where(namePredicate);
+        }
+
+        TypedQuery<Recipe> query = entityManager.createQuery(criteriaQuery);
+        return query.getResultList();
     }
 
     public Recipe findById(long id) {

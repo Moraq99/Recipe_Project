@@ -61,7 +61,8 @@ public class RecipeController {
 
     @PostMapping(value = "/search")
     public String displaySeachResults(SearchFields searchFields, Model model) {
-        Set<Recipe> recipes = recipeService.getSearchResults(searchFields);
+        /*Set<Recipe> recipes = recipeService.getSearchResults(searchFields);*/
+        List<Recipe> recipes = recipeService.searchRecipes(searchFields);
         model.addAttribute("recipes", recipes);
 
         return "searchresult";
