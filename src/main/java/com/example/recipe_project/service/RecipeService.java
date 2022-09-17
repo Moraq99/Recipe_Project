@@ -42,15 +42,34 @@ public class RecipeService {
 
         Root<Recipe> recipe = criteriaQuery.from(Recipe.class);
 
+        List<Predicate> predicates = new ArrayList<>();
+
         if(!searchFields.getName().isBlank()) {
             Predicate namePredicate = criteriaBuilder.like(recipe.get("name"), "%" + searchFields.getName() + "%");
-            criteriaQuery.where(namePredicate);
+            predicates.add(namePredicate);
         }
 
         if(searchFields.isVegan()) {
             Predicate veganPredicate = criteriaBuilder.equal(recipe.get("vegan"), searchFields.isVegan());
-            criteriaQuery.where(veganPredicate);
+            predicates.add(veganPredicate);
         }
+
+        if(searchFields.isLactose_free()) {
+            Predicate lactosePredicate = criteriaBuilder.equal(recipe.get("lactose_free"), searchFields.isLactose_free());
+            predicates.add(lactosePredicate);
+        }
+
+        if(searchFields.isGluten_free()) {
+            Predicate glutenPredicate = criteriaBuilder.equal(recipe.get("gluten_free"), searchFields.isGluten_free());
+            predicates.add(glutenPredicate);
+        }
+
+        if (!searchFields.getDifficulty().equals(EnumDifficulty.UNDEFINED)) {
+            Predicate difficultyPredicate = criteriaBuilder.equal(recipe.get("difficulty"), searchFields.getDifficulty());
+            predicates.add(difficultyPredicate);
+        }
+
+        criteriaQuery.where(predicates.toArray(new Predicate[0]));
 
 
         TypedQuery<Recipe> query = entityManager.createQuery(criteriaQuery);
