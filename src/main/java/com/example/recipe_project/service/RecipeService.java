@@ -74,11 +74,25 @@ public class RecipeService {
             predicates.add(prepTimePredicate);
         }
 
+        /*if(!searchFields.getIngredient().isBlank()) {
+            Predicate ingredientPredicate = criteriaBuilder.isMember(searchFields.getIngredient(), recipe.get("ingredients"));
+            predicates.add(ingredientPredicate);
+        }*/
+
         criteriaQuery.where(predicates.toArray(new Predicate[0]));
 
 
         TypedQuery<Recipe> query = entityManager.createQuery(criteriaQuery);
-        return query.getResultList();
+
+        List<Recipe> results = query.getResultList();
+        List<Recipe> finalResults = new ArrayList<>();
+
+        if (searchFields.getIngredient().length() > 0) {
+            List<Recipe> ingredientResult = findByIngredient(searchFields.getIngredient(), results);
+            finalResults.addAll(ingredientResult);
+        }
+
+        return finalResults;
     }
 
     public Recipe findById(long id) {
@@ -97,113 +111,17 @@ public class RecipeService {
         return false;
     }
 
-    public List<Recipe> findByIngredient(String keyword){
+    public List<Recipe> findByIngredient(String keyword, List<Recipe> recipes){
 
         List<Recipe> hasKeyword = new ArrayList<>();
-        List<Recipe> RecipeName = (List<Recipe>)repo.findAll();
 
-        for (Recipe recipe : RecipeName) {
+        for (Recipe recipe : recipes) {
             if (doesRecipeContain(keyword, recipe)) {
                 hasKeyword.add(recipe);
             }
         }
 
         return hasKeyword;
-    }
-
-    public List<Recipe> findRecipesWhereNameContains(String keyword) {
-        List<Recipe> dbRecipes = (List<Recipe>) repo.findAll();
-
-        return dbRecipes.stream()
-                .filter(recipe -> recipe.getName().contains(keyword))
-                .toList();
-    }
-
-    public List<Recipe> findVeganRecipes() {
-        List<Recipe> dbRecipes = (List<Recipe>) repo.findAll();
-
-        return dbRecipes.stream()
-                .filter(Recipe::isVegan)
-                .toList();
-    }
-
-    public List<Recipe> findLactoseFreeRecipes() {
-        List<Recipe> dbRecipes = (List<Recipe>) repo.findAll();
-
-        return dbRecipes.stream()
-                .filter(Recipe::isLactose_free)
-                .toList();
-    }
-
-    public List<Recipe> findGlutenFreeRecipes() {
-        List<Recipe> dbRecipes = (List<Recipe>) repo.findAll();
-
-        return dbRecipes.stream()
-                .filter(Recipe::isGluten_free)
-                .toList();
-    }
-
-    public List<Recipe> findRecipesWhereDifficulty(EnumDifficulty difficulty) {
-        List<Recipe> dbRecipes = (List<Recipe>) repo.findAll();
-
-        return dbRecipes.stream()
-                .filter(recipe -> recipe.getDifficulty().equals(difficulty))
-                .toList();
-    }
-
-    public List<Recipe> findRecipesWherePrepTime(int prepTime) {
-        List<Recipe> dbRecipes = (List<Recipe>) repo.findAll();
-
-        return dbRecipes.stream()
-                .filter(recipe -> recipe.getPreparationTime() <= prepTime)
-                .toList();
-    }
-
-    public Set<Recipe> getSearchResults(SearchFields searchFields) {
-        List<Recipe> nameResult = new ArrayList<>();
-        List<Recipe> veganResult = new ArrayList<>();
-        List<Recipe> lactoseResult = new ArrayList<>();
-        List<Recipe> glutenResult = new ArrayList<>();
-        List<Recipe> difficultyResult = findRecipesWhereDifficulty(searchFields.getDifficulty());
-        List<Recipe> ingredientResult = new ArrayList<>();
-        List<Recipe> prepTimeResult = new ArrayList<>();
-        Set<Recipe> result = new HashSet<>();
-
-        if (!searchFields.getDifficulty().equals(EnumDifficulty.UNDEFINED)) {
-            result.addAll(difficultyResult);
-        }
-
-        if (searchFields.getName().length() > 0) {
-            nameResult = findRecipesWhereNameContains(searchFields.getName());
-            result.addAll(nameResult);
-        }
-
-        if (searchFields.isVegan()) {
-            veganResult = findVeganRecipes();
-            result.addAll(veganResult);
-        }
-
-        if (searchFields.isLactose_free()) {
-            lactoseResult = findLactoseFreeRecipes();
-            result.addAll(lactoseResult);
-        }
-
-        if (searchFields.isGluten_free()) {
-            glutenResult = findGlutenFreeRecipes();
-            result.addAll(glutenResult);
-        }
-
-        if (searchFields.getIngredient().length() > 0) {
-            ingredientResult = findByIngredient(searchFields.getIngredient());
-            result.addAll(ingredientResult);
-        }
-
-        if (searchFields.getPrepTime() > 0) {
-            prepTimeResult = findRecipesWherePrepTime(searchFields.getPrepTime());
-            result.addAll(prepTimeResult);
-        }
-
-        return result;
     }
 
     }
