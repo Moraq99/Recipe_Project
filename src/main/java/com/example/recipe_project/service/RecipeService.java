@@ -47,6 +47,12 @@ public class RecipeService {
             criteriaQuery.where(namePredicate);
         }
 
+        if(searchFields.isVegan()) {
+            Predicate veganPredicate = criteriaBuilder.equal(recipe.get("vegan"), searchFields.isVegan());
+            criteriaQuery.where(veganPredicate);
+        }
+
+
         TypedQuery<Recipe> query = entityManager.createQuery(criteriaQuery);
         return query.getResultList();
     }
