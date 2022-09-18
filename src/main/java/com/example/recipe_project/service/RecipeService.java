@@ -79,12 +79,14 @@ public class RecipeService {
         List<Recipe> results = query.getResultList();
         List<Recipe> finalResults = new ArrayList<>();
 
+
         if (searchFields.getIngredient().length() > 0) {
             List<Recipe> ingredientResult = findByIngredient(searchFields.getIngredient(), results);
             finalResults.addAll(ingredientResult);
+            return finalResults;
         }
 
-        return finalResults;
+        return results;
     }
 
     public Recipe findById(long id) {
