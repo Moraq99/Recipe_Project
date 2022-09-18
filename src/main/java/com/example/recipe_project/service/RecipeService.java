@@ -12,10 +12,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.*;
 
 
@@ -73,11 +70,6 @@ public class RecipeService {
             Predicate prepTimePredicate = criteriaBuilder.lessThanOrEqualTo(recipe.get("preparationTime"), searchFields.getPrepTime());
             predicates.add(prepTimePredicate);
         }
-
-        /*if(!searchFields.getIngredient().isBlank()) {
-            Predicate ingredientPredicate = criteriaBuilder.isMember(searchFields.getIngredient(), recipe.get("ingredients"));
-            predicates.add(ingredientPredicate);
-        }*/
 
         criteriaQuery.where(predicates.toArray(new Predicate[0]));
 
