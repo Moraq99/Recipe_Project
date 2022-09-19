@@ -132,6 +132,7 @@
                         <ul data-th-each="ingredient : ${recipe.ingredients}">
                             <li data-th-text="${ingredient.quantity} + ' ' + ${ingredient.unit} + ' ' + ${ingredient.name}"></li>
                         </ul>
+                        <ul><a data-th-href="@{'/delete/' + ${recipe.id}}" role="button">Törlés</a></ul>
                     </div>
                 </div>
             </div>

@@ -67,6 +67,12 @@ public class RecipeController {
 
         return "searchresult";
     }
+    @GetMapping(value = "/delete/{id}")
+    public String deleteProduct(@PathVariable(name = "id") Long id){
+        recipeService.deleteById(id);
+
+        return "redirect:/home";
+    }
 
 
 

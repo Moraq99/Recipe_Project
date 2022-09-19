@@ -118,4 +118,8 @@ public class RecipeService {
         return hasKeyword;
     }
 
+      public void deleteById(Long id){
+        repo.deleteById(id);
+      }
+
     }
