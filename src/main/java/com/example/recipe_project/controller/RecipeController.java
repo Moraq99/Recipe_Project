@@ -41,7 +41,7 @@ public class RecipeController {
     public String createIngredientList(Model model) {
         model.addAttribute("recipe", new Recipe());
 
-        return "createTemp";
+        return "create";
     }
 
     @PostMapping(value = "/create")

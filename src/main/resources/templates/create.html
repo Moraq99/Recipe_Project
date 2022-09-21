@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-  <div th:replace="fragments/head::head"></div>
-  <title>Recipe project</title>
-  <!-- Css Styles -->
-  <div th:include="fragments/body::style"></div>
+    <div th:replace="fragments/head::head"></div>
+    <title>Recipe project</title>
+    <!-- Css Styles -->
+    <div th:include="fragments/body::style"></div>
 </head>
 
 <body>
@@ -16,17 +16,17 @@
 
 <!-- Header Section Begin -->
 <header class="header">
-  <div th:include="fragments/header::header('create')"></div>
+    <div th:include="fragments/header::header('create')"></div>
 </header>
 <!-- Header Section End -->
 
-<div th:include="fragments/body::createRecipe"></div>
+<div th:include="fragments/body::ingredientNumber"></div>
 
 
 <!-- Footer Section Begin -->
 <footer class="footer set-bg" data-setbg="/img/footer-bg.jpg">
-  <div th:include="fragments/footer::footerBody"></div>
-  <div th:include="fragments/footer::footerCopy"></div>
+    <div th:include="fragments/footer::footerBody"></div>
+    <div th:include="fragments/footer::footerCopy"></div>
 </footer>
 <!-- Footer Section End -->
 

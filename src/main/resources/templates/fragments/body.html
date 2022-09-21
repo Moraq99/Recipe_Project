@@ -299,6 +299,38 @@
     </section>
 </div>
 
+<div data-th-fragment="ingredientNumber">
+    <section class="contact spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="section-title">
+                        <span>Create recipe</span>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="class__sidebar">
+                        <form data-th-action="@{/create}" method="post">
+                            <table>
+                                <tr>
+                                    <th>Number of ingredients:</th>
+                                    <td><input style="height: 20px; margin-bottom: 5px" type="number" step="1" data-th-field="*{recipe.numOfIngredients}"></td>
+                                </tr>
+                            </table>
+
+                            <div class="col-lg-12">
+                                <br><br>
+                                <button type="submit" class="site-btn">Create</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
 
 </body>
 </html>
