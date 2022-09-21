@@ -33,6 +33,12 @@ public class RecipeService {
         return new ArrayList<>((Collection) repo.findAll());
     }
 
+    public Recipe saveRecipe(Recipe recipe) {
+        repo.save(recipe);
+
+        return recipe;
+    }
+
     public List<Recipe> searchRecipes(SearchFields searchFields) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);

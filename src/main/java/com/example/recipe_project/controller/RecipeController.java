@@ -79,7 +79,7 @@ public class RecipeController {
     public String createIngredientList(Model model) {
         model.addAttribute("recipe", new Recipe());
 
-        return "create";
+        return "createTemp";
     }
 
     @PostMapping(value = "/create")
@@ -91,7 +91,7 @@ public class RecipeController {
 
         model.addAttribute("newrecipe", recipe);
 
-        return "newrecipe";
+        return "newrecipeTemp";
     }
 
     @PostMapping(value = "/create-recipe")
