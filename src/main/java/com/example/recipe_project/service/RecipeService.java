@@ -39,6 +39,24 @@ public class RecipeService {
         return recipe;
     }
 
+    public void processIngredientsFromForm(Recipe recipe) {
+        List<Ingredient> ingredientList= recipe.getIngredients().stream()
+                .filter(ingredient -> !ingredient.getName().isBlank())
+                .toList();
+
+        recipe.setIngredients(ingredientList);
+
+        for (Ingredient ingredient: ingredientList){
+            ingredient.setRecipe(recipe);
+        }
+    }
+
+    public void createIngredientDummies(Recipe recipe) {
+        for (int i = 0; i < recipe.getNumOfIngredients(); i++) {
+            recipe.addIngredient(new Ingredient());
+        }
+    }
+
     public List<Recipe> searchRecipes(SearchFields searchFields) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);
