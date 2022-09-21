@@ -49,9 +49,11 @@
             <th>Elkészítési javaslat:</th>
             <td><textarea type="text" data-th-field="*{instruction}" ></textarea> </td>
         </tr>
-        <tr data-th-each="ingredient, itemStat : *{ingredients}">
+        <tr>
             <th>Hozzávalók:</th>
-
+        </tr>
+        <tr data-th-each="ingredient, itemStat : *{ingredients}">
+            <th></th>
 
             <td><input type="text" data-th-field="*{ingredients[__${itemStat.index}__].name}"/></td>
             <td><input type="number" step="0.1" data-th-field="*{ingredients[__${itemStat.index}__].quantity}"/></td>
@@ -60,9 +62,7 @@
                         data-th-text="${u}"></option>
             </select>
 
-
             </td>
-
 
         </tr>
         <tr>

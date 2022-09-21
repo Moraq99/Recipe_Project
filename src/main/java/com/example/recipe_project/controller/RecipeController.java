@@ -50,7 +50,7 @@ public class RecipeController {
 
         model.addAttribute("newrecipe", recipe);
 
-        return "newrecipeTemp";
+        return "newrecipe";
     }
 
     @PostMapping(value = "/create-recipe")
