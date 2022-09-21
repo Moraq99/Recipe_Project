@@ -97,15 +97,16 @@ public class RecipeController {
     @PostMapping(value = "/create-recipe")
     public String saveNewRecipe(Recipe recipe){
 
-        List<Ingredient> ingredientList= recipe.getIngredients();
-        for (Ingredient ingredient: ingredientList){
-            if (!ingredient.getName().isBlank()) {
-                ingredient.setRecipe(recipe);
-            } else {
-                ingredientList.remove(ingredient);
-            }
+        List<Ingredient> ingredientList= recipe.getIngredients().stream()
+                .filter(ingredient -> !ingredient.getName().isBlank())
+                        .toList();
 
+        recipe.setIngredients(ingredientList);
+
+        for (Ingredient ingredient: ingredientList){
+            ingredient.setRecipe(recipe);
         }
+
         recipeService.saveRecipe(recipe);
 
 
