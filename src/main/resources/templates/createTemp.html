@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form data-th-action="@{/create}" method="post">
+    <table>
+        <tr>
+            <th>Number of ingredients:</th>
+            <td><input type="number" step="1" data-th-field="*{recipe.numOfIngredients}"></td>
+        </tr>
+        <tr>
+            <td><td colspan="2"><button type="submit">Next...</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

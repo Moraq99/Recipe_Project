@@ -3,6 +3,7 @@ package com.example.recipe_project.model;
 import com.example.recipe_project.enums.EnumDifficulty;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,7 +21,10 @@ public class Recipe {
     private boolean lactose_free;
     private boolean gluten_free;
     @OneToMany(mappedBy="recipe",cascade=CascadeType.ALL)
-    private List<Ingredient> ingredients;
+    private List<Ingredient> ingredients = new ArrayList<>();
+
+    @Transient
+    private int numOfIngredients;
 
     @Lob
     private String instruction;
@@ -55,6 +59,10 @@ public class Recipe {
 
     public Recipe(List<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public void addIngredient(Ingredient ingredient) {
+        this.ingredients.add(ingredient);
     }
 
     public long getId() {
@@ -127,6 +135,14 @@ public class Recipe {
 
     public void setInstruction(String instruction) {
         this.instruction = instruction;
+    }
+
+    public int getNumOfIngredients() {
+        return numOfIngredients;
+    }
+
+    public void setNumOfIngredients(int numOfIngredients) {
+        this.numOfIngredients = numOfIngredients;
     }
 
     @Override

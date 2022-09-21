@@ -1,6 +1,7 @@
 package com.example.recipe_project.controller;
 
 
+import com.example.recipe_project.model.Ingredient;
 import com.example.recipe_project.model.Recipe;
 import com.example.recipe_project.model.SearchFields;
 import com.example.recipe_project.repo.RecipeRepo;
@@ -70,6 +71,43 @@ public class RecipeController {
     @GetMapping(value = "/delete/{id}")
     public String deleteProduct(@PathVariable(name = "id") Long id){
         recipeService.deleteById(id);
+
+        return "redirect:/home";
+    }
+
+    @GetMapping(value = "/create")
+    public String createIngredientList(Model model) {
+        model.addAttribute("recipe", new Recipe());
+
+        return "create";
+    }
+
+    @PostMapping(value = "/create")
+    public String saveRecipeList(Recipe recipe, Model model) {
+
+        for (int i = 0; i < recipe.getNumOfIngredients(); i++) {
+            recipe.addIngredient(new Ingredient());
+        }
+
+        model.addAttribute("newrecipe", recipe);
+
+        return "newrecipe";
+    }
+
+    @PostMapping(value = "/create-recipe")
+    public String saveNewRecipe(Recipe recipe){
+
+        List<Ingredient> ingredientList= recipe.getIngredients();
+        for (Ingredient ingredient: ingredientList){
+            if (!ingredient.getName().isBlank()) {
+                ingredient.setRecipe(recipe);
+            } else {
+                ingredientList.remove(ingredient);
+            }
+
+        }
+        recipeService.saveRecipe(recipe);
+
 
         return "redirect:/home";
     }
