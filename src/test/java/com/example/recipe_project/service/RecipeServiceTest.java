@@ -20,6 +20,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class RecipeServiceTest {
 
     @Mock
@@ -72,5 +73,11 @@ class RecipeServiceTest {
         assertEquals(30, r1.getPreparationTime());
         assertEquals(EnumDifficulty.VERY_DIFFICULT, r1.getDifficulty());
     }
+
+    @Test
+    public void searchRecipesTest(){
+
+
+}
 
 }

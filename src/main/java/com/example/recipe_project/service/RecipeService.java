@@ -114,6 +114,7 @@ public class RecipeService {
     }
 
     public Recipe findById(long id) {
+
         return repo.findById(id).orElseThrow();
     }
 
@@ -146,4 +147,14 @@ public class RecipeService {
         repo.deleteById(id);
       }
 
-    }
+
+      public void kiscica(){
+        List<String> valami = new ArrayList<>();
+
+        if( valami.size() == 0){
+            System.out.println("Üres lista");
+        }else{
+            System.out.println();
+        }
+      }
+}
