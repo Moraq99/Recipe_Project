@@ -125,6 +125,10 @@
                 <div class="col-lg-6">
                     <div class="product__details__text">
                         <div class="product__label" data-th-text="${recipe.id}"></div>
+                        <div><a data-th-href="@{'/edit/' + ${recipe.id}}" role="button"><img alt="edit" src="/img/icon/edit.png"></a>
+                            <a data-th-href="@{'/delete/' + ${recipe.id}}" role="button"><img alt="delete" src="/img/icon/delete.png">
+                        </a></div>
+
                         <h4 data-th-text="${recipe.name}"></h4>
                         <h5 data-th-text="${recipe.preparationTime} + ' minutes'"></h5>
                     </div>
@@ -132,7 +136,8 @@
                         <ul data-th-each="ingredient : ${recipe.ingredients}">
                             <li data-th-text="${ingredient.quantity} + ' ' + ${ingredient.unit} + ' ' + ${ingredient.name}"></li>
                         </ul>
-                        <ul><a data-th-href="@{'/delete/' + ${recipe.id}}" role="button">Törlés</a></ul>
+                       <!-- <a data-th-href="@{'/edit/' + ${product.id}}" role="button">Szerkesztés</a>
+                        <ul><a data-th-href="@{'/delete/' + ${recipe.id}}" role="button">Törlés</a></ul>-->
                     </div>
                 </div>
             </div>

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -35,6 +36,14 @@ public class RecipeController {
         recipeService.deleteById(id);
 
         return "redirect:/home";
+    }
+    @GetMapping(value = "/edit/{id}")
+    public ModelAndView showEditRecipe(@PathVariable(name = "id") Long id) {
+        ModelAndView editView = new ModelAndView("edit-recipe");
+        Recipe recipe = recipeService.findById(id);
+        editView.addObject("recipe", recipe);
+
+        return editView;
     }
 
     @GetMapping(value = "/create")
