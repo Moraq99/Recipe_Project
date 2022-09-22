@@ -3,12 +3,15 @@ package com.example.recipe_project.service;
 import com.example.recipe_project.enums.EnumDifficulty;
 import com.example.recipe_project.model.Ingredient;
 import com.example.recipe_project.model.Recipe;
+import com.example.recipe_project.model.SearchFields;
 import com.example.recipe_project.repo.RecipeRepo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -19,7 +22,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 
 class RecipeServiceTest {
 
@@ -33,8 +35,6 @@ class RecipeServiceTest {
     public void initMocks(){
         MockitoAnnotations.initMocks(this);
     }
-
-
 
     @Test
     public void getAllTest() {
@@ -74,10 +74,8 @@ class RecipeServiceTest {
         assertEquals(EnumDifficulty.VERY_DIFFICULT, r1.getDifficulty());
     }
 
-    @Test
-    public void searchRecipesTest(){
+    //proba- exceptionra fut
 
-
-}
+    /**/
 
 }
