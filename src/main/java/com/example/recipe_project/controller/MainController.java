@@ -51,8 +51,12 @@ public class MainController {
     @PostMapping(value = "/search")
     public String displaySeachResults(SearchFields searchFields, Model model) {
         List<Recipe> recipes = recipeService.searchRecipes(searchFields);
-        model.addAttribute("recipes", recipes);
 
+        if( recipes.size() == 0){
+            model.addAttribute("message","Nincs találat");
+        }else {
+            model.addAttribute("recipes", recipes);
+        }
         return "searchresult";
     }
 

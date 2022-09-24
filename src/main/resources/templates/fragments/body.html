@@ -48,7 +48,11 @@
 
 <div class="row" data-th-fragment="contentRecipes">
 
-    <div class="col-lg-3 col-md-6 col-sm-6" data-th-each="recipe : ${recipes}">
+    <div data-th-if="${message} != null" data-th-text="${message}">
+
+    </div>
+
+    <div data-th-unless="${message} != null" class="col-lg-3 col-md-6 col-sm-6" data-th-each="recipe : ${recipes}">
         <div class="product__item">
             <div class="product__item__pic set-bg" data-setbg="img/shop/product-2.jpg">
                 <div class="product__label">
