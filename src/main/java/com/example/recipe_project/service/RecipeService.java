@@ -146,4 +146,9 @@ public class RecipeService {
         repo.deleteById(id);
       }
 
+
+      public Optional<Recipe> getById(long id) {
+        return repo.findById(id);
+      }
+
     }

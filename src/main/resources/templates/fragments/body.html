@@ -96,7 +96,7 @@
                 <div class="col-lg-6">
                     <div class="product__details__img">
                         <div class="product__details__big__img">
-                            <img class="big_img" data-th-src="@{/img/shop/details/product-big-1.jpg}" alt="">
+                            <img class="big_img" data-th-src="@{/photo/{id}(id=${recipe.id})}" alt="photo" data-th-if="${recipe.photoName != ''}">
                         </div>
                         <div class="product__details__thumb">
                             <div class="pt__item active">
@@ -234,7 +234,7 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="class__sidebar">
-                        <form data-th-action="@{/create-recipe}" data-th-object="${newrecipe}" method="post">
+                        <form data-th-action="@{/create-recipe}" data-th-object="${newrecipe}" method="post" enctype="multipart/form-data" >
                             <table>
                                 <tr>
                                     <th>Recipe name:</th>
@@ -285,10 +285,15 @@
                                         <option data-th-each="u : ${T(com.example.recipe_project.enums.EnumUnit).values()}" data-th-value="${u}"
                                                 data-th-text="${u}"></option>
                                     </select>
-
                                     </td>
 
                                 </tr>
+                                <tr>
+                                    <th>Kép</th>
+                                    <td><input type="file" name="photo"></td>
+                                </tr>
+
+
 
                             </table>
                                 <div class="col-lg-12">

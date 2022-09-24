@@ -3,12 +3,16 @@ package com.example.recipe_project.controller;
 import com.example.recipe_project.model.Recipe;
 import com.example.recipe_project.service.RecipeService;
 import com.example.recipe_project.service.TestDataLoader;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.io.IOException;
 
 
 @Controller
@@ -55,21 +59,42 @@ public class RecipeController {
 
     @PostMapping(value = "/create")
     public String saveRecipeList(Recipe recipe, Model model) {
-        recipeService.createIngredientDummies(recipe);
 
-        model.addAttribute("newrecipe", recipe);
+            recipeService.createIngredientDummies(recipe);
 
-        return "newrecipe";
+            model.addAttribute("newrecipe", recipe);
+
+            return "newrecipe";
     }
 
     @PostMapping(value = "/create-recipe")
-    public String saveNewRecipe(Recipe recipe){
-        recipeService.processIngredientsFromForm(recipe);
-        recipeService.saveRecipe(recipe);
+    public String saveNewRecipe(Recipe recipe, @RequestParam("photo")MultipartFile photo){
+
+        try {
+            recipe.setPhotoName(photo.getOriginalFilename());
+            recipe.setPhotoType(photo.getContentType());
+            recipe.setPhotoData(photo.getBytes());
+
+            recipeService.processIngredientsFromForm(recipe);
+            recipeService.saveRecipe(recipe);
+
+            return "redirect:/home";
+        }catch (IOException e) {
+            e.printStackTrace();
 
 
-        return "redirect:/home";
+            return "redirect:/newrecipe";
+        }
     }
+
+    @GetMapping(value = "/photo/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public @ResponseBody byte[] downloadPhoto(@PathVariable long id){
+        Recipe recipe = recipeService.getById(id).orElseThrow(
+                () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Image not found.")
+        );
+        return recipe.getPhotoData();
+    }
+
 
 
 }

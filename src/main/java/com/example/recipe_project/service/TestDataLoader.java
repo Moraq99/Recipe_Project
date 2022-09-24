@@ -9,6 +9,12 @@ import com.example.recipe_project.repo.RecipeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.awt.image.WritableRaster;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 
@@ -17,12 +23,12 @@ public class TestDataLoader {
     private final RecipeRepo repo;
 
     @Autowired
-    public TestDataLoader(RecipeRepo recipeRepo){
+    public TestDataLoader(RecipeRepo recipeRepo) {
         this.repo = recipeRepo;
     }
 
 
-    public void loadRecipes() {
+    public void loadRecipes() throws IOException {
 
         /*Recipe r1 = new Recipe("Házi vaniliás túrókrém",
         EnumDifficulty.NAGYON_KONNYU, 40, false, false, true,
@@ -133,7 +139,7 @@ public class TestDataLoader {
         );
 
         ingredientsr3.addAll(Arrays.asList(
-                new Ingredient("háztartási keksz", 50, EnumUnit.DKG,r3),
+                new Ingredient("háztartási keksz", 50, EnumUnit.DKG, r3),
                 new Ingredient("tejföl", 2, EnumUnit.CUP, r3),
                 new Ingredient("vaníliás cukor", 3, EnumUnit.PKG, r3),
                 new Ingredient("kristálycukor", 9, EnumUnit.TBS, r3),
@@ -443,7 +449,7 @@ public class TestDataLoader {
         List<Ingredient> ingredientsr11 = new ArrayList<>();
 
         Recipe r11 = new Recipe(
-                "Klasszikus túrógombóc fahéjjas tejföllel",
+                "Klasszikus túrógombóc fahéjas tejföllel",
                 EnumDifficulty.DIFFICULT,
                 45,
                 false,
@@ -594,7 +600,12 @@ public class TestDataLoader {
                 "Végy egy kiscicát. Nyúzd meg és zsigereld ki, (a bundáját rakd félre mamusznak), irdald be a " +
                         "bőrét, rakd az előkészített tésztára, öntsd le forró cukormázzal, díszítsd csokimázzal, " +
                         "majd előmelegített sütőben 180 fokon egy órán át süsd. Ha kész, ébredj fel! " +
-                        "A cicák túl aranyosak, így nem lenne (?) szíved megenni! :) "
+                        "A cicák túl aranyosak, így nem lenne (?) szíved megenni! :) " /*,
+                "JPG",
+                "kiscica",
+                extractBytes("kiscica.jpg")
+
+*/
         );
 
         ingredientsr14.addAll(Arrays.asList(
@@ -611,12 +622,9 @@ public class TestDataLoader {
     }
 
 
-
-
-
-
     /**
      * Ria játszott egyet. :)
+     *
      * @param keyword the keyword to search
      * @return the MAGIC!
      */
@@ -628,6 +636,19 @@ public class TestDataLoader {
                 )
                 .toList();
     }
+
+
+    public static byte[] extractBytes(String ImageName) throws IOException {
+        File imgPath = new File(ImageName);
+        BufferedImage bufferedImage = ImageIO.read(new File("src/main/resources/static/photos/" + ImageName));
+
+        WritableRaster raster = bufferedImage.getRaster();
+        DataBufferByte data = (DataBufferByte) raster.getDataBuffer();
+
+
+
+        return (data.getData());
+
 
    /* public List<Ingredient> findByIngredients(String  keyWord, Recipe recipe){
         List<Ingredient> result = new ArrayList<>();
@@ -646,5 +667,5 @@ public class TestDataLoader {
     }*/
 
 
-
+    }
 }

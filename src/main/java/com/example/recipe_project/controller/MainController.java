@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -36,7 +37,7 @@ public class MainController {
     }
 
     @GetMapping(value = {"/test"})
-    public String loadRecipes() {
+    public String loadRecipes() throws IOException {
         testDataLoader.loadRecipes();
         return "redirect:/home";
     }
