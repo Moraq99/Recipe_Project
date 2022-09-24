@@ -37,7 +37,7 @@ public class MainController {
     }
 
     @GetMapping(value = {"/test"})
-    public String loadRecipes() throws IOException {
+    public String loadRecipes() throws Exception {
         testDataLoader.loadRecipes();
         return "redirect:/home";
     }
