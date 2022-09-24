@@ -152,3 +152,15 @@ public class RecipeService {
       }
 
     }
+
+
+      public void kiscica(){
+        List<String> valami = new ArrayList<>();
+
+        if( valami.size() == 0){
+            System.out.println("Üres lista");
+        }else{
+            System.out.println();
+        }
+      }
+}
