@@ -19,4 +19,9 @@ public enum EnumDifficulty {
     public String getDisplayValue() {
         return displayValue;
     }
+
+    public String getName(){
+        return this.name();
+    }
+
 }
