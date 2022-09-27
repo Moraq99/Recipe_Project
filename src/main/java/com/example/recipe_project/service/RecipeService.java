@@ -58,6 +58,21 @@ public class RecipeService {
     }
 
     public List<Recipe> searchRecipes(SearchFields searchFields) {
+        List<Recipe> results = getListFromCriteriaBuilder(searchFields);
+        return getListIfIngredient(results, searchFields);
+    }
+
+    private List<Recipe> getListIfIngredient (List<Recipe> results, SearchFields searchFields) {
+        List<Recipe> finalResults = new ArrayList<>();
+        if (searchFields.getIngredient().length() > 0) {
+            List<Recipe> ingredientResult = findByIngredient(searchFields.getIngredient(), results);
+            finalResults.addAll(ingredientResult);
+            return finalResults;
+        }
+        return results;
+    }
+
+    private List<Recipe> getListFromCriteriaBuilder (SearchFields searchFields){
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);
 
@@ -100,17 +115,7 @@ public class RecipeService {
 
         TypedQuery<Recipe> query = entityManager.createQuery(criteriaQuery);
 
-        List<Recipe> results = query.getResultList();
-        List<Recipe> finalResults = new ArrayList<>();
-
-
-        if (searchFields.getIngredient().length() > 0) {
-            List<Recipe> ingredientResult = findByIngredient(searchFields.getIngredient(), results);
-            finalResults.addAll(ingredientResult);
-            return finalResults;
-        }
-
-        return results;
+        return query.getResultList();
     }
 
     public Recipe findById(long id) {
@@ -143,12 +148,12 @@ public class RecipeService {
         return hasKeyword;
     }
 
-      public void deleteById(Long id){
+    public void deleteById(Long id){
         repo.deleteById(id);
-      }
+    }
 
 
-      public void kiscica(){
+    public void kiscica(){
         List<String> valami = new ArrayList<>();
 
         if( valami.size() == 0){
@@ -156,5 +161,5 @@ public class RecipeService {
         }else{
             System.out.println();
         }
-      }
+    }
 }
