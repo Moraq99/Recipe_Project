@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RecipeRepo extends CrudRepository<Recipe, Long> {
 
-
+    Recipe findByName(String name);
 
 
 
