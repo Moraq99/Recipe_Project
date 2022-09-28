@@ -29,6 +29,14 @@ public class Recipe {
     @Lob
     private String instruction;
 
+    private String photoType;
+
+    private String photoName;
+
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] photoData;
+
+
     public Recipe () {};
 
     public Recipe(long id) {
@@ -55,6 +63,39 @@ public class Recipe {
         this.name = name;
         this.difficulty = difficulty;
         this.preparationTime = preparationTime;
+    }
+
+    public Recipe(long id, String name, EnumDifficulty difficulty, int preparationTime, boolean vegan, boolean lactose_free,
+                  boolean gluten_free, List<Ingredient> ingredients, int numOfIngredients, String instruction, String photoType, String photoName, byte[] photoData) {
+        this.id = id;
+        this.name = name;
+        this.difficulty = difficulty;
+        this.preparationTime = preparationTime;
+        this.vegan = vegan;
+        this.lactose_free = lactose_free;
+        this.gluten_free = gluten_free;
+        this.ingredients = ingredients;
+        this.numOfIngredients = numOfIngredients;
+        this.instruction = instruction;
+        this.photoType = photoType;
+        this.photoName = photoName;
+        this.photoData = photoData;
+    }
+
+    public Recipe(String name, EnumDifficulty difficulty, int preparationTime, boolean vegan, boolean lactose_free,
+                  boolean gluten_free, List<Ingredient> ingredients, String instruction, String photoType,
+                  String photoName, byte[] photoData) {
+        this.name = name;
+        this.difficulty = difficulty;
+        this.preparationTime = preparationTime;
+        this.vegan = vegan;
+        this.lactose_free = lactose_free;
+        this.gluten_free = gluten_free;
+        this.ingredients = ingredients;
+        this.instruction = instruction;
+        this.photoType = photoType;
+        this.photoName = photoName;
+        this.photoData = photoData;
     }
 
     public Recipe(List<Ingredient> ingredients) {
@@ -143,6 +184,30 @@ public class Recipe {
 
     public void setNumOfIngredients(int numOfIngredients) {
         this.numOfIngredients = numOfIngredients;
+    }
+
+    public String getPhotoType() {
+        return photoType;
+    }
+
+    public void setPhotoType(String photoType) {
+        this.photoType = photoType;
+    }
+
+    public String getPhotoName() {
+        return photoName;
+    }
+
+    public void setPhotoName(String photoName) {
+        this.photoName = photoName;
+    }
+
+    public byte[] getPhotoData() {
+        return photoData;
+    }
+
+    public void setPhotoData(byte[] photoData) {
+        this.photoData = photoData;
     }
 
     @Override

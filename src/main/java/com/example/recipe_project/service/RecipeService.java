@@ -34,7 +34,7 @@ public class RecipeService {
     }
 
     public Recipe saveRecipe(Recipe recipe) {
-       repo.save(recipe);
+        repo.save(recipe);
 
         return recipe;
     }
@@ -114,7 +114,6 @@ public class RecipeService {
     }
 
     public Recipe findById(long id) {
-
         return repo.findById(id).orElseThrow();
     }
 
@@ -146,6 +145,13 @@ public class RecipeService {
       public void deleteById(Long id){
         repo.deleteById(id);
       }
+
+
+      public Optional<Recipe> getById(long id) {
+        return repo.findById(id);
+      }
+
+
 
 
       public void kiscica(){
