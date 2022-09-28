@@ -34,7 +34,7 @@ public class NonMockTest {
     }
 
     @Test
-    public void searchRecipesTest(){
+    public void searchRecipesTest() throws Exception {
 
         SearchFields searchFields = new SearchFields();
         searchFields.setIngredient("");
