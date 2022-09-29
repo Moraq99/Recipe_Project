@@ -20,11 +20,17 @@
     </header>
     <!-- Header Section End -->
 
+    <section class="hero" th:include="fragments/body::hero"></section>
+
+    <section class="product spad" th:include="fragments/body::topRated"></section>
+
     <section class="product spad">
         <div class="container" >
             <div class="row" th:include="fragments/body::contentRecipes"></div>
         </div>
     </section>
+
+    <section class="testimonial spad" th:include="fragments/body::testimonial"></section>
 
 
     <!-- Footer Section Begin -->

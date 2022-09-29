@@ -29,9 +29,9 @@ public class MainController {
 
     @GetMapping(value = {"/", "/home"})
     public String getHomePage(Model model) {
-        List<Recipe> recipes = new ArrayList<>((Collection) recipeService.getAll());
+        List<Recipe> topRated = recipeService.getRandomRecipes();
 
-        model.addAttribute("recipes", recipes);
+        model.addAttribute("recipes", topRated);
 
         return "index";
     }
@@ -59,6 +59,15 @@ public class MainController {
             model.addAttribute("recipes", recipes);
         }
         return "searchresult";
+    }
+
+    @GetMapping(value = "/recipes")
+    public String displayRecipes(Model model) {
+        List<Recipe> recipes = new ArrayList<>((Collection) recipeService.getAll());
+
+        model.addAttribute("recipes", recipes);
+
+        return "recipes";
     }
 
 }

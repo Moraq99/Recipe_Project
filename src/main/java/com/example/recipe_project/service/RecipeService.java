@@ -151,7 +151,20 @@ public class RecipeService {
         return repo.findById(id);
       }
 
+      public List<Recipe> getRandomRecipes() {
+        List<Recipe> recipes = (List<Recipe>) repo.findAll();
+        List<Recipe> randomRecipes = new ArrayList<>();
 
+        int numRecipes = (int) ((Math.random() * (recipes.size() / 2)));
+
+        for (int i = 0; i < numRecipes; i++) {
+            randomRecipes.add(recipes.get(i));
+        }
+
+        randomRecipes.add(repo.findByName("Kis cica"));
+
+        return randomRecipes;
+      }
 
 
       public void kiscica(){
