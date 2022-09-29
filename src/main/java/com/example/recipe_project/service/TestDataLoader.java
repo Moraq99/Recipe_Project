@@ -55,7 +55,10 @@ public class TestDataLoader {
                         "beleöntjük a masszát, majd addig keverjük, amíg sűrű pudingot nem kapunk. Ezután hagyjuk kihűlni. " +
                         "A túrót áttörjük, majd hozzáöntjük a kihűlt vaníliás alapot, és botmixerrel addig keverjük, " +
                         "amíg krémes nem lesz. Poharakba, tálakba adagolva lehűtjük. Tálaláskor megszórhatjuk áfonyával, " +
-                        "vagy készíthetünk hozzá karamell vagy gyümölcs öntetet.)"
+                        "vagy készíthetünk hozzá karamell vagy gyümölcs öntetet.)",
+                "JPG",
+                "vanilias_kremturo",
+                photosToArray("vanilias_kremturo.jpg")
         );
 
         ingredientsr1.addAll(Arrays.asList(
@@ -92,7 +95,10 @@ public class TestDataLoader {
                 "A tojásokat szétválasztjuk. Egy nagy tálban robotgéppel összekeverjük a tejet, a tojássárgáját, a " +
                         "cukrot, a lisztet, az olajat, a vaníliás cukrot, a sütőport és a sót. Kemény habbá verjük a " +
                         "tojásfehérjéket, majd óvatosan a masszához forgatjuk. A tésztát a hűtőben pihentetjük egy órát," +
-                        " majd gofrisütőben a szokásos módon kisütjük a gofrikat."
+                        " majd gofrisütőben a szokásos módon kisütjük a gofrikat.",
+                "JPG",
+                "bogres_gofri",
+                photosToArray("bogres_gofri.jpg")
         );
 
         ingredientsr2.addAll(Arrays.asList(
@@ -136,7 +142,10 @@ public class TestDataLoader {
                         " tejföl 2/3 részét. Fedjük be egy réteg keksszel, egyengessük el rajta a kakaós tejföl 2/3-át. " +
                         "Borítsuk be egy újabb réteg keksszel, majd a maradék vaníliás és kakaós tejfölt öntsük a " +
                         "tetejére, egyengessük el, fogpiszkálóval tetszés szerint rajzoljunk bele mintákat. Tegyük hűtőbe" +
-                        " 10-12 órára. A keksz megpuhul, a tejföl pedig kissé megköt."
+                        " 10-12 órára. A keksz megpuhul, a tejföl pedig kissé megköt.",
+                "JPG",
+                "kekszes_tejfolos_suti",
+                photosToArray("kekszes_tejfolos_suti.jpg")
         );
 
         ingredientsr3.addAll(Arrays.asList(
@@ -174,7 +183,10 @@ public class TestDataLoader {
                         "és a vaníliás cukrot. Hozzáadjuk a kefirt, az olajat és a tojást, és alaposan összekeverjük. " +
                         "A tésztát kivajazott és kilisztezett tepsibe öntjük. A lecsögpögtetett meggyet megszórjuk a " +
                         "fahéjjal, majd a tésztára szórjuk. 180 fokra előmelegített sütőben 30 perc alatt készre sütjük, " +
-                        "porcukorral a tetején tálaljuk."
+                        "porcukorral a tetején tálaljuk.",
+                "JPG",
+                "bogres_kefires_meggyes",
+                photosToArray("bogres_kefires_meggyes.jpg")
         );
 
         ingredientsr4.addAll(Arrays.asList(
@@ -217,7 +229,10 @@ public class TestDataLoader {
                 "A kókuszreszelékből félreteszünk egy keveset, a többit a keverékhez adjuk. Ezután megmossuk és " +
                         "szárazra töröljük a citromot, és a masszához adjuk a lereszelt a héját. A hozzávalókat " +
                         "alaposan összegyúrjuk, majd kis gombócokat formálunk belőle. A végén a golyókat meghempergetjük " +
-                        "a maradék kókuszreszelékben."
+                        "a maradék kókuszreszelékben.",
+                "JPG",
+                "kokusztekercs",
+                photosToArray("kokusztekercs.jpg")
         );
 
         ingredientsr5.addAll(Arrays.asList(
@@ -259,7 +274,10 @@ public class TestDataLoader {
                         "sütőpapíron kinyújtjuk a kekszes masszát. Rákenjük a kókuszos krémet, és feltekerjük a " +
                         "sütőpapír segítségével. A tekercset egy kevés porcukorban és kókuszreszelékben megforgatjuk, " +
                         "majd alufóliába csomagoljuk, és hűtőbe tesszük, amíg megszilárdul. Meleg vízbe mártott, " +
-                        "megtörölt késsel kb. 1 cm-es szeletekre vágjuk."
+                        "megtörölt késsel kb. 1 cm-es szeletekre vágjuk.",
+                "JPG",
+                "kokusztekercs",
+                photosToArray("kokusztekercs.jpg")
         );
 
         ingredientsr6.addAll(Arrays.asList(
@@ -300,7 +318,10 @@ public class TestDataLoader {
                         "formálunk a masszából. Sütőpapírral bélelt tepsire rakosgatjuk őket, majd villávalkissé " +
                         "lenyomjuk - ezzel mintegy mintázzuk is a felületüket. De ellapíthatjuk atenyererünkkelis, " +
                         "majd 3-3 csokicseppet vagy apróra vágott étcsokidarabot belenyomhatunka tésztába. 200 fokra " +
-                        "előmelegített sütőben max. 10 perc alatt készre sütjük a kekszecskéinket!"
+                        "előmelegített sütőben max. 10 perc alatt készre sütjük a kekszecskéinket!",
+                "JPG",
+                "pudingos_kekszek",
+                photosToArray("pudingos_kekszek.jpg")
         );
 
         ingredientsr7.addAll(Arrays.asList(
@@ -338,7 +359,10 @@ public class TestDataLoader {
                         "majd hozzáadjuk a cukrot, a vaníliás cukrot, a tojást, az olajat és a banánt, majd alaposan " +
                         "össszedolgozzuk. Kivajazzuk a muffinsütőt, majd a mélyedésekbe halmozzuk a tésztamasszát. 180 " +
                         "fokra előmelegített sütőben 20-30 percig sütjük, majd a formában hagyjuk kihűlni. A muffinokat " +
-                        "banánkarikákkal díszítjük."
+                        "banánkarikákkal díszítjük.",
+                "JPG",
+                "kokusztekercs",
+                photosToArray("kokusztekercs.jpg")
         );
 
         ingredientsr8.addAll(Arrays.asList(
@@ -378,7 +402,10 @@ public class TestDataLoader {
                 "A tojásokat feltörjük, egy tálba öntjük, majd a cukorral habosra kavarjuk, végül hozzáadjuk " +
                         "a lisztet. Ezeket összedolgozzuk és ásványvízzel lazítjuk a tésztát. A palacsintatészta " +
                         "sűrűségét egyénileg határozzuk meg. Bevonatos serpenyőben egyenként kisütjük a palacsintákat, " +
-                        "és hűlni hagyjuk. A palacsintákat meggylekvárral töltjük meg, és háromszög alakúra hajtogatjuk."
+                        "és hűlni hagyjuk. A palacsintákat meggylekvárral töltjük meg, és háromszög alakúra hajtogatjuk.",
+                "JPG",
+                "meggyes_palacsinta",
+                photosToArray("meggyes_palacsinta.jpg")
         );
 
         ingredientsr9.addAll(Arrays.asList(
@@ -417,7 +444,10 @@ public class TestDataLoader {
                         "és jól összedolgozzuk. Lisztezett felületen 0,5 cm vastagra nyújtjuk a tésztát, majd egy közepes " +
                         "átmérőjű pogácsaszaggatóval kiszaggatjuk. Bő, forró olajban, a közepestől egy kicsit kisebb lángon " +
                         "a fánkok mindkét oldalát szép pirosra sütjük. Konyhai papírtörlőn lecsepegtetjük a felesleges olajat. " +
-                        "Porcukorral meghintve, sárgabaracklekvárral kínáljuk."
+                        "Porcukorral meghintve, sárgabaracklekvárral kínáljuk.",
+                "JPG",
+                "tizperces_sutoporos_fank",
+                photosToArray("tizperces_sutoporos_fank.jpg")
         );
 
         ingredientsr10.addAll(Arrays.asList(
