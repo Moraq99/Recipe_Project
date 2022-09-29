@@ -30,6 +30,16 @@ public class MainController {
     @GetMapping(value = {"/", "/home"})
     public String getHomePage(Model model) {
         List<Recipe> topRated = recipeService.getRandomRecipes();
+        List<Recipe> recipes = recipeService.getAll();
+
+        if (recipes.size() < 2) {
+            try {
+                testDataLoader.loadRecipes();
+                topRated = recipeService.getRandomRecipes();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
         model.addAttribute("recipes", topRated);
 
