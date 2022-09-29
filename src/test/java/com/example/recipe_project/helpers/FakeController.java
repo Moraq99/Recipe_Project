@@ -15,7 +15,7 @@ public class FakeController {
     }
 
     public void loadRecipes() {
-        testDataLoader.loadRecipes();
+        /*testDataLoader.loadRecipes();*/
     }
 
 }
