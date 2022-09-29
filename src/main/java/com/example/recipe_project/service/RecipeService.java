@@ -9,11 +9,13 @@ import com.example.recipe_project.repo.RecipeRepo;
 import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ReflectionUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
+import java.lang.reflect.Field;
 import java.util.*;
 
 
@@ -58,7 +60,7 @@ public class RecipeService {
         }
     }
 
-    public List<Recipe> searchRecipes(SearchFields searchFields) {
+    public List<Recipe> searchRecipes(SearchFields searchFields) throws IllegalAccessException {
         List<Recipe> results = getListFromCriteriaBuilder(searchFields);
         return getListIfIngredient(results, searchFields);
     }
@@ -72,51 +74,68 @@ public class RecipeService {
         }
         return results;
     }
-    private List<Recipe> getListFromCriteriaBuilder (SearchFields searchFields) {
+    private List<Recipe> getListFromCriteriaBuilder (SearchFields searchFields) throws IllegalAccessException {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);
-        //Root<Recipe> recipe = criteriaQuery.from(Recipe.class);
+        Root<Recipe> recipe = criteriaQuery.from(Recipe.class);
         List<Predicate> predicates = new ArrayList<>();
 
-        predicates.add(getNameToSearch(searchFields));
-        /*if (!searchFields.getName().isBlank()) {
+        //Class<SearchFields> srchFields = (Class<SearchFields>) searchFields.getClass();
+        Field[] fields = searchFields.getClass().getDeclaredFields();
+        if (!searchFields.getName().isBlank()) {
             Predicate namePredicate = criteriaBuilder.like(recipe.get("name"), "%" + searchFields.getName() + "%");
             predicates.add(namePredicate);
-        }*/
-        predicates.add(getIsVeganToSearch(searchFields));
-        /*if (searchFields.isVegan()) {
+        }
+
+        //ReflectionUtils.doWithFields(searchFields.getClass(), field -> {
+        for (Field field1 : fields){
+            if (field1.getName() == "name"){continue;}
+            if (!field1.getName().isBlank()) {
+                Predicate tempPredicate = criteriaBuilder.like(recipe.get(field1.getName()), (String) field1.get(searchFields));
+                        predicates.add(tempPredicate);
+            }
+        }
+            //});
+
+        /*//predicates.add(getNameToSearch(searchFields));
+        if (!searchFields.getName().isBlank()) {
+            Predicate namePredicate = criteriaBuilder.like(recipe.get("name"), "%" + searchFields.getName() + "%");
+            predicates.add(namePredicate);
+        }
+        //predicates.add(getIsVeganToSearch(searchFields));
+        if (searchFields.isVegan()) {
             Predicate veganPredicate = criteriaBuilder.equal(recipe.get("vegan"), searchFields.isVegan());
             predicates.add(veganPredicate);
-        }*/
-        predicates.add(getIsLactoseFreeToSearch(searchFields));
-        /*if (searchFields.isLactose_free()) {
+        }
+        //predicates.add(getIsLactoseFreeToSearch(searchFields));
+        if (searchFields.isLactose_free()) {
             Predicate lactosePredicate = criteriaBuilder.equal(recipe.get("lactose_free"), searchFields.isLactose_free());
             predicates.add(lactosePredicate);
-        }*/
-        predicates.add(getIsGlutenFreeToSearch(searchFields));
-        /*if (searchFields.isGluten_free()) {
+        }
+        //predicates.add(getIsGlutenFreeToSearch(searchFields));
+        if (searchFields.isGluten_free()) {
             Predicate glutenPredicate = criteriaBuilder.equal(recipe.get("gluten_free"), searchFields.isGluten_free());
             predicates.add(glutenPredicate);
-        }*/
-        predicates.add(getDifficultyToSearch(searchFields));
-        /*if (!searchFields.getDifficulty().equals(EnumDifficulty.UNDEFINED)) {
+        }
+        //predicates.add(getDifficultyToSearch(searchFields));
+        if (!searchFields.getDifficulty().equals(EnumDifficulty.UNDEFINED)) {
             Predicate difficultyPredicate = criteriaBuilder.equal(recipe.get("difficulty"), searchFields.getDifficulty());
             predicates.add(difficultyPredicate);
-        }*/
-        predicates.add(getPrepTimeToSearch(searchFields));
-        /*if (searchFields.getPrepTime() > 0) {
+        }
+        //predicates.add(getPrepTimeToSearch(searchFields));
+        if (searchFields.getPrepTime() > 0) {
             Predicate prepTimePredicate = criteriaBuilder.lessThanOrEqualTo(recipe.get("preparationTime"), searchFields.getPrepTime());
             predicates.add(prepTimePredicate);
         }*/
 
-        criteriaQuery.where(predicates.toArray(new Predicate[0]));
+            ;
 
         TypedQuery<Recipe> query = entityManager.createQuery(criteriaQuery);
 
         return query.getResultList();
     }
 
-    @NotNull
+    /*@NonNull
     private Predicate getNameToSearch (SearchFields searchFields) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);
@@ -129,7 +148,7 @@ public class RecipeService {
         return null;
     }
 
-    @NotNull
+    @NonNull
     private Predicate getIsVeganToSearch (SearchFields searchFields) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);
@@ -142,7 +161,7 @@ public class RecipeService {
         return null;
     }
 
-    @NotNull
+    @NonNull
     private Predicate getIsLactoseFreeToSearch (SearchFields searchFields) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);
@@ -155,7 +174,7 @@ public class RecipeService {
         return null;
     }
 
-    @NotNull
+    @NonNull
     private Predicate getIsGlutenFreeToSearch (SearchFields searchFields) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);
@@ -168,7 +187,7 @@ public class RecipeService {
         return null;
     }
 
-    @NotNull
+    @NonNull
     private Predicate getDifficultyToSearch (SearchFields searchFields) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);
@@ -181,7 +200,7 @@ public class RecipeService {
         return null;
     }
 
-    @NotNull
+    @NonNull
     private Predicate getPrepTimeToSearch (SearchFields searchFields) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);
@@ -192,7 +211,7 @@ public class RecipeService {
             return prepTimePredicate;
         }
         return null;
-    }
+    }*/
 
     public Recipe findById(long id) {
 

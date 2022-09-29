@@ -49,7 +49,7 @@ public class MainController {
     }
 
     @PostMapping(value = "/search")
-    public String displaySeachResults(SearchFields searchFields, Model model) {
+    public String displaySeachResults(SearchFields searchFields, Model model) throws IllegalAccessException {
         List<Recipe> recipes = recipeService.searchRecipes(searchFields);
 
         if( recipes.size() == 0){
