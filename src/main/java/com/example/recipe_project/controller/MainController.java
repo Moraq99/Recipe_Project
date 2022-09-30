@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Security;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -60,4 +61,15 @@ public class MainController {
         return "searchresult";
     }
 
+    //---------------------------------------------------------------------------------
+    //                               S e c u r i t y
+    //---------------------------------------------------------------------------------
+    @GetMapping("/user")
+    public String user(){
+        return("redirect:/User");
+    }
+    @GetMapping("/admin")
+    public String admin(){
+        return("redirect:/Admin");
+    }
 }
