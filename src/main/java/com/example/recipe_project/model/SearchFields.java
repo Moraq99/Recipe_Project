@@ -14,7 +14,6 @@ public class SearchFields {
     @Enumerated(EnumType.STRING)
     private EnumDifficulty difficulty;
     private String ingredient;
-
     private int prepTime;
 
     public SearchFields(){

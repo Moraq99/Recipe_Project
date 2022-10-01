@@ -31,7 +31,7 @@ public class NonMockTest {
     }
 
     @Test
-    public void searchRecipesTest(){
+    public void searchRecipesTest() throws Exception {
 
 
     }

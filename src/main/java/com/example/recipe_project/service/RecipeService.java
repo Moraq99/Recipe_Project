@@ -58,16 +58,39 @@ public class RecipeService {
     }
 
     public List<Recipe> searchRecipes(SearchFields searchFields) {
+        List<Recipe> results = getListFromCriteriaBuilder(searchFields);
+        return getListIfIngredient(results, searchFields);
+    }
+
+    private List<Recipe> getListIfIngredient (List<Recipe> results, SearchFields searchFields) {
+        List<Recipe> finalResults = new ArrayList<>();
+        if (searchFields.getIngredient().length() > 0) {
+            List<Recipe> ingredientResult = findByIngredient(searchFields.getIngredient(), results);
+            finalResults.addAll(ingredientResult);
+            return finalResults;
+        }
+        return results;
+    }
+
+    private List<Recipe> getListFromCriteriaBuilder (SearchFields searchFields) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);
-
         Root<Recipe> recipe = criteriaQuery.from(Recipe.class);
-
         List<Predicate> predicates = new ArrayList<>();
 
         if (!searchFields.getName().isBlank()) {
             Predicate namePredicate = criteriaBuilder.like(recipe.get("name"), "%" + searchFields.getName() + "%");
             predicates.add(namePredicate);
+        }
+
+        if (!searchFields.getDifficulty().equals(EnumDifficulty.UNDEFINED)) {
+            Predicate difficultyPredicate = criteriaBuilder.equal(recipe.get("difficulty"), searchFields.getDifficulty());
+            predicates.add(difficultyPredicate);
+        }
+
+        if (searchFields.getPrepTime() > 0) {
+            Predicate prepTimePredicate = criteriaBuilder.lessThanOrEqualTo(recipe.get("preparationTime"), searchFields.getPrepTime());
+            predicates.add(prepTimePredicate);
         }
 
         if (searchFields.isVegan()) {
@@ -85,33 +108,11 @@ public class RecipeService {
             predicates.add(glutenPredicate);
         }
 
-        if (!searchFields.getDifficulty().equals(EnumDifficulty.UNDEFINED)) {
-            Predicate difficultyPredicate = criteriaBuilder.equal(recipe.get("difficulty"), searchFields.getDifficulty());
-            predicates.add(difficultyPredicate);
-        }
-
-        if (searchFields.getPrepTime() > 0) {
-            Predicate prepTimePredicate = criteriaBuilder.lessThanOrEqualTo(recipe.get("preparationTime"), searchFields.getPrepTime());
-            predicates.add(prepTimePredicate);
-        }
-
-        criteriaQuery.where(predicates.toArray(new Predicate[0]));
-
-
         TypedQuery<Recipe> query = entityManager.createQuery(criteriaQuery);
 
-        List<Recipe> results = query.getResultList();
-        List<Recipe> finalResults = new ArrayList<>();
-
-
-        if (searchFields.getIngredient().length() > 0) {
-            List<Recipe> ingredientResult = findByIngredient(searchFields.getIngredient(), results);
-            finalResults.addAll(ingredientResult);
-            return finalResults;
-        }
-
-        return results;
+        return query.getResultList();
     }
+
 
     public void deleteById(Long id){
         repo.deleteById(id);
