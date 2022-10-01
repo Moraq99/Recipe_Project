@@ -28,15 +28,25 @@ public class MainController {
 
     @GetMapping(value = {"/", "/home"})
     public String getHomePage(Model model) {
-        List<Recipe> recipes = new ArrayList<>((Collection) recipeService.getAll());
+        List<Recipe> topRated = recipeService.getRandomRecipes();
+        List<Recipe> recipes = recipeService.getAll();
 
-        model.addAttribute("recipes", recipes);
+        if (recipes.size() < 2) {
+            try {
+                testDataLoader.loadRecipes();
+                topRated = recipeService.getRandomRecipes();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        model.addAttribute("recipes", topRated);
 
         return "index";
     }
 
     @GetMapping(value = {"/test"})
-    public String loadRecipes() {
+    public String loadRecipes() throws Exception {
         testDataLoader.loadRecipes();
         return "redirect:/home";
     }
@@ -49,7 +59,7 @@ public class MainController {
     }
 
     @PostMapping(value = "/search")
-    public String displaySeachResults(SearchFields searchFields, Model model) throws IllegalAccessException {
+    public String displaySeachResults(SearchFields searchFields, Model model) {
         List<Recipe> recipes = recipeService.searchRecipes(searchFields);
 
         if( recipes.size() == 0){
@@ -58,6 +68,15 @@ public class MainController {
             model.addAttribute("recipes", recipes);
         }
         return "searchresult";
+    }
+
+    @GetMapping(value = "/recipes")
+    public String displayRecipes(Model model) {
+        List<Recipe> recipes = new ArrayList<>((Collection) recipeService.getAll());
+
+        model.addAttribute("recipes", recipes);
+
+        return "recipes";
     }
 
 }

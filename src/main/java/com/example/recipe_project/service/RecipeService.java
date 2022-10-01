@@ -6,16 +6,13 @@ import com.example.recipe_project.model.Ingredient;
 import com.example.recipe_project.model.Recipe;
 import com.example.recipe_project.model.SearchFields;
 import com.example.recipe_project.repo.RecipeRepo;
-import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ReflectionUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
-import java.lang.reflect.Field;
 import java.util.*;
 
 
@@ -37,7 +34,7 @@ public class RecipeService {
     }
 
     public Recipe saveRecipe(Recipe recipe) {
-       repo.save(recipe);
+        repo.save(recipe);
 
         return recipe;
     }
@@ -60,7 +57,7 @@ public class RecipeService {
         }
     }
 
-    public List<Recipe> searchRecipes(SearchFields searchFields) throws IllegalAccessException {
+    public List<Recipe> searchRecipes(SearchFields searchFields) {
         List<Recipe> results = getListFromCriteriaBuilder(searchFields);
         return getListIfIngredient(results, searchFields);
     }
@@ -74,58 +71,41 @@ public class RecipeService {
         }
         return results;
     }
-    private List<Recipe> getListFromCriteriaBuilder (SearchFields searchFields) throws IllegalAccessException {
+
+    private List<Recipe> getListFromCriteriaBuilder (SearchFields searchFields) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);
         Root<Recipe> recipe = criteriaQuery.from(Recipe.class);
         List<Predicate> predicates = new ArrayList<>();
 
-        //Class<SearchFields> srchFields = (Class<SearchFields>) searchFields.getClass();
-        Field[] fields = searchFields.getClass().getDeclaredFields();
         if (!searchFields.getName().isBlank()) {
             Predicate namePredicate = criteriaBuilder.like(recipe.get("name"), "%" + searchFields.getName() + "%");
             predicates.add(namePredicate);
         }
 
-        //ReflectionUtils.doWithFields(searchFields.getClass(), field -> {
-        for (Field field1 : fields){
-            if (field1.getName() == "name"){continue;}
-            if (!field1.getName().isBlank()) {
-                Predicate tempPredicate = criteriaBuilder.like(recipe.get(field1.getName()), (String) field1.get(searchFields));
-                        predicates.add(tempPredicate);
-            }
-        }
-        //});
-
-        //predicates.add(getNameToSearch(searchFields));
-        if (!searchFields.getName().isBlank()) {
-            Predicate namePredicate = criteriaBuilder.like(recipe.get("name"), "%" + searchFields.getName() + "%");
-            predicates.add(namePredicate);
-        }
-        //predicates.add(getIsVeganToSearch(searchFields));
-        if (searchFields.isVegan()) {
-            Predicate veganPredicate = criteriaBuilder.equal(recipe.get("vegan"), searchFields.isVegan());
-            predicates.add(veganPredicate);
-        }
-        //predicates.add(getIsLactoseFreeToSearch(searchFields));
-        if (searchFields.isLactose_free()) {
-            Predicate lactosePredicate = criteriaBuilder.equal(recipe.get("lactose_free"), searchFields.isLactose_free());
-            predicates.add(lactosePredicate);
-        }
-        //predicates.add(getIsGlutenFreeToSearch(searchFields));
-        if (searchFields.isGluten_free()) {
-            Predicate glutenPredicate = criteriaBuilder.equal(recipe.get("gluten_free"), searchFields.isGluten_free());
-            predicates.add(glutenPredicate);
-        }
-        //predicates.add(getDifficultyToSearch(searchFields));
         if (!searchFields.getDifficulty().equals(EnumDifficulty.UNDEFINED)) {
             Predicate difficultyPredicate = criteriaBuilder.equal(recipe.get("difficulty"), searchFields.getDifficulty());
             predicates.add(difficultyPredicate);
         }
-        //predicates.add(getPrepTimeToSearch(searchFields));
+
         if (searchFields.getPrepTime() > 0) {
             Predicate prepTimePredicate = criteriaBuilder.lessThanOrEqualTo(recipe.get("preparationTime"), searchFields.getPrepTime());
             predicates.add(prepTimePredicate);
+        }
+
+        if (searchFields.isVegan()) {
+            Predicate veganPredicate = criteriaBuilder.equal(recipe.get("vegan"), searchFields.isVegan());
+            predicates.add(veganPredicate);
+        }
+
+        if (searchFields.isLactose_free()) {
+            Predicate lactosePredicate = criteriaBuilder.equal(recipe.get("lactose_free"), searchFields.isLactose_free());
+            predicates.add(lactosePredicate);
+        }
+
+        if (searchFields.isGluten_free()) {
+            Predicate glutenPredicate = criteriaBuilder.equal(recipe.get("gluten_free"), searchFields.isGluten_free());
+            predicates.add(glutenPredicate);
         }
 
         TypedQuery<Recipe> query = entityManager.createQuery(criteriaQuery);
@@ -133,8 +113,11 @@ public class RecipeService {
         return query.getResultList();
     }
 
-    public Recipe findById(long id) {
+    public void deleteById(Long id){
+        repo.deleteById(id);
+    }
 
+    public Recipe findById(long id) {
         return repo.findById(id).orElseThrow();
     }
 
@@ -150,6 +133,7 @@ public class RecipeService {
         return false;
     }
 
+
     public List<Recipe> findByIngredient(String keyword, List<Recipe> recipes){
 
         List<Recipe> hasKeyword = new ArrayList<>();
@@ -163,18 +147,23 @@ public class RecipeService {
         return hasKeyword;
     }
 
-    public void deleteById(Long id){
-        repo.deleteById(id);
+
+    public Optional<Recipe> getById(long id) {
+        return repo.findById(id);
     }
 
+    public List<Recipe> getRandomRecipes() {
+        List<Recipe> recipes = (List<Recipe>) repo.findAll();
+        List<Recipe> randomRecipes = new ArrayList<>();
 
-    public void kiscica(){
-        List<String> valami = new ArrayList<>();
+        int numRecipes = (int) ((Math.random() * (recipes.size() / 2)));
 
-        if( valami.size() == 0){
-            System.out.println("Üres lista");
-        }else{
-            System.out.println();
+        for (int i = 0; i < numRecipes; i++) {
+            randomRecipes.add(recipes.get(i));
         }
+
+        randomRecipes.add(repo.findByName("Kis cica"));
+
+        return randomRecipes;
     }
 }
