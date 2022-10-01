@@ -95,9 +95,9 @@ public class RecipeService {
                         predicates.add(tempPredicate);
             }
         }
-            //});
+        //});
 
-        /*//predicates.add(getNameToSearch(searchFields));
+        //predicates.add(getNameToSearch(searchFields));
         if (!searchFields.getName().isBlank()) {
             Predicate namePredicate = criteriaBuilder.like(recipe.get("name"), "%" + searchFields.getName() + "%");
             predicates.add(namePredicate);
@@ -126,92 +126,12 @@ public class RecipeService {
         if (searchFields.getPrepTime() > 0) {
             Predicate prepTimePredicate = criteriaBuilder.lessThanOrEqualTo(recipe.get("preparationTime"), searchFields.getPrepTime());
             predicates.add(prepTimePredicate);
-        }*/
-
-            ;
+        }
 
         TypedQuery<Recipe> query = entityManager.createQuery(criteriaQuery);
 
         return query.getResultList();
     }
-
-    /*@NonNull
-    private Predicate getNameToSearch (SearchFields searchFields) {
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);
-        Root<Recipe> recipe = criteriaQuery.from(Recipe.class);
-
-        if (!searchFields.getName().isBlank()) {
-            Predicate namePredicate = criteriaBuilder.like(recipe.get("name"), "%" + searchFields.getName() + "%");
-            return namePredicate;
-        }
-        return null;
-    }
-
-    @NonNull
-    private Predicate getIsVeganToSearch (SearchFields searchFields) {
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);
-        Root<Recipe> recipe = criteriaQuery.from(Recipe.class);
-
-        if (searchFields.isVegan()) {
-            Predicate veganPredicate = criteriaBuilder.equal(recipe.get("vegan"), searchFields.isVegan());
-            return veganPredicate;
-        }
-        return null;
-    }
-
-    @NonNull
-    private Predicate getIsLactoseFreeToSearch (SearchFields searchFields) {
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);
-        Root<Recipe> recipe = criteriaQuery.from(Recipe.class);
-
-        if (searchFields.isLactose_free()) {
-            Predicate lactosePredicate = criteriaBuilder.equal(recipe.get("lactose_free"), searchFields.isLactose_free());
-            return lactosePredicate;
-        }
-        return null;
-    }
-
-    @NonNull
-    private Predicate getIsGlutenFreeToSearch (SearchFields searchFields) {
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);
-        Root<Recipe> recipe = criteriaQuery.from(Recipe.class);
-
-        if (searchFields.isGluten_free()) {
-            Predicate glutenPredicate = criteriaBuilder.equal(recipe.get("gluten_free"), searchFields.isGluten_free());
-            return glutenPredicate;
-        }
-        return null;
-    }
-
-    @NonNull
-    private Predicate getDifficultyToSearch (SearchFields searchFields) {
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);
-        Root<Recipe> recipe = criteriaQuery.from(Recipe.class);
-
-        if (!searchFields.getDifficulty().equals(EnumDifficulty.UNDEFINED)) {
-            Predicate difficultyPredicate = criteriaBuilder.equal(recipe.get("difficulty"), searchFields.getDifficulty());
-            return difficultyPredicate;
-        }
-        return null;
-    }
-
-    @NonNull
-    private Predicate getPrepTimeToSearch (SearchFields searchFields) {
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<Recipe> criteriaQuery = criteriaBuilder.createQuery(Recipe.class);
-        Root<Recipe> recipe = criteriaQuery.from(Recipe.class);
-
-        if (searchFields.getPrepTime() > 0) {
-            Predicate prepTimePredicate = criteriaBuilder.lessThanOrEqualTo(recipe.get("preparationTime"), searchFields.getPrepTime());
-            return prepTimePredicate;
-        }
-        return null;
-    }*/
 
     public Recipe findById(long id) {
 
