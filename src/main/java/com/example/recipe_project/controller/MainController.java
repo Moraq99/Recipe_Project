@@ -79,4 +79,15 @@ public class MainController {
         return "recipes";
     }
 
+    //---------------------------------------------------------------------------------
+    //                               S e c u r i t y
+    //---------------------------------------------------------------------------------
+    @GetMapping("/user")
+    public String user(){
+        return("redirect:/User");
+    }
+    @GetMapping("/admin")
+    public String admin(){
+        return("redirect:/Admin");
+    }
 }
