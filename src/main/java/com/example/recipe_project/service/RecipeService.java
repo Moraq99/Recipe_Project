@@ -108,6 +108,7 @@ public class RecipeService {
             predicates.add(glutenPredicate);
         }
 
+        criteriaQuery.where(predicates.toArray(new Predicate[0]));
         TypedQuery<Recipe> query = entityManager.createQuery(criteriaQuery);
 
         return query.getResultList();
