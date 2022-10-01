@@ -36,7 +36,7 @@ public class RecipeService {
     public Recipe saveRecipe(Recipe recipe) {
         repo.save(recipe);
 
-        return recipe;
+       return recipe;
     }
 
     public void processIngredientsFromForm(Recipe recipe) {
@@ -113,6 +113,10 @@ public class RecipeService {
         return results;
     }
 
+    public void deleteById(Long id){
+        repo.deleteById(id);
+    }
+
     public Recipe findById(long id) {
         return repo.findById(id).orElseThrow();
     }
@@ -129,6 +133,7 @@ public class RecipeService {
         return false;
     }
 
+
     public List<Recipe> findByIngredient(String keyword, List<Recipe> recipes){
 
         List<Recipe> hasKeyword = new ArrayList<>();
@@ -141,10 +146,6 @@ public class RecipeService {
 
         return hasKeyword;
     }
-
-      public void deleteById(Long id){
-        repo.deleteById(id);
-      }
 
 
       public Optional<Recipe> getById(long id) {
@@ -167,13 +168,4 @@ public class RecipeService {
       }
 
 
-      public void kiscica(){
-        List<String> valami = new ArrayList<>();
-
-        if( valami.size() == 0){
-            System.out.println("Üres lista");
-        }else{
-            System.out.println();
-        }
-      }
 }

@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
@@ -17,33 +18,30 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
+@AutoConfigureMockMvc
 public class NonMockTest {
 
     @Autowired
     private RecipeRepo recipeRepo;
 
-    @Autowired
-    private RecipeService recipeService;
-
-    @Autowired
-    private FakeController fakeController;
 
     @BeforeEach
     void setup(){
-        fakeController.loadRecipes();
+        recipeRepo.findAll();
     }
 
     @Test
     public void searchRecipesTest(){
 
-        SearchFields searchFields = new SearchFields();
-        searchFields.setIngredient("");
-        searchFields.setName("alma");
-        searchFields.setDifficulty(EnumDifficulty.UNDEFINED);
-        List<Recipe> d1 = recipeService.searchRecipes(searchFields);
-        assertEquals(0, d1.size());
 
     }
+
+    @Test
+    public void findByIngredientTest(String keyWord, Recipe recipe){
+
+
+    }
+
 
 
 

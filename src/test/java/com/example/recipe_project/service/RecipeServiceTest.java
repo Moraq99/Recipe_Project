@@ -1,6 +1,7 @@
 package com.example.recipe_project.service;
 
 import com.example.recipe_project.enums.EnumDifficulty;
+import com.example.recipe_project.enums.EnumUnit;
 import com.example.recipe_project.model.Ingredient;
 import com.example.recipe_project.model.Recipe;
 import com.example.recipe_project.model.SearchFields;
@@ -74,8 +75,55 @@ class RecipeServiceTest {
         assertEquals(EnumDifficulty.VERY_DIFFICULT, r1.getDifficulty());
     }
 
-    //proba- exceptionra fut
+    @Test
+    public void deleteByIdTest(){
+       // when(recipeRepo.deleteById(1L)).thenReturn();
+    }
 
-    /**/
+    @Test
+    public void saveRecipeTest(){
+        Recipe recipeToBeSaved = new Recipe(1, "Bakker",
+                EnumDifficulty.VERY_DIFFICULT, 30);
+        when(recipeRepo.save(recipeToBeSaved)).thenReturn(recipeToBeSaved);
+
+        Recipe recipeSaved = recipeService.saveRecipe(recipeToBeSaved);
+        assertEquals(recipeToBeSaved.getName(),recipeSaved.getName());
+        assertEquals(recipeToBeSaved.getDifficulty(), recipeSaved.getDifficulty());
+        assertEquals(recipeToBeSaved.getPreparationTime(), recipeSaved.getPreparationTime());
+    }
+
+    @Test
+    public void doesRecipeContainsTest(){
+        Ingredient oil = new Ingredient("Oil", 500, EnumUnit.ML);
+        Ingredient butter = new Ingredient("Butter", 35, EnumUnit.G);
+        //recipe.setIngredients();
+
+        List<Ingredient> listOfIngredients = new ArrayList<>();
+        listOfIngredients.add(oil);
+        listOfIngredients.add(butter);
+
+
+
+        Recipe recipe = new Recipe();
+
+        recipe.setIngredients(listOfIngredients);
+        assertFalse(recipeService.doesRecipeContain("banana", recipe));
+        assertTrue(recipeService.doesRecipeContain("Oil",recipe));
+        assertFalse(recipeService.doesRecipeContain("oil",recipe));
+
+
+}
+
+    @Test
+    public void finByIngredientTest(){
+    //Recipe recipe = new Recipe(List<Ingredient> )
+    }
+
+
+
+
+
+
+
 
 }
