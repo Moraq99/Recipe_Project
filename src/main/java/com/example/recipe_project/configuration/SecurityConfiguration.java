@@ -39,13 +39,13 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception{
-        http.authorizeRequests()
-
+        http
+                .authorizeRequests()
+                .antMatchers("/edit/**", "/create", "/create-recipe", "/delete/**")
+                .hasRole("USER")
                 .antMatchers("/admin**","/secret**")
                 .hasRole("ADMIN")
-                .antMatchers("/**","/home**","/admin**","/user**")
-                .authenticated()
-                .anyRequest()
+                .antMatchers("/**","/home**")
                 .permitAll()
                 .and()
                 .formLogin();
