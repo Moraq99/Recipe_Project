@@ -79,6 +79,23 @@ public class MainController {
         return "recipes";
     }
 
+    @GetMapping(value = "/login")
+    public String getLoginPage() {
+        return "login";
+    }
+
+    @GetMapping(value = "/login-error")
+    public String getLoginErrorPage(Model model) {
+        model.addAttribute("loginError", true);
+
+        return "login";
+    }
+
+    @GetMapping(value = "/success")
+    public String succesfulLogin() {
+        return "redirect:/";
+    }
+
     //---------------------------------------------------------------------------------
     //                               S e c u r i t y
     //---------------------------------------------------------------------------------
