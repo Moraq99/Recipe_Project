@@ -64,7 +64,7 @@ public class RecipeController {
     @PostMapping(value = "/edit/{id}")
     public String updateRecipe(@PathVariable(name = "id") Long id, Recipe recipe, @RequestParam(value = "photo", required = false) MultipartFile photo) {
 
-        if (true) {
+        if (photo.isEmpty()) {
             recipeService.updatePhoto(recipe);
             recipeService.processIngredientsFromForm(recipe);
             recipeService.saveRecipe(recipe);
