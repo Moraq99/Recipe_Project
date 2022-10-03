@@ -91,11 +91,6 @@ public class MainController {
         return "login";
     }
 
-    @GetMapping(value = "/success")
-    public String succesfulLogin() {
-        return "redirect:/";
-    }
-
     //---------------------------------------------------------------------------------
     //                               S e c u r i t y
     //---------------------------------------------------------------------------------
