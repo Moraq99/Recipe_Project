@@ -96,7 +96,7 @@
                     <div class="testimonial__item">
                         <div class="testimonial__author">
                             <div class="testimonial__author__text">
-                                <h5>Horváth Kitty</h5>
+                                <h5>Horváth Kitti</h5>
                                 <span>Budapest</span>
                             </div>
                         </div>
@@ -476,7 +476,7 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="class__sidebar">
-                        <form data-th-action="@{/edit/{id}(id=${recipe.id})}" data-th-object="${recipe}" method="post">
+                        <form data-th-action="@{/edit/{id}(id=${recipe.id})}" data-th-object="${recipe}" method="post" enctype="multipart/form-data">
                             <table>
                                 <tr>
                                     <th>Recipe name:</th>
@@ -536,6 +536,11 @@
 
                                     </td>
 
+                                </tr>
+                                <tr>
+                                    <th>Image</th>
+
+                                    <td><input type="file" name="photo" style="background-color: inherit; margin-top: 10px; padding-top: 20px;"></td>
                                 </tr>
 
                             </table>

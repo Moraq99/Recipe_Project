@@ -57,6 +57,16 @@ public class RecipeService {
         }
     }
 
+    public void updatePhoto(Recipe recipe) {
+        Recipe origin = findById(recipe.getId());
+
+        if (recipe.getPhotoName() == null) {
+            recipe.setPhotoName(origin.getPhotoName());
+            recipe.setPhotoType(origin.getPhotoType());
+            recipe.setPhotoData(origin.getPhotoData());
+        }
+    }
+
     public List<Recipe> searchRecipes(SearchFields searchFields) {
         List<Recipe> results = getListFromCriteriaBuilder(searchFields);
         return getListIfIngredient(results, searchFields);
