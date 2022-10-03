@@ -57,6 +57,13 @@ public class RecipeService {
         }
     }
 
+    /*public List<Recipe> createIngredientDummies(Recipe recipe) {
+        for (int i = 0; i < recipe.getNumOfIngredients(); i++) {
+            recipe.addIngredient(new Ingredient());
+        }
+        return null;
+    }*/
+
     public List<Recipe> searchRecipes(SearchFields searchFields) {
         List<Recipe> results = getListFromCriteriaBuilder(searchFields);
         return getListIfIngredient(results, searchFields);
