@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletRequest;
 import java.io.IOException;
 
 import java.util.List;
@@ -61,11 +62,31 @@ public class RecipeController {
     }
 
     @PostMapping(value = "/edit/{id}")
-    public String updateRecipe(@PathVariable(name = "id") Long id, Recipe recipe) {
-        recipeService.processIngredientsFromForm(recipe);
-        recipeService.saveRecipe(recipe);
+    public String updateRecipe(@PathVariable(name = "id") Long id, Recipe recipe, @RequestParam(value = "photo", required = false) MultipartFile photo) {
 
-        return "redirect:/home";
+        if (true) {
+            recipeService.updatePhoto(recipe);
+            recipeService.processIngredientsFromForm(recipe);
+            recipeService.saveRecipe(recipe);
+
+            return "redirect:/home";
+        } else {
+            try {
+                recipe.setPhotoName(photo.getOriginalFilename());
+                recipe.setPhotoType(photo.getContentType());
+                recipe.setPhotoData(photo.getBytes());
+
+                recipeService.processIngredientsFromForm(recipe);
+                recipeService.saveRecipe(recipe);
+
+                return "redirect:/home";
+            } catch (IOException e) {
+                e.printStackTrace();
+
+                return "redirect:/home";
+            }
+        }
+
     }
 
     @GetMapping(value = "/create")
