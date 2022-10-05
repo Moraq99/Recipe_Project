@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.ServletRequest;
 import java.io.IOException;
 
 import java.util.List;
@@ -49,20 +48,42 @@ public class RecipeController {
 
         return "redirect:/home";
     }
+
     @GetMapping(value = "/edit/{id}")
-    public ModelAndView showEditRecipe(@PathVariable(name = "id") Long id) {
-        ModelAndView editView = new ModelAndView("editrecipe");
+    public String editIngredients(@PathVariable(name = "id") Long id, Model model) {
+        Recipe recipe = recipeService.findById(id);
+
+        model.addAttribute("recipe", recipe);
+
+        return "editingredients";
+    }
+
+    @PostMapping(value = "/edit")
+    public String updateIngredients(Recipe recipe, Model model) {
+        Recipe recipeOrigin = recipeService.findById(recipe.getId());
+        recipeOrigin.setNumOfIngredients(recipe.getNumOfIngredients());
+        recipeService.createIngredientDummies(recipeOrigin);
+        List<Ingredient> ingredients = recipeOrigin.getIngredients();
+
+        model.addAttribute("recipe", recipeOrigin);
+        model.addAttribute("ingredients", ingredients);
+
+        return "editrecipe";
+    }
+
+    /*@GetMapping(value = "/edit/{id}")
+    public String showEditRecipe(@PathVariable(name = "id") Long id, Model model) {
         Recipe recipe = recipeService.findById(id);
         List<Ingredient> ingredients = ingredientService.getAllById(recipe.getId());
 
-        editView.addObject("recipe", recipe);
-        editView.addObject("ingredients", ingredients);
+        model.addAttribute("recipe", recipe);
+        model.addAttribute("ingredients", ingredients);
 
-        return editView;
-    }
+        return "editrecipe";
+    }*/
 
-    @PostMapping(value = "/edit/{id}")
-    public String updateRecipe(@PathVariable(name = "id") Long id, Recipe recipe, @RequestParam(value = "photo", required = false) MultipartFile photo) {
+    @PostMapping(value = "/edit-recipe")
+    public String updateRecipe(Recipe recipe, @RequestParam(value = "photo", required = false) MultipartFile photo) {
 
         if (photo.isEmpty()) {
             recipeService.updatePhoto(recipe);
