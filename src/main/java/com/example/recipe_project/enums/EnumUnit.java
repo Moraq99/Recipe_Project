@@ -1,27 +1,30 @@
 package com.example.recipe_project.enums;
 
 public enum EnumUnit {
-    L("liter"),
 
-    ML("mililiter"),
+    Undefined("Unit"),
 
-    G("gramm"),
+    L("litre"),
 
-    DKG("dekagramm"),
+    ML("millilitre"),
 
-    KG("kilogramm"),
+    G("gram"),
 
-    TBS("evőkanál"),
+    DKG("decagram"),
 
-    TSP("teáskanál"),
+    KG("kilogram"),
 
-    CUP("bögre"),
+    TBS("tablespoon"),
 
-    PCS("darab"),
+    TSP("teaspoon"),
 
-    PKG("csomag"),
+    CUP("cup"),
 
-    PINCH("csipet");
+    PCS("pieces"),
+
+    PKG("package"),
+
+    PINCH("pinch");
 
     private final String displayValue;
 

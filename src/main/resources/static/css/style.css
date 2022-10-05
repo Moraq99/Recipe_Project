@@ -1565,8 +1565,6 @@ ol {
 }
 
 .product__details__big__img {
-  width: calc(84% - 20px);
-  float: left;
   margin-right: 20px;
 }
 .product__details__big__img img {
