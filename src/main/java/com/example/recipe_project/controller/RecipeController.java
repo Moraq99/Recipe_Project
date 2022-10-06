@@ -90,7 +90,7 @@ public class RecipeController {
 
         try {
 
-            if (recipe.getIngredients() == null
+            if (recipe.getIngredients() == null     //true
                     /* || recipe.getPhotoData() == null
                     || recipe.getInstruction() == null*/) {
                 model.addAttribute("error", "Probáld újra");
