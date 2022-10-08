@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
 
     <div th:replace="fragments/head::head"></div>
@@ -22,9 +22,18 @@
 
 <!--Ez a kép legyen az oldal jobb oldalán, "huppika" pedig a balon :)
 https://www.epicurious.com/recipes/food/views/oops-i-dropped-the-lemon-tart-51198010-->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <div class="section-title">
+                <img th:src="@{/photos/error.jpg}">
+                <p data-th-text="${ergya}"></p>
+                <h2>Hupsz, ez leesett, próbálj mást...</h2></img>
+            </div>
+        </div>
+    </div>
 
-<p>Huppika, ez odaégett...</p>
-<p data-th-text="${ergya}"></p>
+
 
 <!-- Footer Section Begin -->
 <footer class="footer set-bg" data-setbg="/img/footer-bg.jpg">
