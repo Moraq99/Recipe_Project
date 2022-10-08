@@ -43,7 +43,7 @@ public class RecipeController {
     }
 
     @GetMapping(value = "/delete/{id}")
-    public String deleteRecipe(@PathVariable(name = "id") Long id){
+    public String deleteRecipe(@PathVariable(name = "id") Long id) {
         recipeService.deleteById(id);
 
         return "redirect:/home";
@@ -122,38 +122,70 @@ public class RecipeController {
         recipeService.createIngredientDummies(recipe);
 
         model.addAttribute("newrecipe", recipe);
-
         return "newrecipe";
+
     }
 
     @PostMapping(value = "/create-recipe")
-    public String saveNewRecipe(Recipe recipe, @RequestParam("photo") MultipartFile photo){
+    public String saveNewRecipe(Recipe recipe, Model model, @RequestParam("photo") MultipartFile photo) {
 
         try {
-            recipe.setPhotoName(photo.getOriginalFilename());
-            recipe.setPhotoType(photo.getContentType());
-            recipe.setPhotoData(photo.getBytes());
 
-            recipeService.processIngredientsFromForm(recipe);
-            recipeService.saveRecipe(recipe);
+            System.out.println();
+            if (recipe.getIngredients().size() == 0   //true
+                  //|| recipe.getPhotoData() == null
+                    || recipe.getInstruction().isBlank()) {
+                model.addAttribute("error", "Próbáld újra");
+                return "create";
+            } else {
+                recipe.setPhotoName(photo.getOriginalFilename());
+                recipe.setPhotoType(photo.getContentType());
+                recipe.setPhotoData(photo.getBytes());
 
-            return "redirect:/home";
-        }catch (IOException e) {
+                recipeService.processIngredientsFromForm(recipe);
+                recipeService.saveRecipe(recipe);
+
+                model.addAttribute("newrecipe", recipe);
+                return "redirect:/home";
+            }
+
+        } catch (IOException e) {
             e.printStackTrace();
 
+            return "redirect:/home";
+        }
+
+    }
+
+     /*@PostMapping(value = "/create-recipe")
+    public String saveNewRecipe(Recipe recipe, @RequestParam("photo") MultipartFile photo) {
+
+        try {
+
+                recipe.setPhotoName(photo.getOriginalFilename());
+                recipe.setPhotoType(photo.getContentType());
+                recipe.setPhotoData(photo.getBytes());
+
+                recipeService.processIngredientsFromForm(recipe);
+                recipeService.saveRecipe(recipe);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
 
             return "redirect:/newrecipe";
         }
-    }
+
+         return "redirect:/home";
+    }*/
 
     @GetMapping(value = "/photo/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public @ResponseBody byte[] downloadPhoto(@PathVariable long id){
+    public @ResponseBody byte[] downloadPhoto(@PathVariable long id) {
         Recipe recipe = recipeService.getById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Image not found.")
         );
         return recipe.getPhotoData();
     }
-
 
 
 }

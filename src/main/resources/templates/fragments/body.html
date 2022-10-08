@@ -357,6 +357,8 @@
 </div>
 
 <div data-th-fragment="createRecipe">
+
+
     <section class="contact spad">
         <div class="container">
             <div class="row">
@@ -574,12 +576,19 @@
 
 
 <div data-th-fragment="ingredientNumber">
+
     <section class="contact spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
                     <div class="section-title">
                         <span>Create recipe</span>
+
+                       <!-- <tr>
+                            <p data-th-if="${loginError}" style="color: darkred">Wrong username or password.</p>
+                        </tr>-->
+
+                        <div id="error" data-th-if="${error} != null" data-th-text="${error}"></div>
                     </div>
                 </div>
                 <div class="col-lg-8">
