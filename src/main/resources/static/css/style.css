@@ -4024,4 +4024,9 @@ ol {
   .checkout__order__products span {
     display: none;
   }
+
+  #error{
+    font-size: 80px;
+
+  }
 }

@@ -568,7 +568,7 @@
                             <p data-th-if="${loginError}" style="color: darkred">Wrong username or password.</p>
                         </tr>-->
 
-                        <div data-th-if="${error} != null" data-th-text="${error}"></div>
+                        <div id="error" data-th-if="${error} != null" data-th-text="${error}"></div>
                     </div>
                 </div>
                 <div class="col-lg-8">

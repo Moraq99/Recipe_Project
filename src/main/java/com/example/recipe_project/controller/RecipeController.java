@@ -90,10 +90,11 @@ public class RecipeController {
 
         try {
 
-            if (recipe.getIngredients() == null     //true
-                    /* || recipe.getPhotoData() == null
-                    || recipe.getInstruction() == null*/) {
-                model.addAttribute("error", "Probáld újra");
+            System.out.println();
+            if (recipe.getIngredients().size() == 0   //true
+                  //|| recipe.getPhotoData() == null
+                    || recipe.getInstruction().isBlank()) {
+                model.addAttribute("error", "Próbáld újra");
                 return "create";
             } else {
                 recipe.setPhotoName(photo.getOriginalFilename());
@@ -104,13 +105,13 @@ public class RecipeController {
                 recipeService.saveRecipe(recipe);
 
                 model.addAttribute("newrecipe", recipe);
-                return "newrecipe";
+                return "redirect:/home";
             }
 
         } catch (IOException e) {
             e.printStackTrace();
 
-            return "redirect:/newrecipe";
+            return "redirect:/home";
         }
 
     }
