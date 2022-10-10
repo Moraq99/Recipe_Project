@@ -1,10 +1,16 @@
 package com.example.recipe_project.model;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
-public class AppUser {
+public class AppUser implements UserDetails {
 
     @Id
     @GeneratedValue
@@ -12,7 +18,8 @@ public class AppUser {
     private String firstName;
     private String lastName;
     private String userName;
-    private String emailAddress;
+    private String email;
+    private String password;
     private boolean alreadyLoggedIn;
     private boolean isEnabled;
     private boolean isAdmin;
@@ -25,13 +32,16 @@ public class AppUser {
     @OneToMany
     private List<Comment> comments;
     public AppUser() {
+        this.isEnabled = true;
     }
     public AppUser(String firstName, String lastName,
-                   String userName, String emailAddress) {
+                   String userName, String email, String password) {
+        this();
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
-        this.emailAddress = emailAddress;
+        this.email = email;
+        this.password = password;
     }
     public Long getId() {
         return id;
@@ -51,17 +61,11 @@ public class AppUser {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public String getUserName() {
-        return userName;
+    public String getEmail() {
+        return email;
     }
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+    public void setEmail(String email) {
+        this.email = email;
     }
     public boolean isAlreadyLoggedIn() {
         return alreadyLoggedIn;
@@ -69,6 +73,51 @@ public class AppUser {
     public void setAlreadyLoggedIn(boolean alreadyLoggedIn) {
         this.alreadyLoggedIn = alreadyLoggedIn;
     }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<SimpleGrantedAuthority> authors = new ArrayList<>();
+
+        SimpleGrantedAuthority authorityUser = new SimpleGrantedAuthority("USER");
+        SimpleGrantedAuthority authorityAdmin = new SimpleGrantedAuthority("ADMIN");
+
+        authors.add(authorityUser);
+        authors.add(authorityAdmin);
+
+        return authors;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+
+    }
+
+    @Override
+    public String getUsername() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return isEnabled;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return isEnabled;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return isEnabled;
+    }
+
     public boolean isEnabled() {
         return isEnabled;
     }

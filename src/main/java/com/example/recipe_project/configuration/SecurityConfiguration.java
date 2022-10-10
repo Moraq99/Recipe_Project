@@ -14,47 +14,38 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration
 @EnableWebSecurity
 public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
 
-
-    @Bean
-    public InMemoryUserDetailsManager userDetailsManager() {
-
-        UserDetails user = User.withDefaultPasswordEncoder()
-                .username("user")
-                .password("password")
-                .roles("USER")
-                .build();
-
-        UserDetails admin = User.withDefaultPasswordEncoder()
-                .username("admin")
-                .password("password")
-                .roles("ADMIN")
-                .build();
-
-        return new InMemoryUserDetailsManager(user,admin);
-    }
-
     @Override
-    public void configure(HttpSecurity http) throws Exception{
+    protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .antMatchers("/edit/**", "/create", "/create-recipe", "/delete/**")
-                .hasRole("USER")
-                .antMatchers("/admin**","/secret**")
-                .hasRole("ADMIN")
-                .antMatchers("/**","/home**")
-                .permitAll()
-                .and()
                 .formLogin()
+                .permitAll()
                 .loginPage("/login")
-                .failureUrl("/login-error");
+                .defaultSuccessUrl("/success", true)
+                .failureUrl("/login-error")
 
+                .and()
+
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/home")
+                .invalidateHttpSession(true)
+
+                .and()
+
+                .authorizeRequests()
+                .antMatchers("/*.css", "/**"/*, "/home**", "/register"*/)
+                .permitAll()
+
+                //.antMatchers("/admin**")
+                //.hasRole("ADMIN")
+
+                .anyRequest().authenticated();
     }
 
-    @Override
+    /*@Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         final String password = "password";
         System.out.println("Hash of password \"" + password + "\" is " + encoder().encode(password) + ".");
@@ -67,7 +58,7 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
                 .withUser("admin")
                 .password(encoder().encode(password))
                 .roles("USER", "ADMIN");
-    }
+    }*/
 
     @Bean
     public PasswordEncoder encoder() {
