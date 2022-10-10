@@ -35,7 +35,7 @@ public class AppUserService implements UserDetailsService {
 
     @Transactional
     public void saveUser(AppUser user) throws UsernameTakenException {
-        if (!isUsernameTaken(user.getUserName())) {
+        if (!isUsernameTaken(user.getUsername())) {
             //TODO
         } else {
             throw new UsernameTakenException();
