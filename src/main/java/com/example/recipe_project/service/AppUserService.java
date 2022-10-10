@@ -1,5 +1,6 @@
 package com.example.recipe_project.service;
 
+import com.example.recipe_project.exceptions.UsernameTakenException;
 import com.example.recipe_project.model.AppUser;
 import com.example.recipe_project.repo.AppUserRepo;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,12 +34,11 @@ public class AppUserService implements UserDetailsService {
     }
 
     @Transactional
-    public void saveUser(AppUser user) throws Exception {
+    public void saveUser(AppUser user) throws UsernameTakenException {
         if (!isUsernameTaken(user.getUserName())) {
             //TODO
         } else {
-            //TODO
-            throw new Exception();
+            throw new UsernameTakenException();
         }
     }
 
