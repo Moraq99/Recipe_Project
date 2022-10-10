@@ -588,13 +588,15 @@
                             <p data-th-if="${loginError}" style="color: darkred">Wrong username or password.</p>
                         </tr>-->
 
-                        <div id="error" data-th-if="${error} != null" data-th-text="${error}"></div>
                     </div>
                 </div>
                 <div class="col-lg-8">
                     <div class="class__sidebar">
                         <form data-th-action="@{/create}" method="post">
                             <table>
+                                <tr>
+                                    <p id="error" data-th-if="${error} != null" data-th-text="${error}" style="color: darkred; font-size: 20px;"></p>
+                                </tr>
                                 <tr>
                                     <th>Number of ingredients:</th>
                                     <td><input style="height: 20px; margin-bottom: 5px" type="number" step="1" data-th-field="*{recipe.numOfIngredients}"></td>
