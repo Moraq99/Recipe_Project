@@ -62,9 +62,9 @@ public class MainController {
     public String displaySeachResults(SearchFields searchFields, Model model) {
         List<Recipe> recipes = recipeService.searchRecipes(searchFields);
 
-        if( recipes.size() == 0){
-            model.addAttribute("message","Nincs találat");
-        }else {
+        if (recipes.size() == 0) {
+            model.addAttribute("message", "Nincs találat");
+        } else {
             model.addAttribute("recipes", recipes);
         }
         return "searchresult";
@@ -79,27 +79,4 @@ public class MainController {
         return "recipes";
     }
 
-    @GetMapping(value = "/login")
-    public String getLoginPage() {
-        return "login";
-    }
-
-    @GetMapping(value = "/login-error")
-    public String getLoginErrorPage(Model model) {
-        model.addAttribute("loginError", true);
-
-        return "login";
-    }
-
-    //---------------------------------------------------------------------------------
-    //                               S e c u r i t y
-    //---------------------------------------------------------------------------------
-    @GetMapping("/user")
-    public String user(){
-        return("redirect:/User");
-    }
-    @GetMapping("/admin")
-    public String admin(){
-        return("redirect:/Admin");
-    }
 }
