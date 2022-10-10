@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 public class AppUserService implements UserDetailsService {
@@ -25,9 +26,17 @@ public class AppUserService implements UserDetailsService {
         this.encoder = encoder;
     }
 
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return appUserRepo.findAppUserByUserName(username);
+    }
+
+    public AppUser loadUserById(Long id){
+        return appUserRepo.findById(id).orElseThrow();
+    }
+    public Optional<AppUser> getById(long id) {
+        return appUserRepo.findById(id);
     }
 
     public AppUser getLoggedInUser() {
