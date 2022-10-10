@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
@@ -17,16 +18,16 @@ public class AppUserService implements UserDetailsService {
 
     private AppUserRepo appUserRepo;
 
-    public AppUserService(AppUserRepo appUserRepo) {
-        this.appUserRepo = appUserRepo;
-    }
+    private final PasswordEncoder encoder;
 
+    public AppUserService(AppUserRepo appUserRepo, PasswordEncoder encoder) {
+        this.appUserRepo = appUserRepo;
+        this.encoder = encoder;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // can be used after AppUser class implements UserDetails
-        /*return appUserRepo.findAppUserByUserName(username);*/
-        return null;
+        return appUserRepo.findAppUserByUserName(username);
     }
 
     public AppUser getLoggedInUser() {
@@ -36,7 +37,7 @@ public class AppUserService implements UserDetailsService {
     @Transactional
     public void saveUser(AppUser user) throws UsernameTakenException {
         if (!isUsernameTaken(user.getUsername())) {
-            //TODO
+            user.setPassword(encoder.encode(user.getPassword()));
         } else {
             throw new UsernameTakenException();
         }
@@ -53,6 +54,12 @@ public class AppUserService implements UserDetailsService {
 
     @Transactional
     public void changePassword(String newPassword) {
-        //TODO
+        AppUser loggedInUser = getLoggedInUser();
+        AppUser dbUser = (AppUser) loadUserByUsername(loggedInUser.getUsername());
+
+        dbUser.setPassword(encoder.encode(newPassword));
+        dbUser.setAlreadyLoggedIn(true);
+
+        loggedInUser.setAlreadyLoggedIn(true);
     }
 }
