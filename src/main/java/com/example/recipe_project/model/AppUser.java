@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 public class AppUser implements UserDetails {
@@ -31,8 +32,20 @@ public class AppUser implements UserDetails {
     private List<AppUser> friends;
     @OneToMany
     private List<Comment> comments;
+    private String photoType;
+
+    private String photoName;
+
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] photoData;
     public AppUser() {
         this.isEnabled = true;
+    }
+    public AppUser (String firstName, String lastName, String userName){
+        this();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
     }
     public AppUser(String firstName, String lastName,
                    String userName, String email, String password) {
@@ -147,5 +160,29 @@ public class AppUser implements UserDetails {
     }
     public void setFriends(List<AppUser> friends) {
         this.friends = friends;
+    }
+
+    public String getPhotoType() {
+        return photoType;
+    }
+
+    public void setPhotoType(String photoType) {
+        this.photoType = photoType;
+    }
+
+    public String getPhotoName() {
+        return photoName;
+    }
+
+    public void setPhotoName(String photoName) {
+        this.photoName = photoName;
+    }
+
+    public byte[] getPhotoData() {
+        return photoData;
+    }
+
+    public void setPhotoData(byte[] photoData) {
+        this.photoData = photoData;
     }
 }

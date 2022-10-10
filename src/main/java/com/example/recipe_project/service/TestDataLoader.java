@@ -2,30 +2,33 @@ package com.example.recipe_project.service;
 
 
 import com.example.recipe_project.enums.EnumUnit;
+import com.example.recipe_project.model.AppUser;
 import com.example.recipe_project.model.Ingredient;
 import com.example.recipe_project.model.Recipe;
 import com.example.recipe_project.enums.EnumDifficulty;
+import com.example.recipe_project.repo.AppUserRepo;
 import com.example.recipe_project.repo.RecipeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.awt.image.DataBufferByte;
-import java.awt.image.WritableRaster;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
 
 @Service
 public class TestDataLoader {
     private final RecipeRepo repo;
+    private final AppUserRepo appUserRepo;
+    private final RecipeService recipeService;
 
     @Autowired
-    public TestDataLoader(RecipeRepo recipeRepo) {
+    public TestDataLoader(RecipeRepo recipeRepo, AppUserRepo appUserRepo, RecipeService recipeService) {
         this.repo = recipeRepo;
+        this.appUserRepo = appUserRepo;
+        this.recipeService = recipeService;
     }
 
 
@@ -231,8 +234,8 @@ public class TestDataLoader {
                         "alaposan összegyúrjuk, majd kis gombócokat formálunk belőle. A végén a golyókat meghempergetjük " +
                         "a maradék kókuszreszelékben.",
                 "JPG",
-                "kokusztekercs",
-                photosToArray("kokusztekercs.jpg")
+                "turoskokuszgolyo",
+                photosToArray("turoskokuszgolyo.jpg")
         );
 
         ingredientsr5.addAll(Arrays.asList(
@@ -361,8 +364,8 @@ public class TestDataLoader {
                         "fokra előmelegített sütőben 20-30 percig sütjük, majd a formában hagyjuk kihűlni. A muffinokat " +
                         "banánkarikákkal díszítjük.",
                 "JPG",
-                "kokusztekercs",
-                photosToArray("kokusztekercs.jpg")
+                "bananosmuffin",
+                photosToArray("bananosmuffin.jpg")
         );
 
         ingredientsr8.addAll(Arrays.asList(
@@ -655,6 +658,58 @@ public class TestDataLoader {
         ));
 
         repo.save(r14);
+
+        AppUser appUser1 = new AppUser("Barát", "Tak", "TakBarát");
+        appUser1.setPhotoName("JPG");
+        appUser1.setPhotoType("barat");
+        appUser1.setPhotoData(photosToArray("barat.jpg"));
+        appUserRepo.save(appUser1);
+        AppUser appUser2 = new AppUser("Robi", "Adakozó", "AdakozóRobi");
+        appUser2.setPhotoName("JPG");
+        appUser2.setPhotoType("robi");
+        appUser2.setPhotoData(photosToArray("robi.jpg"));
+        appUserRepo.save(appUser2);
+        AppUser appUser3 = new AppUser("Zsolt", "Kocsor", "Áldott");
+        appUser3.setPhotoName("JPG");
+        appUser3.setPhotoType("zsolt");
+        appUser3.setPhotoData(photosToArray("zsolt.jpg"));
+        appUserRepo.save(appUser3);
+        AppUser appUser4 = new AppUser("Éva", "Varga", "Gidácska");
+        appUser4.setPhotoName("JPG");
+        appUser4.setPhotoType("eva");
+        appUser4.setPhotoData(photosToArray("eva.jpg"));
+        appUserRepo.save(appUser4);
+        List<AppUser> appUsers = new ArrayList<>();
+        appUsers.add(appUser1);
+        appUsers.add(appUser2);
+        appUsers.add(appUser3);
+        appUsers.add(appUser4);
+
+        AppUser appUser = new AppUser("Tihamér", "Teszt", "TeszTiha",
+                "tetszti@teszt.hu", "tesztkód");
+         List<Recipe> ownRecipes = new ArrayList<>();
+         List<Recipe> favouriteRecipes = new ArrayList<>();
+
+         ownRecipes.add(recipeService.findById(1L));
+         ownRecipes.add(recipeService.findById(9L));
+         ownRecipes.add(recipeService.findById(24L));
+         ownRecipes.add(recipeService.findById(37L));
+         ownRecipes.add(recipeService.findById(53L));
+
+         favouriteRecipes.add(recipeService.findById(60L));
+         favouriteRecipes.add(recipeService.findById(70L));
+         favouriteRecipes.add(recipeService.findById(76L));
+         favouriteRecipes.add(recipeService.findById(85L));
+         favouriteRecipes.add(recipeService.findById(96L));
+
+         appUser.setFriends(appUsers);
+         appUser.setOwnRecipes(ownRecipes);
+         appUser.setFavouriteRecipes(favouriteRecipes);
+         appUser.setPhotoName("JPG");
+         appUser.setPhotoType("cakeman");
+         appUser.setPhotoData(photosToArray("cakeman.jpg"));
+
+         appUserRepo.save(appUser);
 
 //----------------------------------------------------------------------------------------------------------------------
 

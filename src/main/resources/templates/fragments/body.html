@@ -679,6 +679,132 @@
     <br><br>
 </div>
 
+<div data-th-fragment="appuser">
+    <section class="contact spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="product__details__img">
+                        <div class="product__details__big__img">
+                            <img class="big_img" data-th-src="@{/appuser/photo/{id}(id=${appuser.id})}" alt="photo" data-th-if="${appuser.photoName != ''}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="section-title">
+                        <span>Üdvözlünk</span>
+                        <h2 data-th-text="${appuser.username}"></h2> </br> </br>
+                        <h4 data-th-text="${appuser.firstName}"></h4>
+                        <h4 data-th-text="${appuser.lastName}"></h4>
+                        <h4 data-th-text="${appuser.email}"></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="testimonial spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="section-title">
+                            <span style="font-size: 46px">Saját receptjeid</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="testimonial__slider owl-carousel" >
+                            <div class="testimonial__item" data-th-each="ownrecipe : ${ownrecipes}">
+                                <div class="product__item">
+                                    <div class="product__item__pic">
+                                        <img style="width: 100%; height: 100%;" data-th-src="@{/photo/{id}(id=${ownrecipe.id})}" alt="photo" data-th-if="${ownrecipe.photoName != ''}">
+                                        <div class="product__label">
+                                            <span data-th-text="${ownrecipe.difficulty}"></span>
+                                        </div>
+                                    </div>
+                                    <div class="product__item__text">
+                                        <h6 data-th-text="${ownrecipe.name}"></h6>
+                                        <div class="product__item__price" data-th-text="${ownrecipe.id}"></div>
+                                        <div class="cart_add">
+                                            <a data-th-href="@{/recipe/{id}(id = ${ownrecipe.id})}">Check Out</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="section-title">
+                            <span style="font-size: 46px">Kedvenc receptjeid</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="testimonial__slider owl-carousel" >
+                        <div class="testimonial__item" data-th-each="favouriterecipe : ${favouriterecipes}">
+                            <div class="product__item">
+                                <div class="product__item__pic">
+                                    <img style="width: 100%; height: 100%;" data-th-src="@{/photo/{id}(id=${favouriterecipe.id})}" alt="photo" data-th-if="${favouriterecipe.photoName != ''}">
+                                    <div class="product__label">
+                                        <span data-th-text="${favouriterecipe.difficulty}"></span>
+                                    </div>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6 data-th-text="${favouriterecipe.name}"></h6>
+                                    <div class="product__item__price" data-th-text="${favouriterecipe.id}"></div>
+                                    <div class="cart_add">
+                                        <a data-th-href="@{/recipe/{id}(id = ${favouriterecipe.id})}">Check Out</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="testimonial spad">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <div class="section-title">
+                            <span style="font-size: 46px">Barátok</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="testimonial__slider owl-carousel" >
+                        <div class="testimonial__item" data-th-each="friend : ${friends}">
+                            <div class="product__item">
+                                <div class="product__item__pic">
+                                    <img style="width: 100%; height: 100%;" data-th-src="@{/appuser/photo/{id}(id=${friend.id})}" alt="photo" data-th-if="${friend.photoName != ''}">
+                                    <div class="product__label">
+                                        <span data-th-text="${friend.username}"></span>
+                                    </div>
+                                </div>
+                                <div class="product__item__text">
+                                    <div class="cart_add">
+                                        <a data-th-href="@{/appuser/{id}(id = ${friend.id})}" data-th-text="${friend.firstName} + ' ' + ${friend.lastName}"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+</div>
+
 
 </body>
 </html>

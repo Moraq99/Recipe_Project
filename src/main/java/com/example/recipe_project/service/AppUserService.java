@@ -2,6 +2,7 @@ package com.example.recipe_project.service;
 
 import com.example.recipe_project.exceptions.UsernameTakenException;
 import com.example.recipe_project.model.AppUser;
+import com.example.recipe_project.model.Recipe;
 import com.example.recipe_project.repo.AppUserRepo;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 public class AppUserService implements UserDetailsService {
@@ -25,8 +27,14 @@ public class AppUserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // can be used after AppUser class implements UserDetails
-        /*return appUserRepo.findAppUserByUserName(username);*/
-        return null;
+        return appUserRepo.findAppUserByUserName(username);
+    }
+
+    public AppUser loadUserById(Long id){
+        return appUserRepo.findById(id).orElseThrow();
+    }
+    public Optional<AppUser> getById(long id) {
+        return appUserRepo.findById(id);
     }
 
     public AppUser getLoggedInUser() {
