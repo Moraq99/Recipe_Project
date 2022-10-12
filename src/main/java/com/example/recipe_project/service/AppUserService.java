@@ -6,11 +6,9 @@ import com.example.recipe_project.repo.AppUserRepo;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
@@ -28,8 +26,8 @@ public class AppUserService implements UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return appUserRepo.findAppUserByUserName(username);
+    public UserDetails loadUserByUsername(String username) {
+        return appUserRepo.findAppUserByUsername(username);
     }
 
     public AppUser loadUserById(Long id){
@@ -54,11 +52,10 @@ public class AppUserService implements UserDetailsService {
     }
 
     private boolean isUsernameTaken(String username) {
-        try {
-            loadUserByUsername(username);
-            return true;
-        } catch (NoResultException e) {
+        if (loadUserByUsername(username) == null) {
             return false;
+        } else  {
+            return true;
         }
     }
 
