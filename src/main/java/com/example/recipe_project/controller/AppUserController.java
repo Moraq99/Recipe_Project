@@ -1,5 +1,6 @@
 package com.example.recipe_project.controller;
 
+import com.example.recipe_project.exceptions.UsernameTakenException;
 import com.example.recipe_project.model.AppUser;
 import com.example.recipe_project.model.Recipe;
 import com.example.recipe_project.service.AppUserService;
@@ -7,11 +8,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,10 +65,47 @@ public class AppUserController {
         return("redirect:/admin");
     }
 
-    @GetMapping("/register")
-    public String register() {
-        return ("redirect:/home");
+    @GetMapping("registration")
+    public String getRegistration(Model model){
+        model.addAttribute("appuser", new AppUser());
+
+        return "registration";
     }
+
+    @PostMapping("registration")
+    public String register(AppUser appUser, Model model, @RequestParam("photo") MultipartFile photo) {
+
+        try {
+            /*if (appUser.getPassword().isEmpty()
+                    || appUser.getEmail().isEmpty()
+                    || appUser.getUsername().isEmpty()
+                    || appUser.getFirstName().isEmpty()
+                    || appUser.getLastName().isEmpty()
+            ) {
+                model.addAttribute("error", "Próbáld újra");
+                return "registration";
+            }*/
+            if (!photo.isEmpty()) {
+                appUser.setPhotoName(photo.getOriginalFilename());
+                appUser.setPhotoType(photo.getContentType());
+                appUser.setPhotoData(photo.getBytes());
+
+            }
+            appUserService.saveUser(appUser);
+            model.addAttribute("id", appUserService.getByAppUser(appUser).getId());
+            return "redirect:/appuser/{id}";
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            return "redirect:/home";
+        } catch (UsernameTakenException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
 
     @GetMapping(value = "/appuser/photo/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
     public @ResponseBody byte[] downloadPhoto(@PathVariable long id) {

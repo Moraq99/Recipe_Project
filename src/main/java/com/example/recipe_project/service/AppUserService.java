@@ -38,6 +38,7 @@ public class AppUserService implements UserDetailsService {
     public Optional<AppUser> getById(long id) {
         return appUserRepo.findById(id);
     }
+    public AppUser getByAppUser (AppUser appuser){return (AppUser) loadUserByUsername(appuser.getUsername());}
 
     public AppUser getLoggedInUser() {
         return (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
