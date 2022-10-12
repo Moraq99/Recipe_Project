@@ -92,8 +92,7 @@ public class AppUserController {
 
             }
             appUserService.saveUser(appUser);
-            AppUser current = (AppUser) appUserService.loadUserByUsername(appUser.getUsername());
-            return "redirect:/appuser/" + current.getId();
+            return "redirect:/appuser/" + appUser.getId();
 
         } catch (IOException e) {
             e.printStackTrace();
