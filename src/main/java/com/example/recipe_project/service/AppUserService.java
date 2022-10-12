@@ -46,6 +46,7 @@ public class AppUserService implements UserDetailsService {
     public void saveUser(AppUser user) throws UsernameTakenException {
         if (!isUsernameTaken(user.getUsername())) {
             user.setPassword(encoder.encode(user.getPassword()));
+            appUserRepo.save(user);
         } else {
             throw new UsernameTakenException();
         }

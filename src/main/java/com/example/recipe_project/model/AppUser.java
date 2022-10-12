@@ -104,7 +104,7 @@ public class AppUser implements UserDetails {
         return password;
     }
     public void setPassword(String password) {
-
+        this.password = password;
     }
 
     @Override

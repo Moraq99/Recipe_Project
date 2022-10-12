@@ -92,8 +92,8 @@ public class AppUserController {
 
             }
             appUserService.saveUser(appUser);
-            model.addAttribute("id", appUserService.getByAppUser(appUser).getId());
-            return "redirect:/appuser/{id}";
+            AppUser current = (AppUser) appUserService.loadUserByUsername(appUser.getUsername());
+            return "redirect:/appuser/" + current.getId();
 
         } catch (IOException e) {
             e.printStackTrace();
