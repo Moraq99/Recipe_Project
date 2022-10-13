@@ -36,6 +36,9 @@ public class Recipe {
     @Column(columnDefinition = "LONGBLOB")
     private byte[] photoData;
 
+    @ManyToOne
+    private AppUser createdBy;
+
 
     public Recipe () {};
 
@@ -208,6 +211,14 @@ public class Recipe {
 
     public void setPhotoData(byte[] photoData) {
         this.photoData = photoData;
+    }
+
+    public AppUser getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(AppUser createdBy) {
+        this.createdBy = createdBy;
     }
 
     @Override
