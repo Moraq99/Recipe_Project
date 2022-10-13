@@ -31,7 +31,7 @@
             </div>
             <div class="offcanvas__cart__item">
                 <a href="#"><img data-th-src="@{/img/icon/cart.png}" alt=""> <span>0</span></a>
-                <div class="cart__price">Cart: <span>$0.00</span></div>
+                <div class="cart__price">Kosár: <span>Ft0.00</span></div>
             </div>
         </div>
         <div class="offcanvas__logo">
@@ -50,8 +50,8 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="section-title">
-                    <span>Testimonial</span>
-                    <h2>Our users commented...</h2>
+                    <span>Vélemények</span>
+                    <h2>Olvasóink írták...</h2>
                 </div>
             </div>
         </div>
@@ -222,7 +222,7 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-8">
                         <div class="hero__text">
-                            <h2>Making your life sweeter one bite at a time!</h2>
+                            <h2>Megédesítjük az életedet!</h2>
                         </div>
                     </div>
                 </div>
@@ -236,8 +236,8 @@
         <div class="row">
             <div class="col-lg-12 text-center">
                 <div class="section-title">
-                    <span>Top Rated Recipes</span>
-                    <h2>Our users choice</h2>
+                    <span>Legnépszerűbb receptek</span>
+                    <h2>Olvasóink választása</h2>
                 </div>
             </div>
         </div>
@@ -263,7 +263,7 @@
                         </a></div>
 
                         <h4 data-th-text="${recipe.name}"></h4>
-                        <h5 data-th-text="${recipe.preparationTime} + ' minutes'"></h5>
+                        <h5 data-th-text="${recipe.preparationTime} + ' perc'"></h5>
                     </div>
                     <div>
                         <ul data-th-each="ingredient : ${recipe.ingredients}">
@@ -278,7 +278,7 @@
                 <div class="col-lg-12">
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Description</a>
+                            <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Elkészítés módja</a>
                         </li>
                     </ul>
                     <div class="tab-content">
@@ -304,8 +304,8 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="section-title">
-                        <span>Search</span>
-                        <h2>Let us help to find a recipe for you.</h2>
+                        <span>Keresés</span>
+                        <h2>Segítünk megtalálni a megfelelő receptet!</h2>
                     </div>
                 </div>
                 <div class="col-lg-8">
@@ -313,28 +313,28 @@
                         <form data-th-action="@{/search}" data-th-object="${search}" method="post">
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <label for="recipeName">Recipe name</label>
+                                    <label for="recipeName">Étel neve</label>
                                     <input type="text" id="recipeName" data-th-field="*{name}">
                                 </div>
                                 <div class="col-lg-8">
-                                    <label for="ingredient">Ingredient</label>
+                                    <label for="ingredient">Hozzávalók</label>
                                     <input type="text" id="ingredient" data-th-field="*{ingredient}">
                                 </div>
                                 <div class="col-lg-8">
-                                    <label for="prepTime">Preparation time</label>
+                                    <label for="prepTime">Elkészítési idő</label>
                                     <input type="number" id="prepTime" placeholder="10" data-th-field="*{prepTime}">
                                 </div>
                                 <div class="col-lg-8">
                                     <input type="checkbox" id="vegan" value="vegan" style="height: 15px; width: 15px" data-th-field="*{vegan}">
-                                    <label for="vegan">Vegan recipes</label>
+                                    <label for="vegan">Vegán receptek</label>
                                 </div>
                                 <div class="col-lg-8">
                                     <input type="checkbox" id="lactose" value="lactose" style="height: 15px; width: 15px" data-th-field="*{lactose_free}">
-                                    <label for="lactose">Lactose free recipes</label>
+                                    <label for="lactose">Laktózmentes receptek</label>
                                 </div>
                                 <div class="col-lg-8">
                                     <input type="checkbox" id="gluten" value="gluten" style="height: 15px; width: 15px" data-th-field="*{gluten_free}">
-                                    <label for="gluten">Gluten free recipes</label>
+                                    <label for="gluten">Gluténmentes receptek</label>
                                 </div>
                                 <select name="difficulty" class="col-lg-8" style="border: none" data-th-field="*{difficulty}">
                                     <option data-th-each="difficulty : ${T(com.example.recipe_project.enums.EnumDifficulty).values()}"
@@ -345,7 +345,7 @@
                                 <br><br>
                                 <div class="col-lg-12">
                                     <br><br>
-                                    <button type="submit" class="site-btn">Search...</button>
+                                    <button type="submit" class="site-btn">Keresés...</button>
                                 </div>
                             </div>
                         </form>
@@ -364,7 +364,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="section-title">
-                        <span>Create recipe</span>
+                        <span>Adj hozzá receptet</span>
                     </div>
                 </div>
                 <div class="col-lg-8">
@@ -372,11 +372,11 @@
                         <form data-th-action="@{/create-recipe}" data-th-object="${newrecipe}" method="post" enctype="multipart/form-data" >
                             <table>
                                 <tr>
-                                    <th>Recipe name:</th>
+                                    <th>Étel neve:</th>
                                     <td><input style="height: 20px; margin-bottom: 5px" type="text" data-th-field="*{name}" /> </td>
                                 </tr>
                                 <tr>
-                                    <th>Difficulty:</th>
+                                    <th>Nehézség:</th>
                                     <td>
                                         <select class="difficulty" data-th-field="*{difficulty}" >
                                             <option data-th-each="difficulty : ${T(com.example.recipe_project.enums.EnumDifficulty).values()}"
@@ -389,27 +389,27 @@
                                 </tr>
 
                                 <tr>
-                                    <th>Preparation time(minutes):</th>
+                                    <th>Elkészítési idő (perc):</th>
                                     <td><input style="height: 20px; margin-bottom: 5px" type="number" step="1" data-th-field="*{preparationTime}" /> </td>
                                 </tr>
                                 <tr>
-                                    <th>Vegan</th>
+                                    <th>Vegán</th>
                                     <td><input style="height: 15px; width: 15px" type="checkbox" data-th-field="*{vegan}" /> </td>
                                 </tr>
                                 <tr>
-                                    <th>Laktose free</th>
+                                    <th>Laktózmentes</th>
                                     <td><input style="height: 15px; width: 15px" type="checkbox" data-th-field="*{lactose_free}" /> </td>
                                 </tr>
                                 <tr>
-                                    <th>Gluten free</th>
+                                    <th>Gluténmentes</th>
                                     <td><input style="height: 15px; width: 15px" type="checkbox" data-th-field="*{gluten_free}"/> </td>
                                 </tr>
                                 <tr>
-                                    <th>Instructions</th>
+                                    <th>Elkészítés módja:</th>
                                     <td colspan="2"><textarea style="height: 200px; width: 100%; margin-bottom: 5px" type="text" data-th-field="*{instruction}" ></textarea> </td>
                                 </tr>
                                 <tr>
-                                    <th>Ingredients:</th>
+                                    <th>Hozzávalók:</th>
                                 </tr>
                                 <tr data-th-each="ingredient, itemStat : *{ingredients}">
                                     <th></th>
@@ -424,7 +424,7 @@
 
                                 </tr>
                                 <tr>
-                                    <th>Image</th>
+                                    <th>Kép</th>
 
                                     <td><input type="file" name="photo" style="background-color: inherit; margin-top: 10px; padding-top: 20px;"></td>
                                 </tr>
@@ -435,7 +435,7 @@
                             </table>
                                 <div class="col-lg-12">
                                     <br><br>
-                                    <button type="submit" class="site-btn">Create</button>
+                                    <button type="submit" class="site-btn">Feltölt</button>
                                 </div>
 
                         </form>
@@ -452,7 +452,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="section-title">
-                        <span>Update recipe</span>
+                        <span>Recept módosítása</span>
                     </div>
                 </div>
                 <div class="col-lg-8">
@@ -460,14 +460,14 @@
                         <form data-th-action="@{/edit-recipe}" data-th-object="${recipe}" method="post" enctype="multipart/form-data">
                             <table>
                                 <tr>
-                                    <th>Recipe name:</th>
+                                    <th>Étel neve:</th>
                                     <td>
                                         <input style="height: 20px; margin-bottom: 5px" type="text" data-th-field="*{name}" data-th-value="${recipe.getName}"/>
                                         <input hidden data-th-field="*{id}" data-th-value="${recipe.getId}">
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Difficulty:</th>
+                                    <th>Nehézség:</th>
                                     <td>
                                         <select class="difficulty" data-th-field="*{difficulty}" data-th-value="${recipe.getDifficulty}">
                                             <option data-th-each="difficulty : ${T(com.example.recipe_project.enums.EnumDifficulty).values()}"
@@ -480,27 +480,27 @@
                                 </tr>
 
                                 <tr>
-                                    <th>Preparation time(minutes):</th>
+                                    <th>Elkészítési idő (perc):</th>
                                     <td><input style="height: 20px; margin-bottom: 5px" type="number" step="1" data-th-field="*{preparationTime}" data-th-value="${recipe.getPreparationTime}"/> </td>
                                 </tr>
                                 <tr>
-                                    <th>Vegan</th>
+                                    <th>Vegán</th>
                                     <td><input style="height: 15px; width: 15px" type="checkbox" data-th-field="*{vegan}" data-th-value="${recipe.isVegan}"/> </td>
                                 </tr>
                                 <tr>
-                                    <th>Laktose free</th>
+                                    <th>Laktózmentes</th>
                                     <td><input style="height: 15px; width: 15px" type="checkbox" data-th-field="*{lactose_free}" data-th-value="${recipe.isLactose_free}"/> </td>
                                 </tr>
                                 <tr>
-                                    <th>Gluten free</th>
+                                    <th>Gluténmentes</th>
                                     <td><input style="height: 15px; width: 15px" type="checkbox" data-th-field="*{gluten_free}" data-th-value="${recipe.isGluten_free}"/> </td>
                                 </tr>
                                 <tr>
-                                    <th>Instructions</th>
+                                    <th>Elkészítés módja:</th>
                                     <td colspan="2"><textarea style="height: 200px; width: 100%; margin-bottom: 5px" type="text" data-th-field="*{instruction}" data-th-value="${recipe.getInstruction}"></textarea> </td>
                                 </tr>
                                 <tr>
-                                    <th>Ingredients:</th>
+                                    <th>Hozzávalók:</th>
                                 </tr>
                                 <tr data-th-each="ingredient, itemStat : *{ingredients}">
                                     <th></th>
@@ -519,7 +519,7 @@
 
                                 </tr>
                                 <tr>
-                                    <th>Image</th>
+                                    <th>Kép</th>
 
                                     <td><input type="file" name="photo" style="background-color: inherit; margin-top: 10px; padding-top: 20px;"></td>
                                 </tr>
@@ -527,7 +527,7 @@
                             </table>
                             <div class="col-lg-12">
                                 <br><br>
-                                <button type="submit" class="site-btn">Update</button>
+                                <button type="submit" class="site-btn">Módosít</button>
                             </div>
 
                         </form>
@@ -544,7 +544,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="section-title">
-                        <span>Update recipe</span>
+                        <span>Recept módosítása</span>
                     </div>
                 </div>
                 <div class="col-lg-8">
@@ -552,7 +552,7 @@
                         <form data-th-action="@{/edit}" data-th-object="${recipe}" method="post">
                             <table>
                                 <tr>
-                                    <th>Add more ingredients:</th>
+                                    <th>További hozzávalókkal kiegészítés:</th>
                                     <td>
                                         <input hidden data-th-field="*{id}" data-th-value="${recipe.getId}">
                                         <input style="height: 20px; margin-bottom: 5px" type="number" step="1" data-th-field="*{numOfIngredients}">
@@ -562,7 +562,7 @@
 
                             <div class="col-lg-12">
                                 <br><br>
-                                <button type="submit" class="site-btn">Next</button>
+                                <button type="submit" class="site-btn">Következő</button>
                             </div>
 
                         </form>
@@ -582,7 +582,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="section-title">
-                        <span>Create recipe</span>
+                        <span>Recept feltöltése</span>
                     </div>
                 </div>
                 <div class="col-lg-8">
@@ -593,14 +593,14 @@
                                     <p id="error" data-th-if="${error} != null" data-th-text="${error}" style="color: darkred; font-size: 20px;"></p>
                                 </tr>
                                 <tr>
-                                    <th>Number of ingredients:</th>
+                                    <th>Hozzávalók száma:</th>
                                     <td><input style="height: 20px; margin-bottom: 5px" type="number" step="1" data-th-field="*{recipe.numOfIngredients}"></td>
                                 </tr>
                             </table>
 
                             <div class="col-lg-12">
                                 <br><br>
-                                <button type="submit" class="site-btn">Next</button>
+                                <button type="submit" class="site-btn">Következő</button>
                             </div>
 
                         </form>
@@ -618,8 +618,8 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="section-title">
-                        <span>Hello, Friend</span>
-                        <h2>Please log in to continue</h2>
+                        <span>Szia, mi járatban?</span>
+                        <h2>Folytatáshoz jelentkezz be kérlek</h2>
                     </div>
                 </div>
                 <div class="col-lg-8">
@@ -627,21 +627,21 @@
                         <form class="form" data-th-action="@{/login}" method="post">
                             <table>
                                 <tr>
-                                    <p data-th-if="${loginError}" style="color: darkred">Wrong username or password.</p>
+                                    <p data-th-if="${loginError}" style="color: darkred">Név vagy jelszó nem megfelelő</p>
                                 </tr>
                                 <tr>
-                                    <th>Username:</th>
+                                    <th>Felhasználónév:</th>
                                     <td><input style="height: 20px; margin-bottom: 5px" type="text" data-th-name="username"></td>
                                 </tr>
                                 <tr>
-                                    <th>Password:</th>
+                                    <th>Jelszó:</th>
                                     <td><input style="height: 20px; margin-bottom: 5px" type="password" data-th-name="password"></td>
                                 </tr>
                             </table>
 
                             <div class="col-lg-12">
                                 <br><br>
-                                <button type="submit" class="site-btn">Login</button>
+                                <button type="submit" class="site-btn">Bejelentkezés</button>
                             </div>
 
                         </form>
@@ -721,7 +721,7 @@
                                         <h6 data-th-text="${ownrecipe.name}"></h6>
                                         <div class="product__item__price" data-th-text="${ownrecipe.id}"></div>
                                         <div class="cart_add">
-                                            <a data-th-href="@{/recipe/{id}(id = ${ownrecipe.id})}">Check Out</a>
+                                            <a data-th-href="@{/recipe/{id}(id = ${ownrecipe.id})}">Nézzük csak</a>
                                         </div>
                                     </div>
                                 </div>
@@ -754,7 +754,7 @@
                                     <h6 data-th-text="${favouriterecipe.name}"></h6>
                                     <div class="product__item__price" data-th-text="${favouriterecipe.id}"></div>
                                     <div class="cart_add">
-                                        <a data-th-href="@{/recipe/{id}(id = ${favouriterecipe.id})}">Check Out</a>
+                                        <a data-th-href="@{/recipe/{id}(id = ${favouriterecipe.id})}">Nézzük csak</a>
                                     </div>
                                 </div>
                             </div>
@@ -808,7 +808,7 @@
             <div class="row">
                 <div class="col-lg-4">
                     <div class="section-title">
-                        <span>Registration</span>
+                        <span>Regisztráció</span>
                     </div>
                 </div>
                 <div class="col-lg-8">
@@ -819,29 +819,29 @@
                                     <p id="regerror" data-th-if="${error} != null" data-th-text="${error}" style="color: darkred; font-size: 20px;"></p>
                                 </tr>
                                 <tr>
-                                    <th>Username:</th>
+                                    <th>Felhasználónév:</th>
                                     <td><input style="height: 20px; margin-bottom: 5px" type="text" data-th-field="*{username}" /> </td>
                                 </tr>
                                 <tr>
-                                    <th>First name:</th>
+                                    <th>Keresztnév:</th>
                                     <td><input style="height: 20px; margin-bottom: 5px" type="text" data-th-field="*{firstName}" /> </td>
                                 </tr>
                                 <tr>
-                                    <th>Last name:</th>
+                                    <th>Vezetéknév:</th>
                                     <td><input style="height: 20px; margin-bottom: 5px" type="text" data-th-field="*{lastName}" /> </td>
                                 </tr>
                                 <tr>
-                                    <th>Email address:</th>
+                                    <th>Email cím:</th>
                                     <td><input style="height: 20px; margin-bottom: 5px" type="text" data-th-field="*{email}" /> </td>
                                 </tr>
                                 <tr>
-                                    <th>Password</th>
+                                    <th>Jelszó</th>
                                     <td><input style="height: 20px; margin-bottom: 5px" type="password" data-th-field="*{password}" /> </td>
                                 </tr>
 
 
                                 <tr>
-                                    <th>Image</th>
+                                    <th>Kép</th>
 
                                     <td><input type="file" name="photo" style="background-color: inherit; margin-top: 10px; padding-top: 20px;"></td>
                                 </tr>
@@ -849,7 +849,7 @@
                             </table>
                             <div class="col-lg-12">
                                 <br><br>
-                                <button type="submit" class="site-btn">Registration</button>
+                                <button type="submit" class="site-btn">Regisztrálok</button>
                             </div>
 
                         </form>

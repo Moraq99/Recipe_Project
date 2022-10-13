@@ -2,13 +2,13 @@ package com.example.recipe_project.enums;
 
 public enum EnumDifficulty {
 
-    UNDEFINED("Difficulty"),
-    VERY_EASY("Very easy"),
-    EASY("Easy"),
-    NORMAL("Normal"),
-    DIFFICULT("Difficult"),
-    VERY_DIFFICULT("Very difficult"),
-    IMPOSSIBLE("Impossible");
+    UNDEFINED("Nehézség"),
+    VERY_EASY("Gyerekjáték"),
+    EASY("Könnyű"),
+    NORMAL("Normál"),
+    DIFFICULT("Bonyolultabb"),
+    VERY_DIFFICULT("Gordon Ramsay"),
+    IMPOSSIBLE("Gordon SE");
 
     private final String displayValue;
 

@@ -15,7 +15,7 @@
             <div class="header__top__left">
               <ul>
                 <li><a data-th-href="@{/login}">Sign in</a> <span class="arrow_carrot-down"></span></li>
-                <li><a data-th-href="@{/registration}">Registration</a> <span class="arrow_carrot-down"></span></li>
+                <li><a data-th-href="@{/registration}">Regisztráció</a> <span class="arrow_carrot-down"></span></li>
               </ul>
             </div>
             <div class="header__logo">
@@ -33,10 +33,10 @@
         <nav class="header__menu mobile-menu">
           <ul>
             <!--class="active"-->
-            <li data-th-classappend="${page} == 'home' ? active : none"><a data-th-href="@{/home}">Home</a></li>
-            <li data-th-classappend="${page} == 'search' ? active : none"><a data-th-href="@{/search}">Search</a></li>
-            <li data-th-classappend="${page} == 'create' ? active : none"><a data-th-href="@{/create}">Create Recipe</a></li>
-            <li data-th-classappend="${page} == 'recipes' ? active : none"><a data-th-href="@{/recipes}">Recipes</a></li>
+            <li data-th-classappend="${page} == 'home' ? active : none"><a data-th-href="@{/home}">Főoldal</a></li>
+            <li data-th-classappend="${page} == 'search' ? active : none"><a data-th-href="@{/search}">Keresés</a></li>
+            <li data-th-classappend="${page} == 'create' ? active : none"><a data-th-href="@{/create}">Recept hozzáadása</a></li>
+            <li data-th-classappend="${page} == 'recipes' ? active : none"><a data-th-href="@{/recipes}">Receptek</a></li>
           </ul>
         </nav>
       </div>
