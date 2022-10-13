@@ -82,6 +82,7 @@ public class RecipeController {
         if (photo.isEmpty()) {
             recipeService.updatePhoto(recipe);
             recipeService.processIngredientsFromForm(recipe);
+            recipe.setCreatedBy(appUserService.getLoggedInUser());
             recipeService.saveRecipe(recipe);
 
             return "redirect:/home";
@@ -91,6 +92,7 @@ public class RecipeController {
                 recipe.setPhotoType(photo.getContentType());
                 recipe.setPhotoData(photo.getBytes());
 
+                recipe.setCreatedBy(appUserService.getLoggedInUser());
                 recipeService.processIngredientsFromForm(recipe);
                 recipeService.saveRecipe(recipe);
 
