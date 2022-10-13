@@ -1,5 +1,6 @@
 package com.example.recipe_project.controller;
 
+import com.example.recipe_project.exceptions.EmptyRegistrationFieldsException;
 import com.example.recipe_project.exceptions.UsernameTakenException;
 import com.example.recipe_project.model.AppUser;
 import com.example.recipe_project.model.Recipe;
@@ -76,15 +77,16 @@ public class AppUserController {
     public String register(AppUser appUser, Model model, @RequestParam("photo") MultipartFile photo) {
 
         try {
-            /*if (appUser.getPassword().isEmpty()
+            if (appUser.getPassword().isEmpty()
                     || appUser.getEmail().isEmpty()
                     || appUser.getUsername().isEmpty()
                     || appUser.getFirstName().isEmpty()
                     || appUser.getLastName().isEmpty()
             ) {
-                model.addAttribute("error", "Próbáld újra");
-                return "registration";
-            }*/
+                throw new EmptyRegistrationFieldsException();
+            }
+
+
             if (!photo.isEmpty()) {
                 appUser.setPhotoName(photo.getOriginalFilename());
                 appUser.setPhotoType(photo.getContentType());
@@ -99,7 +101,15 @@ public class AppUserController {
 
             return "redirect:/home";
         } catch (UsernameTakenException e) {
-            throw new RuntimeException(e);
+            model.addAttribute("regError", e.getMessage());
+            model.addAttribute("appuser", new AppUser());
+
+            return "registration";
+        } catch (EmptyRegistrationFieldsException f) {
+            model.addAttribute("fieldError", f.getMessage());
+            model.addAttribute("appuser", new AppUser());
+
+            return "registration";
         }
 
     }

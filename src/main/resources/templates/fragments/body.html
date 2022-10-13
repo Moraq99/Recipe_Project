@@ -816,6 +816,10 @@
                         <form data-th-action="@{/registration}" data-th-object="${appuser}" method="post" enctype="multipart/form-data" >
                             <table>
                                 <tr>
+                                    <p data-th-if="${regError}" data-th-text="${regError}" style="color: darkred; font-size: 20px;"></p>
+                                    <p data-th-if="${fieldError}" data-th-text="${fieldError}" style="color: darkred; font-size: 20px;"></p>
+                                </tr>
+                                <tr>
                                     <p id="regerror" data-th-if="${error} != null" data-th-text="${error}" style="color: darkred; font-size: 20px;"></p>
                                 </tr>
                                 <tr>
