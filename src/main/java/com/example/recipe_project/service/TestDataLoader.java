@@ -21,13 +21,13 @@ import java.util.*;
 @Service
 public class TestDataLoader {
     private final RecipeRepo repo;
-    private final AppUserRepo appUserRepo;
+    private final AppUserService appUserService;
     private final RecipeService recipeService;
 
     @Autowired
-    public TestDataLoader(RecipeRepo recipeRepo, AppUserRepo appUserRepo, RecipeService recipeService) {
+    public TestDataLoader(RecipeRepo recipeRepo, AppUserService appUserService, RecipeService recipeService) {
         this.repo = recipeRepo;
-        this.appUserRepo = appUserRepo;
+        this.appUserService = appUserService;
         this.recipeService = recipeService;
     }
 
@@ -663,22 +663,26 @@ public class TestDataLoader {
         appUser1.setPhotoName("JPG");
         appUser1.setPhotoType("barat");
         appUser1.setPhotoData(photosToArray("barat.jpg"));
-        appUserRepo.save(appUser1);
+        appUser1.setPassword("asdf");
+        appUserService.saveUser(appUser1);
         AppUser appUser2 = new AppUser("Robi", "Adakozó", "AdakozóRobi");
         appUser2.setPhotoName("JPG");
         appUser2.setPhotoType("robi");
         appUser2.setPhotoData(photosToArray("robi.jpg"));
-        appUserRepo.save(appUser2);
+        appUser2.setPassword("asdf");
+        appUserService.saveUser(appUser2);
         AppUser appUser3 = new AppUser("Zsolt", "Kocsor", "Áldott");
         appUser3.setPhotoName("JPG");
         appUser3.setPhotoType("zsolt");
         appUser3.setPhotoData(photosToArray("zsolt.jpg"));
-        appUserRepo.save(appUser3);
+        appUser3.setPassword("asdf");
+        appUserService.saveUser(appUser3);
         AppUser appUser4 = new AppUser("Éva", "Varga", "Gidácska");
         appUser4.setPhotoName("JPG");
         appUser4.setPhotoType("eva");
         appUser4.setPhotoData(photosToArray("eva.jpg"));
-        appUserRepo.save(appUser4);
+        appUser4.setPassword("asdf");
+        appUserService.saveUser(appUser4);
         List<AppUser> appUsers = new ArrayList<>();
         appUsers.add(appUser1);
         appUsers.add(appUser2);
@@ -709,7 +713,7 @@ public class TestDataLoader {
          appUser.setPhotoType("cakeman");
          appUser.setPhotoData(photosToArray("cakeman.jpg"));
 
-         appUserRepo.save(appUser);
+        appUserService.saveUser(appUser);
 
 //----------------------------------------------------------------------------------------------------------------------
 
