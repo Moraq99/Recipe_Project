@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 @Entity
 public class AppUser implements UserDetails {
@@ -18,7 +17,7 @@ public class AppUser implements UserDetails {
     private Long id;
     private String firstName;
     private String lastName;
-    private String userName;
+    private String username;
     private String email;
     private String password;
     private boolean alreadyLoggedIn;
@@ -41,18 +40,18 @@ public class AppUser implements UserDetails {
     public AppUser() {
         this.isEnabled = true;
     }
-    public AppUser (String firstName, String lastName, String userName){
+    public AppUser (String firstName, String lastName, String username){
         this();
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
+        this.username = username;
     }
     public AppUser(String firstName, String lastName,
-                   String userName, String email, String password) {
+                   String username, String email, String password) {
         this();
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
+        this.username = username;
         this.email = email;
         this.password = password;
     }
@@ -105,15 +104,15 @@ public class AppUser implements UserDetails {
         return password;
     }
     public void setPassword(String password) {
-
+        this.password = password;
     }
 
     @Override
     public String getUsername() {
-        return userName;
+        return username;
     }
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
     @Override

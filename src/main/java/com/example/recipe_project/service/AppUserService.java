@@ -6,11 +6,9 @@ import com.example.recipe_project.repo.AppUserRepo;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
@@ -28,8 +26,8 @@ public class AppUserService implements UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return appUserRepo.findAppUserByUserName(username);
+    public UserDetails loadUserByUsername(String username) {
+        return appUserRepo.findAppUserByUsername(username);
     }
 
     public AppUser loadUserById(Long id){
@@ -38,6 +36,7 @@ public class AppUserService implements UserDetailsService {
     public Optional<AppUser> getById(long id) {
         return appUserRepo.findById(id);
     }
+    public AppUser getByAppUser (AppUser appuser){return (AppUser) loadUserByUsername(appuser.getUsername());}
 
     public AppUser getLoggedInUser() {
         return (AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -47,17 +46,17 @@ public class AppUserService implements UserDetailsService {
     public void saveUser(AppUser user) throws UsernameTakenException {
         if (!isUsernameTaken(user.getUsername())) {
             user.setPassword(encoder.encode(user.getPassword()));
+            appUserRepo.save(user);
         } else {
             throw new UsernameTakenException();
         }
     }
 
     private boolean isUsernameTaken(String username) {
-        try {
-            loadUserByUsername(username);
-            return true;
-        } catch (NoResultException e) {
+        if (loadUserByUsername(username) == null) {
             return false;
+        } else  {
+            return true;
         }
     }
 
