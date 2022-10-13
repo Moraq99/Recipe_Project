@@ -1,5 +1,6 @@
 package com.example.recipe_project.controller;
 
+import com.example.recipe_project.exceptions.AccesToRecipeDeniedException;
 import com.example.recipe_project.model.Ingredient;
 import com.example.recipe_project.model.Recipe;
 import com.example.recipe_project.service.AppUserService;
@@ -56,11 +57,19 @@ public class RecipeController {
 
     @GetMapping(value = "/edit/{id}")
     public String editIngredients(@PathVariable(name = "id") Long id, Model model) {
-        Recipe recipe = recipeService.findById(id);
+        try {
+            Recipe recipe = recipeService.findById(id);
 
-        model.addAttribute("recipe", recipe);
+            appUserService.gotAccesToRecipe(recipe);
+            model.addAttribute("recipe", recipe);
 
-        return "editingredients";
+            return "editingredients";
+
+        } catch (AccesToRecipeDeniedException e) {
+            model.addAttribute("denied", e.getMessage());
+
+            return "error";
+        }
     }
 
     @PostMapping(value = "/edit")
