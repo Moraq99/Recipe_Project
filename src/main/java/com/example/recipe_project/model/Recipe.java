@@ -22,7 +22,8 @@ public class Recipe {
     private boolean gluten_free;
     @OneToMany(mappedBy="recipe",cascade=CascadeType.ALL)
     private List<Ingredient> ingredients = new ArrayList<>();
-
+    @OneToMany(mappedBy="recipe",cascade=CascadeType.ALL)
+    private List<Comment> comments = new ArrayList<>();
     @Transient
     private int numOfIngredients;
 
@@ -208,6 +209,18 @@ public class Recipe {
 
     public void setPhotoData(byte[] photoData) {
         this.photoData = photoData;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public void addAComment(Comment comment){
+        comments.add(comment);
     }
 
     @Override

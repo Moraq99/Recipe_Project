@@ -1,7 +1,9 @@
 package com.example.recipe_project.controller;
 
+import com.example.recipe_project.model.Comment;
 import com.example.recipe_project.model.Ingredient;
 import com.example.recipe_project.model.Recipe;
+import com.example.recipe_project.service.CommentService;
 import com.example.recipe_project.service.IngredientService;
 import com.example.recipe_project.service.RecipeService;
 import com.example.recipe_project.service.TestDataLoader;
@@ -12,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 
@@ -28,16 +29,22 @@ public class RecipeController {
 
     private final IngredientService ingredientService;
 
-    public RecipeController(TestDataLoader testDataLoader, RecipeService recipeService, IngredientService ingredientService) {
+    private final CommentService commentService;
+
+    public RecipeController(TestDataLoader testDataLoader, RecipeService recipeService, IngredientService ingredientService, CommentService commentService) {
         this.testDataLoader = testDataLoader;
         this.recipeService = recipeService;
         this.ingredientService = ingredientService;
+        this.commentService = commentService;
     }
 
     @GetMapping(value = "/recipe/{id}")
     public String getRecipe(@PathVariable("id") long id, Model model) {
         Recipe recipe = recipeService.findById(id);
         model.addAttribute("recipe", recipe);
+
+        List<Comment> commentList = commentService.getCommentsByRecipe(recipe);
+        model.addAttribute("comments", commentList);
 
         return "recipe";
     }

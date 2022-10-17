@@ -292,6 +292,35 @@
                     </div>
                 </div>
             </div>
+
+            <form data-th-action="@{/create-comment}" data-th-object="${recipe}" method="post">
+                <table>
+                    <tr>
+                        <th>Új Hozzászólás:</th>
+                        <td><input style="height: 20px; margin-bottom: 5px" type="text" name="comment" /> </td>
+                    </tr>
+                </table>
+                <div class="col-lg-12">
+                    <br><br>
+                    <button type="submit" class="site-btn">Küldés</button>
+                </div>
+
+            </form>
+
+            <div class="col-lg-6">
+                <div class="product__details__text">
+                    <div data-th-each="comment : ${comments}">
+                        <div data-th-text=
+                                     "comment.getAppuserUsername
+                                     + ' '
+                                     + ${comment.getCreateComm}"
+                        ></div>
+                        <div data-th-text=
+                                     "${comment.comment}"
+                        ></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <br>

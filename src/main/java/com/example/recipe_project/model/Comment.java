@@ -1,5 +1,8 @@
 package com.example.recipe_project.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -13,17 +16,24 @@ public class Comment {
     private AppUser appUser;
     @ManyToOne
     private Recipe recipe;
-    private LocalDateTime create;
+    private LocalDateTime createComm;
+    @Lob
     private String comment;
 
     public Comment() {
+    }
+
+    public Comment(Recipe recipe, String comment) {
+        this.recipe = recipe;
+        this.comment = comment;
+        this.createComm = LocalDateTime.now();
     }
 
     public Comment(AppUser appUser, Recipe recipe, String comment) {
         this.appUser = appUser;
         this.recipe = recipe;
         this.comment = comment;
-        this.create = LocalDateTime.now();
+        this.createComm = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -37,6 +47,9 @@ public class Comment {
     public AppUser getAppUser() {
         return appUser;
     }
+    public String getAppuserUsername(){
+        return appUser.getUsername();
+    }
 
     public void setAppUser(AppUser appUser) {
         this.appUser = appUser;
@@ -49,13 +62,14 @@ public class Comment {
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
     }
-
-    public LocalDateTime getCreate() {
-        return create;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    public LocalDateTime getCreateComm() {
+        return createComm;
     }
 
-    public void setCreate(LocalDateTime create) {
-        this.create = create;
+    public void setCreateComm(LocalDateTime create) {
+        this.createComm = create;
     }
 
     public String getComment() {
@@ -64,5 +78,16 @@ public class Comment {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", appUser=" + appUser +
+                ", recipe=" + recipe +
+                ", createComm=" + createComm +
+                ", comment='" + comment + '\'' +
+                '}';
     }
 }
