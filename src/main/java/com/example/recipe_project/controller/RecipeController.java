@@ -1,7 +1,10 @@
 package com.example.recipe_project.controller;
 
+import com.example.recipe_project.model.Comment;
+import com.example.recipe_project.exceptions.AccesToRecipeDeniedException;
 import com.example.recipe_project.model.Ingredient;
 import com.example.recipe_project.model.Recipe;
+import com.example.recipe_project.service.CommentService;
 import com.example.recipe_project.service.AppUserService;
 import com.example.recipe_project.service.IngredientService;
 import com.example.recipe_project.service.RecipeService;
@@ -15,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 
@@ -30,12 +34,15 @@ public class RecipeController {
 
     private final IngredientService ingredientService;
 
+    private final CommentService commentService;
+
     private final AppUserService appUserService;
 
-    public RecipeController(TestDataLoader testDataLoader, RecipeService recipeService, IngredientService ingredientService, AppUserService appUserService) {
+    public RecipeController(TestDataLoader testDataLoader, RecipeService recipeService, IngredientService ingredientService, AppUserService appUserService, CommentService commentService) {
         this.testDataLoader = testDataLoader;
         this.recipeService = recipeService;
         this.ingredientService = ingredientService;
+        this.commentService = commentService;
         this.appUserService = appUserService;
     }
 
@@ -43,6 +50,9 @@ public class RecipeController {
     public String getRecipe(@PathVariable("id") long id, Model model) {
         Recipe recipe = recipeService.findById(id);
         model.addAttribute("recipe", recipe);
+
+        List<Comment> commentList = commentService.getCommentsByRecipe(recipe);
+        model.addAttribute("comments", commentList);
 
         return "recipe";
     }
@@ -56,11 +66,19 @@ public class RecipeController {
 
     @GetMapping(value = "/edit/{id}")
     public String editIngredients(@PathVariable(name = "id") Long id, Model model) {
-        Recipe recipe = recipeService.findById(id);
+        try {
+            Recipe recipe = recipeService.findById(id);
 
-        model.addAttribute("recipe", recipe);
+            appUserService.gotAccesToRecipe(recipe);
+            model.addAttribute("recipe", recipe);
 
-        return "editingredients";
+            return "editingredients";
+
+        } catch (AccesToRecipeDeniedException e) {
+            model.addAttribute("denied", e.getMessage());
+
+            return "error";
+        }
     }
 
     @PostMapping(value = "/edit")

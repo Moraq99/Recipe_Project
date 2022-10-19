@@ -35,13 +35,14 @@ public class SecurityConfiguration  extends WebSecurityConfigurerAdapter {
                 .and()
 
                 .authorizeRequests()
-                .antMatchers("/*.css", "/**"/*, "/home**", "/register"*/)
+                .antMatchers("/home**", "/**", "/registration", "/css/*.css",  "/photo/**", "/img/**", "/js/**", "/fonts/**")
                 .permitAll()
 
-                //.antMatchers("/admin**")
-                //.hasRole("ADMIN")
+                .antMatchers("/admin**")
+                .hasRole("ADMIN")
 
-                .anyRequest().authenticated();
+                .anyRequest().
+                authenticated();
     }
 
     /*@Override

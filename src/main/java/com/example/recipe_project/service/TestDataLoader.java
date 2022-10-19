@@ -694,11 +694,11 @@ public class TestDataLoader {
          List<Recipe> ownRecipes = new ArrayList<>();
          List<Recipe> favouriteRecipes = new ArrayList<>();
 
-         ownRecipes.add(recipeService.findById(1L));
-         ownRecipes.add(recipeService.findById(9L));
-         ownRecipes.add(recipeService.findById(24L));
-         ownRecipes.add(recipeService.findById(37L));
-         ownRecipes.add(recipeService.findById(53L));
+         ownRecipes.add(r1);
+         ownRecipes.add(r10);
+         ownRecipes.add(r7);
+         ownRecipes.add(r11);
+         ownRecipes.add(r13);
 
          favouriteRecipes.add(recipeService.findById(60L));
          favouriteRecipes.add(recipeService.findById(70L));

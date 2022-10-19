@@ -46,9 +46,7 @@ public class RecipeService {
 
         recipe.setIngredients(ingredientList);
 
-        for (Ingredient ingredient: ingredientList){
-            ingredient.setRecipe(recipe);
-        }
+        ingredientList.forEach(ingredient -> ingredient.setRecipe(recipe));
     }
 
     public void createIngredientDummies(Recipe recipe) {
