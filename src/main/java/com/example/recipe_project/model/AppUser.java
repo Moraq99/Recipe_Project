@@ -23,7 +23,7 @@ public class AppUser implements UserDetails {
     private boolean alreadyLoggedIn;
     private boolean isEnabled;
     private boolean isAdmin;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "createdBy", cascade = CascadeType.ALL)
     private List<Recipe> ownRecipes;
     @OneToMany
     private List<Recipe> favouriteRecipes;

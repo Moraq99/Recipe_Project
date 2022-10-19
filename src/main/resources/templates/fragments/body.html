@@ -647,11 +647,6 @@
                 <div class="col-lg-4">
                     <div class="section-title">
                         <span>Create recipe</span>
-
-                       <!-- <tr>
-                            <p data-th-if="${loginError}" style="color: darkred">Wrong username or password.</p>
-                        </tr>-->
-
                     </div>
                 </div>
                 <div class="col-lg-8">
@@ -730,6 +725,9 @@
                     <div class="section-title">
                         <h2>Hupsz, ez leesett, próbálj mást...</h2>
                         <p data-th-text="${ergya}"></p>
+                    </div>
+                    <div>
+                        <p data-th-if="${denied}" data-th-text="${denied}" style="color: darkred; font-size: 20px;"></p>
                     </div>
                 </div>
                 <div class="col-lg-8">
@@ -884,6 +882,10 @@
                     <div class="class__sidebar">
                         <form data-th-action="@{/registration}" data-th-object="${appuser}" method="post" enctype="multipart/form-data" >
                             <table>
+                                <tr>
+                                    <p data-th-if="${regError}" data-th-text="${regError}" style="color: darkred; font-size: 20px;"></p>
+                                    <p data-th-if="${fieldError}" data-th-text="${fieldError}" style="color: darkred; font-size: 20px;"></p>
+                                </tr>
                                 <tr>
                                     <p id="regerror" data-th-if="${error} != null" data-th-text="${error}" style="color: darkred; font-size: 20px;"></p>
                                 </tr>

@@ -1,8 +1,11 @@
 package com.example.recipe_project.service;
 
+import com.example.recipe_project.exceptions.AccesToRecipeDeniedException;
 import com.example.recipe_project.exceptions.UsernameTakenException;
 import com.example.recipe_project.model.AppUser;
+import com.example.recipe_project.model.Recipe;
 import com.example.recipe_project.repo.AppUserRepo;
+import com.example.recipe_project.repo.RecipeRepo;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,10 +21,13 @@ public class AppUserService implements UserDetailsService {
 
     private AppUserRepo appUserRepo;
 
+    private RecipeRepo recipeRepo;
+
     private final PasswordEncoder encoder;
 
-    public AppUserService(AppUserRepo appUserRepo, PasswordEncoder encoder) {
+    public AppUserService(AppUserRepo appUserRepo, RecipeRepo recipeRepo, PasswordEncoder encoder) {
         this.appUserRepo = appUserRepo;
+        this.recipeRepo = recipeRepo;
         this.encoder = encoder;
     }
 
@@ -69,5 +76,15 @@ public class AppUserService implements UserDetailsService {
         dbUser.setAlreadyLoggedIn(true);
 
         loggedInUser.setAlreadyLoggedIn(true);
+    }
+
+    public boolean gotAccesToRecipe(Recipe recipe) throws AccesToRecipeDeniedException{
+        List<Recipe> recipes = recipeRepo.findAllByCreatedBy(getLoggedInUser());
+
+        if (recipes.contains(recipe)) {
+            return true;
+        } else {
+            throw new AccesToRecipeDeniedException();
+        }
     }
 }
