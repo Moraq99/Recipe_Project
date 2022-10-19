@@ -178,7 +178,7 @@
             <div class="product__item__pic" >
                 <img style="width: 100%; height: 100%;" data-th-src="@{/photo/{id}(id=${recipe.id})}" alt="photo" data-th-if="${recipe.photoName != ''}">
                 <div class="product__label">
-                    <span data-th-text="${recipe.difficulty}"></span>
+                    <span data-th-text="${recipe.difficulty.getDisplayValue}"></span>
                 </div>
             </div>
             <div class="product__item__text">
