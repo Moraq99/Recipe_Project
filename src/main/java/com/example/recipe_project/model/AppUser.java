@@ -29,7 +29,7 @@ public class AppUser implements UserDetails {
     private List<Recipe> favouriteRecipes;
     @OneToMany
     private List<AppUser> friends;
-    @OneToMany
+    @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Comment> comments;
     private String photoType;
 
@@ -183,5 +183,12 @@ public class AppUser implements UserDetails {
 
     public void setPhotoData(byte[] photoData) {
         this.photoData = photoData;
+    }
+
+    @Override
+    public String toString() {
+        return "AppUser{" +
+                "username='" + username + '\'' +
+                '}';
     }
 }

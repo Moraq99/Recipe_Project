@@ -5,6 +5,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Comment {
@@ -64,8 +65,10 @@ public class Comment {
     }
     @JsonFormat(pattern="yyyy-MM-dd")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-    public LocalDateTime getCreateComm() {
-        return createComm;
+    public String getCreateComm() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+        return createComm.format(formatter);
     }
 
     public void setCreateComm(LocalDateTime create) {
@@ -78,6 +81,10 @@ public class Comment {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public String getUserDetails() {
+        return appUser.getLastName() + " " + appUser.getFirstName() + " (" + appUser.getUsername() + ")";
     }
 
     @Override

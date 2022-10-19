@@ -312,22 +312,24 @@
 
                 </form>
             </div>
+            <br><br><br>
 
-
-                <div class="col-lg-6">
-                    <div class="product__details__text">
-                        <div data-th-each="comment : ${comments}">
-                            <div data-th-text=
-                                         "comment.getAppuserUsername
-                                                     + ' '
-                                                     + ${comment.getCreateComm}"
-                            ></div>
-                            <div data-th-text=
-                                         "${comment.comment}"
-                            ></div>
+                <div class="blog__details__comment">
+                    <div class="blog__details__comment__item">
+                        <div class="blog__details__comment__item__text">
+                            <div data-th-each="comment, itemStat : *{comments}">
+                                <div class="blog__details__comment__item__pic">
+                                    <img data-th-src=@{/img/blog/details/comment-1.jpg} alt="">
+                                </div>
+                                <h6 data-th-text="${comments[__${itemStat.index}__].getUserDetails()}"></h6>
+                                <span data-th-text="${comment.createComm}"></span>
+                                <p data-th-text="${comment.comment}"></p>
+                                <br><br>
+                            </div>
                         </div>
                     </div>
                 </div>
+
 
                 <!--<form data-th-action="@{/create-comment}" data-th-object="${recipe}" method="post">
                     <input hidden data-th-field="*{id}" data-th-value="${recipe.getId}">

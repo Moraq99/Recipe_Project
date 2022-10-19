@@ -1,8 +1,10 @@
 package com.example.recipe_project.controller;
 
+import com.example.recipe_project.model.AppUser;
 import com.example.recipe_project.model.Comment;
 import com.example.recipe_project.model.Recipe;
 import com.example.recipe_project.service.CommentService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +27,7 @@ public class CommentController {
         newComment.setComment(comment);
         newComment.setRecipe(recipe);
         newComment.setCreateComm(LocalDateTime.now());
+        newComment.setAppUser((AppUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal());
 
         recipe.addAComment(newComment);
 
