@@ -29,7 +29,7 @@ public class AppUser implements UserDetails {
     private List<Recipe> favouriteRecipes;
     @OneToMany
     private List<AppUser> friends;
-    @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL)
     private List<Comment> comments;
     private String photoType;
 
