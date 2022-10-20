@@ -16,9 +16,9 @@
         <link rel="stylesheet" data-th-href="@{/css/slicknav.min.css}" type="text/css">
         <link rel="stylesheet" data-th-href="@{/css/style.css}" type="text/css">
     </div>
-
 </head>
 <body>
+
 
 <!-- Offcanvas Menu Begin -->
 <div data-th-fragment="offMenu">
@@ -44,6 +44,7 @@
     </div>
 </div>
 <!-- Offcanvas Menu End -->
+
 
 <section class="testimonial spad" data-th-fragment="testimonial">
     <div class="container">
@@ -149,7 +150,7 @@
                     <div class="testimonial__item">
                         <div class="testimonial__author">
                             <div class="testimonial__author__text">
-                                <h5>Vladimir Putin</h5>
+                                <h5>Raszputyin</h5>
                                 <span>Moszkva</span>
                             </div>
                         </div>
@@ -170,9 +171,7 @@
 <div class="row" data-th-fragment="contentRecipes">
 
     <div data-th-if="${message} != null" data-th-text="${message}">
-
     </div>
-
     <div data-th-unless="${message} != null" class="col-lg-3 col-md-6 col-sm-6" data-th-each="recipe : ${recipes}">
         <div class="product__item">
             <div class="product__item__pic" >
@@ -192,7 +191,9 @@
     </div>
 </div>
 
+
 <div data-th-fragment="searchModel">
+
     <div class="search-model">
         <div class="h-100 d-flex align-items-center justify-content-center">
             <div class="search-close-switch">+</div>
@@ -203,7 +204,9 @@
     </div>
 </div>
 
+
 <div data-th-fragment="scripts">
+
     <script data-th-src="@{/js/jquery-3.3.1.min.js}"></script>
     <script data-th-src="@{/js/bootstrap.min.js}"></script>
     <!--<script data-th-src="@{/js/jquery.nice-select.min.js}"></script>-->
@@ -231,6 +234,7 @@
     </div>
 </section>
 
+
 <section class="testimonial spad" data-th-fragment="topRated">
     <div class="container">
         <div class="row">
@@ -243,6 +247,7 @@
         </div>
     </div>
 </section>
+
 
 <div data-th-fragment="showRecipe">
     <section class="product-details spad">
@@ -269,8 +274,6 @@
                         <ul data-th-each="ingredient : ${recipe.ingredients}">
                             <li data-th-text="${ingredient.quantity} + ' ' + ${ingredient.unit.getDisplayValue} + ' ' + ${ingredient.name}"></li>
                         </ul>
-                       <!-- <a data-th-href="@{'/edit/' + ${product.id}}" role="button">Szerkesztés</a>
-                        <ul><a data-th-href="@{'/delete/' + ${recipe.id}}" role="button">Törlés</a></ul>-->
                     </div>
                 </div>
             </div>
@@ -293,8 +296,6 @@
                 </div>
             </div>
             <hr>
-
-
             <div class="row d-flex justify-content-center">
                 <form data-th-action="@{/create-comment}" data-th-object="${recipe}" method="post">
                     <table>
@@ -313,7 +314,6 @@
                 </form>
             </div>
             <br><br><br>
-
                 <div class="blog__details__comment">
                     <div class="blog__details__comment__item">
                         <div class="blog__details__comment__item__text">
@@ -329,33 +329,7 @@
                         </div>
                     </div>
                 </div>
-
-
-                <!--<form data-th-action="@{/create-comment}" data-th-object="${recipe}" method="post">
-                    <input hidden data-th-field="*{id}" data-th-value="${recipe.getId}">
-                    <textarea name="comment"></textarea>
-                    <button type="submit" class="primary-btn">Hozzászólás</button>
-                </form>-->
-
-                <!--<div class="blog__details__comment">
-                    <h5>03 Comment</h5>
-
-                    <div class="blog__details__comment__item">
-                        <div class="blog__details__comment__item__text">
-                            <h6>Dylan Stewart</h6>
-                            <span>26 Feb 2020</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua vel facilisis.</p>
-                            <div class="blog__details__comment__btns">
-                                <a href="#">Reply</a>
-                                <a href="#">Like</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
             </div>
-
-
     </section>
     <br>
     <br>
@@ -363,6 +337,7 @@
 
 
 <div data-th-fragment="searchForm">
+
     <section class="contact spad">
         <div class="container">
             <div class="row">
@@ -420,8 +395,8 @@
     </section>
 </div>
 
-<div data-th-fragment="createRecipe">
 
+<div data-th-fragment="createRecipe">
 
     <section class="contact spad">
         <div class="container">
@@ -493,15 +468,11 @@
                                     <td><input type="file" name="photo" style="background-color: inherit; margin-top: 10px; padding-top: 20px;"></td>
                                 </tr>
 
-
-
-
                             </table>
                                 <div class="col-lg-12">
                                     <br><br>
                                     <button type="submit" class="site-btn">Feltölt</button>
                                 </div>
-
                         </form>
                     </div>
                 </div>
@@ -510,7 +481,9 @@
     </section>
 </div>
 
+
 <div data-th-fragment="updateRecipe">
+
     <section class="contact spad">
         <div class="container">
             <div class="row">
@@ -542,7 +515,6 @@
 
                                         </select></td>
                                 </tr>
-
                                 <tr>
                                     <th>Elkészítési idő (perc):</th>
                                     <td><input style="height: 20px; margin-bottom: 5px" type="number" step="1" data-th-field="*{preparationTime}" data-th-value="${recipe.getPreparationTime}"/> </td>
@@ -568,7 +540,6 @@
                                 </tr>
                                 <tr data-th-each="ingredient, itemStat : *{ingredients}">
                                     <th></th>
-
                                     <td>
                                         <input style="height: 20px; margin-bottom: 5px" type="text" data-th-field="*{ingredients[__${itemStat.index}__].name}"/>
                                         <input hidden data-th-field="*{ingredients[__${itemStat.index}__].id}" data-th-value="${{ingredients[__${itemStat.index}__].getId}}">
@@ -578,22 +549,18 @@
                                         <option data-th-each="u : ${T(com.example.recipe_project.enums.EnumUnit).values()}" data-th-value="${u}"
                                                 data-th-text="${u.displayValue}"></option>
                                     </select>
-
                                     </td>
 
                                 </tr>
                                 <tr>
                                     <th>Kép</th>
-
                                     <td><input type="file" name="photo" style="background-color: inherit; margin-top: 10px; padding-top: 20px;"></td>
                                 </tr>
-
                             </table>
                             <div class="col-lg-12">
                                 <br><br>
                                 <button type="submit" class="site-btn">Módosít</button>
                             </div>
-
                         </form>
                     </div>
                 </div>
@@ -602,7 +569,9 @@
     </section>
 </div>
 
+
 <div data-th-fragment="updateIngredients">
+
     <section class="contact spad">
         <div class="container">
             <div class="row">
@@ -623,12 +592,10 @@
                                     </td>
                                 </tr>
                             </table>
-
                             <div class="col-lg-12">
                                 <br><br>
                                 <button type="submit" class="site-btn">Következő</button>
                             </div>
-
                         </form>
                     </div>
                 </div>
@@ -661,12 +628,10 @@
                                     <td><input style="height: 20px; margin-bottom: 5px" type="number" step="1" data-th-field="*{recipe.numOfIngredients}"></td>
                                 </tr>
                             </table>
-
                             <div class="col-lg-12">
                                 <br><br>
                                 <button type="submit" class="site-btn">Következő</button>
                             </div>
-
                         </form>
                     </div>
                 </div>
@@ -676,7 +641,9 @@
     <br><br>
 </div>
 
+
 <div data-th-fragment="login">
+
     <section class="contact spad">
         <div class="container">
             <div class="row">
@@ -702,12 +669,10 @@
                                     <td><input style="height: 20px; margin-bottom: 5px" type="password" data-th-name="password"></td>
                                 </tr>
                             </table>
-
                             <div class="col-lg-12">
                                 <br><br>
                                 <button type="submit" class="site-btn">Bejelentkezés</button>
                             </div>
-
                         </form>
                     </div>
                 </div>
@@ -717,7 +682,9 @@
     <br><br>
 </div>
 
+
 <div data-th-fragment="errorPage">
+
     <section class="contact spad">
         <div class="container">
             <div class="row">
@@ -741,7 +708,9 @@
     <br><br>
 </div>
 
+
 <div data-th-fragment="appuser">
+
     <section class="contact spad">
         <div class="container">
             <div class="row">
@@ -763,8 +732,6 @@
                 </div>
             </div>
         </div>
-
-
         <div class="testimonial spad">
             <div class="container">
                 <div class="row">
@@ -797,7 +764,6 @@
                 </div>
             </div>
         </div>
-
         <div class="testimonial spad">
             <div class="container">
                 <div class="row">
@@ -830,8 +796,6 @@
                 </div>
             </div>
         </div>
-
-
         <div class="testimonial spad">
             <div class="container">
                 <div class="row">
@@ -862,8 +826,6 @@
                 </div>
             </div>
         </div>
-
-
     </section>
 </div>
 
@@ -909,20 +871,15 @@
                                     <th>Jelszó</th>
                                     <td><input style="height: 20px; margin-bottom: 5px" type="password" data-th-field="*{password}" /> </td>
                                 </tr>
-
-
                                 <tr>
                                     <th>Kép</th>
-
                                     <td><input type="file" name="photo" style="background-color: inherit; margin-top: 10px; padding-top: 20px;"></td>
                                 </tr>
-
                             </table>
                             <div class="col-lg-12">
                                 <br><br>
                                 <button type="submit" class="site-btn">Regisztrálok</button>
                             </div>
-
                         </form>
                     </div>
                 </div>

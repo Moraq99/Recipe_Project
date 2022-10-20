@@ -48,6 +48,11 @@ public class AppUserController {
     @GetMapping("/appuser/{id}")
     public String user(Model model, @PathVariable(name = "id") Long id){
         AppUser appUser = appUserService.loadUserById(id);
+
+        if (appUser.getId() == null){
+            appUser = appUserService.getLoggedInUser();
+        }
+
         List<Recipe> ownRecipes = appUser.getOwnRecipes();
         List<Recipe> favouriteRecipes = appUser.getFavouriteRecipes();
         List<AppUser> friends = appUser.getFriends();

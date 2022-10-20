@@ -26,7 +26,7 @@ public class MainController {
         this.recipeService = recipeService;
     }
 
-    @GetMapping(value = {"/", "/home"})
+    @GetMapping(value = {"/", "", "/home"})
     public String getHomePage(Model model) {
         List<Recipe> topRated = recipeService.getRandomRecipes();
         List<Recipe> recipes = recipeService.getAll();

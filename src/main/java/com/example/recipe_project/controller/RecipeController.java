@@ -58,10 +58,21 @@ public class RecipeController {
     }
 
     @GetMapping(value = "/delete/{id}")
-    public String deleteRecipe(@PathVariable(name = "id") Long id) {
-        recipeService.deleteById(id);
+    public String deleteRecipe(@PathVariable(name = "id") Long id, Model model) {
+        try {
+            Recipe recipe = recipeService.findById(id);
 
-        return "redirect:/home";
+            appUserService.gotAccesToRecipe(recipe);
+            model.addAttribute("recipe", recipe);
+
+            recipeService.deleteById(id);
+            return "redirect:/home";
+
+        } catch (AccesToRecipeDeniedException e) {
+            model.addAttribute("denied", e.getMessage());
+
+            return "error";
+        }
     }
 
     @GetMapping(value = "/edit/{id}")
