@@ -6,5 +6,4 @@ public class Special {
     private boolean isGlutenFree;
     private boolean isLactoseFree;
 
-
 }

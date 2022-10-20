@@ -34,15 +34,6 @@ public class TestDataLoader {
 
     public void loadRecipes() throws Exception {
 
-        /*Recipe r1 = new Recipe("Házi vaniliás túrókrém",
-        EnumDifficulty.NAGYON_KONNYU, 40, false, false, true,
-        "\n25 dkg túró \n2 db tojás (sárgája) \n2 dl tej \n5-8 dkg cukor \n1 ek vaníliás pudingpor \n1/2 rúd vanília magjai \n1 csipet só",
-        "A tojások sárgáját a cukorral, pudingporral és egy kevés tejjel alaposan elkeverjük (előzőleg a sárgájákat a
-        cukorral kissé habosítjuk). A maradék tejet a vanília magjaival felforraljuk, beleöntjük a masszát, majd addig
-        keverjük, amíg sűrű pudingot nem kapunk. Ezután hagyjuk kihűlni. A túrót áttörjük, majd hozzáöntjük a kihűlt
-        vaníliás alapot, és botmixerrel addig keverjük, amíg krémes nem lesz. Poharakba, tálakba adagolva lehűtjük.
-        Tálaláskor megszórhatjuk áfonyával, vagy készíthetünk hozzá karamell vagy gyümölcs öntetet.");*/
-
         List<Ingredient> ingredientsr1 = new ArrayList<>();
 
         Recipe r1 = new Recipe(
@@ -78,13 +69,6 @@ public class TestDataLoader {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-        /*Recipe r2 = new Recipe("Bögrés gofri",
-        EnumDifficulty.KONNYU, 20, false, false, false,
-        "\n3db tojás \n1.5 bögre tej \n2ek cukor \n0.75 bögre liszt \n0.25 bögre olaj \n1 csom vaníliás cukor \n1 csom sütőpor \n1 csipet só",
-        "A tojásokat szétválasztjuk. Egy nagy tálban robotgéppel összekeverjük a tejet, a tojássárgáját, a cukrot, a
-        lisztet, az olajat, a vaníliás cukrot, a sütőport és a sót. Kemény habbá verjük a tojásfehérjéket, majd óvatosan
-        a masszához forgatjuk. A tésztát a hűtőben pihentetjük egy órát, majd gofrisütőben a szokásos módon kisütjük a gofrikat.");*/
-
         List<Ingredient> ingredientsr2 = new ArrayList<>();
 
         Recipe r2 = new Recipe(
@@ -119,16 +103,6 @@ public class TestDataLoader {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-        /*Recipe r3 = new Recipe("Kekszes-tejfölös süti sütés nélkül",
-        EnumDifficulty.NORMALIS, 25, false, false, false,
-        "\n50 dkg háztartási keksz \n2n pohár tejföl \n3csom vaníliás cukor \n9ek kristálycukor \n1ek keserű kakaópor",
-        "Az egyik pohár tejfölbe belekeverünk 4 evőkanál cukrot és 2 csomag vaníliás cukrot. A másikba 5 evőkanál cukrot,
-        1 csomag vaníliás cukrot, valamint 1 kanál kakaóport. Egy közepes méretű (kb. 20x30 cm-es) tepsi aljára tegyünk
-        egy réteg háztartási kekszet. Kenjük el rajta a vaníliás tejföl 2/3 részét. Fedjük be egy réteg keksszel,
-        egyengessük el rajta a kakaós tejföl 2/3-át. Borítsuk be egy újabb réteg keksszel, majd a maradék vaníliás és
-        kakaós tejfölt öntsük a tetejére, egyengessük el, fogpiszkálóval tetszés szerint rajzoljunk bele mintákat.
-        Tegyük hűtőbe 10-12 órára. A keksz megpuhul, a tejföl pedig kissé megköt.");*/
-
         List<Ingredient> ingredientsr3 = new ArrayList<>();
 
         Recipe r3 = new Recipe(
@@ -162,15 +136,6 @@ public class TestDataLoader {
         repo.save(r3);
 
 //----------------------------------------------------------------------------------------------------------------------
-
-        /*Recipe r4 = new Recipe("BÖGRÉS KEFIRES-MEGGYES KEVERT SÜTI",
-        EnumDifficulty.NAGYON_NEHEZ, 50, false, false, true,
-        "\n3bögre liszt \n1csom sütőpor \n5bögre cukor \n1csom vaníliás cukor \n1bögre kefir \n1bögre olaj \n4db tojás
-        \n40dkg meggy \n1ek fahéj \nvaj \nporcukor\n \nfahéj",
-        "Egy 175 ml-es kefires dobozzal kimérjük a hozzávalókat. Összekeverjük a lisztet, a sütőport, a cukrot és a
-        vaníliás cukrot. Hozzáadjuk a kefirt, az olajat és a tojást, és alaposan összekeverjük. A tésztát kivajazott
-        és kilisztezett tepsibe öntjük. A lecsögpögtetett meggyet megszórjuk a fahéjjal, majd a tésztára szórjuk. 180
-        fokra előmelegített sütőben 30 perc alatt készre sütjük, porcukorral a tetején tálaljuk."*/
 
         List<Ingredient> ingredientsr4 = new ArrayList<>();
 
@@ -211,14 +176,6 @@ public class TestDataLoader {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-        /*Recipe r5 = new Recipe("EGYSZERŰ TÚRÓS KÓKUSZGOLYÓ",
-        EnumDifficulty.NAGYON_KONNYU, 20, false, false, true,
-        "\n25dkg túró \n20dkg porcukor \n15dkg kókuszreszelék \n1csom vaníliás cukor \n1db citrom",
-        "Egy tálban áttörjük a túrót, hozzáadjuk a porcukrot és a vaníliás cukrot.
-        " A kókuszreszelékből félreteszünk egy keveset, a többit a keverékhez adjuk. Ezután megmossuk és szárazra
-        töröljük a citromot, és a masszához adjuk a lereszelt a héját. A hozzávalókat alaposan összegyúrjuk, majd kis
-        gombócokat formálunk belőle. A végén a golyókat meghempergetjük a maradék kókuszreszelékben.");*/
-
         List<Ingredient> ingredientsr5 = new ArrayList<>();
 
         Recipe r5 = new Recipe(
@@ -249,17 +206,6 @@ public class TestDataLoader {
         repo.save(r5);
 
 //----------------------------------------------------------------------------------------------------------------------
-
-        /*Recipe r6 = new Recipe("KÓKUSZTEKERCS",
-        EnumDifficulty.NORMALIS, 30, false, false, true,
-        "\n50dkg darált keksz \n50dkg porcukor \n6ek kakaópor \n6ek rum \n1db tojássárgája \n5ek tej \n20dkg vaj
-        \n1tasak vaníliás cukor \n20dkg kókuszreszelék",
-        "Alaposan összegyúrjunk a darált kekszet a porcukorral, a kakaóporral és a rummal,\n" +
-        "a tojássárgájával és tejjel, majd a hűtőbe tesszük, kb. 1 órára. A puha vajat krémesre keverjük a vaníliás
-        cukorral, majd apránként hozzáadjuk a kókuszreszeléket. A porcukorral megszórt sütőpapíron kinyújtjuk a kekszes
-        masszát. Rákenjük a kókuszos krémet, és feltekerjük a sütőpapír segítségével. A tekercset egy kevés porcukorban
-        és kókuszreszelékben megforgatjuk, majd alufóliába csomagoljuk, és hűtőbe tesszük, amíg megszilárdul. Meleg
-        vízbe mártott, megtörölt késsel kb. 1 cm-es szeletekre vágjuk.");*/
 
         List<Ingredient> ingredientsr6 = new ArrayList<>();
 
@@ -299,14 +245,6 @@ public class TestDataLoader {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-        /*Recipe r7 = new Recipe("PUDINGOS KEKSZEK",
-        EnumDifficulty.NEHEZ, 30, true, true, false,
-        "\n25dkg margarin \n10dkg porcukor \n1ek vaníliás cukor \n25dkg finomliszt \n2csom pudingpor \ncsokicsepp",
-        "Egy keverőtálban, konyhai robotgép segítségével minden alapanyagot összegyúrunk, majd kis golyókat formálunk a
-         masszából. Sütőpapírral bélelt tepsire rakosgatjuk őket, majd villávalkissé lenyomjuk - ezzel mintegy mintázzuk
-          is a felületüket. De ellapíthatjuk atenyererünkkelis, majd 3-3 csokicseppet vagy apróra vágott étcsokidarabot
-           belenyomhatunka tésztába. 200 fokra előmelegített sütőben max. 10 perc alatt készre sütjük a kekszecskéinket!");*/
-
         List<Ingredient> ingredientsr7 = new ArrayList<>();
 
         Recipe r7 = new Recipe(
@@ -339,14 +277,6 @@ public class TestDataLoader {
         repo.save(r7);
 
 //----------------------------------------------------------------------------------------------------------------------
-
-        /*Recipe r8 = new Recipe("EGYSZERŰ BANÁNOS MUFFIN",
-        EnumDifficulty.NAGYON_NEHEZ, 45, false, true, false,
-        "\n2db banán \n15dkg liszt \n1csom sütőpor \n10dkg cukor \n1csom vaníliás cukor \n1db tojás \n0.8dl olaj \nvaj \nbanánkarikák",
-        "A meghámozott banánokat összetörjük egy villával. Átszitáljuk egy tálba a lisztet és a sütőport, majd hozzáadjuk
-        a cukrot, a vaníliás cukrot, a tojást, az olajat és a banánt, majd alaposan össszedolgozzuk. Kivajazzuk a
-        muffinsütőt, majd a mélyedésekbe halmozzuk a tésztamasszát. 180 fokra előmelegített sütőben 20-30 percig sütjük,
-        majd a formában hagyjuk kihűlni. A muffinokat banánkarikákkal díszítjük.\n");*/
 
         List<Ingredient> ingredientsr8 = new ArrayList<>();
 
@@ -384,14 +314,6 @@ public class TestDataLoader {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-        /*Recipe r9 = new Recipe("EGYSZERŰ MEGGYES PALACSINTA",
-        EnumDifficulty.NORMALIS, 35, false, true, false,
-        "\n3db tojás \n15dkg cukor\n \n50dkg liszt \nszénsavas ásványvíz \nmeggylekvár",
-        "A tojásokat feltörjük, egy tálba öntjük, majd a cukorral habosra kavarjuk, végül hozzáadjuk a lisztet.
-        Ezeket összedolgozzuk és ásványvízzel lazítjuk a tésztát. A palacsintatészta sűrűségét egyénileg határozzuk meg.
-        Bevonatos serpenyőben egyenként kisütjük a palacsintákat, és hűlni hagyjuk. A palacsintákat meggylekvárral
-        töltjük meg, és háromszög alakúra hajtogatjuk.");*/
-
         List<Ingredient> ingredientsr9 = new ArrayList<>();
 
         Recipe r9 = new Recipe(
@@ -422,15 +344,6 @@ public class TestDataLoader {
         repo.save(r9);
 
 //----------------------------------------------------------------------------------------------------------------------
-
-        /*Recipe r10 = new Recipe("TÍZPERCES SÜTŐPOROS FÁNK",
-        EnumDifficulty.KONNYU, 10, false, true, false,
-        "\n25dkg liszt \n1csip só \n0.5csom sütőpor \n1db tojás \n3ek porcukor \n1csom vaníliás cukor \n2dl tejföl \n6dl olaj",
-        "A lisztet egy tálba szitáljuk, majd elkeverjük benne a sót és a sütőport. Egy másik tálban a tojást simára
-        keverjük a porcukorral, a vaníliás cukorral és a tejföllel. Hozzáadjuk a sütőporos lisztet, és jól összedolgozzuk.
-        Lisztezett felületen 0,5 cm vastagra nyújtjuk a tésztát, majd egy közepes átmérőjű pogácsaszaggatóval kiszaggatjuk.
-         Bő, forró olajban, a közepestől egy kicsit kisebb lángon a fánkok mindkét oldalát szép pirosra sütjük. Konyhai
-         papírtörlőn lecsepegtetjük a felesleges olajat. Porcukorral meghintve, sárgabaracklekvárral kínáljuk.");*/
 
         List<Ingredient> ingredientsr10 = new ArrayList<>();
 
@@ -467,18 +380,6 @@ public class TestDataLoader {
         repo.save(r10);
 
 //----------------------------------------------------------------------------------------------------------------------
-
-        /*Recipe r11 = new Recipe("KLASSZIKUS TÚRÓGOMBÓC FAHÉJAS TEJFÖLLEL",
-        EnumDifficulty.NEHEZ, 45, false, false, false,
-        "\n10-15 db gombóchoz: \n50dkg túró \n2db tojás \n10dkg búzadara \n1csom vaníliáscukor \n2ek kristálycukor
-        \n1db citrom reszelt héja \n1csip só \n10dkg zsemlemorzsa \n2ek porcukor\n2ek étolaj",
-        "A túrót áttörjük, például egy krumplinyomóval. Összekeverjük a tojásokkal és a búzadarával, a cukorral, a
-        citrom reszelt héjával, és a csipet sóval, majd letakarva minimum 1 órára tegyük hűtőbe – hogy a dara jól
-        megszívja magát. Ezután nedves kézzel diónyi gombócokat formázunk a masszából, és enyhén sós, forró, gyöngyöző
-        vízben kifőzzük – amint feljönnek a gombócok a víz tetejére, onnan számítva további 5 percig főzzük őket. Kevés
-        olajon, alacsony lángon megpirítjuk a zsemlemorzsát, vigyázzunk mert könnyen túlbarnul. Két evőkanál porcukrot
-        hozzákeverünk, és a kifőtt gombócokat ebbe az édes morzsába forgatjuk bele. A túrógombócot porcukorral megszórva,
-        édes, fahéjas tejföllel, langyosan tálaljuk.");*/
 
         List<Ingredient> ingredientsr11 = new ArrayList<>();
 
@@ -520,16 +421,6 @@ public class TestDataLoader {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-        /*Recipe r12 = new Recipe("TEJES PITE",
-         EnumDifficulty.NORMALIS, 50, false, false, false,
-         "\n4db tojás \n15dkg cukor \ncsip só \n1csom vaníliás cukor\n \n30dkg liszt \n1l tej
-         \nvaj (a tepsi kikenéséhez) \nsárgabaracklekvár",
-         "A tejes pite elkészítéséhez az egész tojásokat a cukorral, a sóval és a vaníliás cukorral kikeverjük,
-         majd hozzáadjuk a lisztet és a tejet is, de csak apránként. Egynemű tésztává keverjük. Egy nagyobb, magas falú
-         tepsit alaposan kikenünk vajjal, és beleöntjük a kevert tésztát. Előmelegített sütőben először magas hőmérsékleten
-          (190 fokon) 10 percig, aztán alacsonyabb hőmérsékleten (170 fokon) 40 perc alatt szép pirosra sütjük.
-          A süteményt négyzet alakúra vágjuk, és baracklekvárral tálaljuk.");*/
-
         List<Ingredient> ingredientsr12 = new ArrayList<>();
 
         Recipe r12 = new Recipe(
@@ -566,18 +457,6 @@ public class TestDataLoader {
 
 
 //----------------------------------------------------------------------------------------------------------------------
-
-        /*Recipe r13 = new Recipe("TÚRÓS ZSEMLE, AHOGY A NAGYMAMÁM KÉSZÍTI",
-         EnumDifficulty.NEHEZ, 35, false, false, false,
-         "\n10db zsemle \n6dl tej \n5dkg vaj \n3ek cukor \n2.5dl tejföl \n0.5kg túró \n1db tojás \n1zacskó vaníliás cukor
-         \n1db citrom \n4ek porcukor \n2ek tejfö \n2marék mazsola \n1csip só",
-         "A töltelék hozzávalóit egy tálban simára keverjük. A zsemléket kettévágjuk, a belsejüket kikaparjuk, hogy
-         kb. 1 cm vastag héj maradjon. A tejet langyosra melegítjük, és hozzáadjuk a megolvasztott vajat és a cukrot.
-         A zsemlék belét leöntjük 1-2 dl vajas tejjel, kicsit kinyomkodjuk és a töltelékhez adjuk, majd ezzel is
-         kikeverjük. Kivajazunk egy tűzálló tálat. A zsemléket megmártjuk a vajas tejben, és egymás mellé állítjuk a
-         jénaiban. Elosztjuk bennük a tölteléket, meglocsoljuk a maradék vajas tejjel, majd mindegyik tetejére még
-         néhány kanál tejfölt teszünk. 180 fokos sütőbe toljuk, és kb. 30 perc alatt készre sütjük (addig, amíg a
-         zsemlék széle és a tejföl is itt-ott megpirul).");*/
 
         List<Ingredient> ingredientsr13 = new ArrayList<>();
 
@@ -622,13 +501,6 @@ public class TestDataLoader {
 
 
 //----------------------------------------------------------------------------------------------------------------------
-
-        /*Recipe r14 = new Recipe("Macskapörkölt",
-        EnumDifficulty.LEHETETLEN, 999999999, false, false, true,
-        "\nkiscica \nsó \nbors",
-        "Végy egy kiscicát. Ízesitsd sóval, borssal, majd sütőben 180 fokon egy órán át süsd.\n " +
-                "Ha kész, ébredj fel! \n" +
-                "A cicák túl aranyosak, így nem lenne szíved megenni! :) \n");*/
 
         List<Ingredient> ingredientsr14 = new ArrayList<>();
 
@@ -717,8 +589,7 @@ public class TestDataLoader {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-        //ingredients.forEach(ingredient -> ingredient.setRecipe(r1)); // ez meg mi a fasz ?
-    }
+}
 
 
     /**
@@ -745,34 +616,4 @@ public class TestDataLoader {
         ImageIO.write(bufferedImage, "jpg", bos);
         return bos.toByteArray();
     }
-   /* public List<Ingredient> findByIngredients(String  keyWord, Recipe recipe){
-        List<Ingredient> result = new ArrayList<>();
-
-        for(Ingredient search : ingredients.values()){
-            if(recipe.getIngredients().contains(keyWord)){
-                result.add(search);
-            }
-        }
-        return result;
-    }*/
-
-    /*public List<Recipe> getByIngredients() {
-
-        return repo.findByIngredients(new ArrayList<>());
-    }*/
-
-
-/* public static byte[] extractBytes(String ImageName) throws IOException {
-        File imgPath = new File(ImageName);
-        BufferedImage bufferedImage = ImageIO.read(new File("src/main/resources/static/photos/" + ImageName));
-
-        WritableRaster raster = bufferedImage.getRaster();
-        DataBufferByte data = (DataBufferByte) raster.getDataBuffer();
-
-
-        return (data.getData());
-
-    }
-
-    */
 }

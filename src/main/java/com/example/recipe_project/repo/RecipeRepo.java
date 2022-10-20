@@ -16,6 +16,4 @@ public interface RecipeRepo extends CrudRepository<Recipe, Long> {
 
     List<Recipe> findAllByCreatedBy(AppUser user);
 
-
-
 }

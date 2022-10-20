@@ -35,10 +35,4 @@ public class CommentService {
                         .reversed())
                 .collect(Collectors.toList());
     }
-
-    /*public List<Comment> getCommentsByComment(Comment comment){
-        Optional<Comment> temp = commentRepo.findById(comment.getId());
-        return temp.get().getReplyToThis();
-    }*/
-
 }
